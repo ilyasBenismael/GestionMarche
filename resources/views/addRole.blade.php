@@ -17,6 +17,11 @@
                                     <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                                 </div>
                             </div>
+                            @error('name')
+                            <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                            @enderror
 
                             <div class="row mb-0">
                                 <div class="col-md-6 offset-md-4">
