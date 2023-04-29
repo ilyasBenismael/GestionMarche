@@ -24,3 +24,7 @@ Route::get('/home', 'App\Http\Controllers\HomeController@goHome')->name('home');
 
 Auth::routes();
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
