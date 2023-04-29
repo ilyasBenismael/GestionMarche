@@ -18,6 +18,7 @@ class HomeController extends Controller
     public function __construct()
     {
         $this->middleware('isAdmin')->only('goUsers');
+        $this->middleware('auth')->only('goHome');
     }
 
 
@@ -49,7 +50,8 @@ class HomeController extends Controller
 
     public function goRoles()
     {
-        return view('roles');
+        $roles = role::all();
+        return view('roles',['roles'=>$roles] );
     }
 
     public function goAddRole()
@@ -57,13 +59,20 @@ class HomeController extends Controller
         return view('addRole');
     }
 
-
-
-    public function addRole()
+    public function deleteRole($id)
     {
-//
+        role::destroy($id);
+       return redirect('/roles');
     }
 
 
 
+    public function addRole(Request $request)
+    {
+        $role =  $request->validate([
+            'name' => ['required','string','unique:roles'],
+        ]);
+       role::create($role);
+        return redirect('/roles');
+    }
 }

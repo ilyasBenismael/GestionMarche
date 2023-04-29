@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/profil', 'App\Http\Controllers\HomeController@goProfil');
 Route::get('/users', 'App\Http\Controllers\HomeController@goUsers');
-Route::get('/', 'App\Http\Controllers\HomeController@goWelcome');
+Route::get('/', 'App\Http\Controllers\HomeController@goWelcome')->name('welcome');
 Route::get('/roles', 'App\Http\Controllers\HomeController@goRoles');
 Route::get('/addRole', 'App\Http\Controllers\HomeController@goAddRole');
 Route::post('/addRole', 'App\Http\Controllers\HomeController@addRole');
+Route::delete('/role/{id}', 'App\Http\Controllers\HomeController@deleteRole');
 Route::get('/home', 'App\Http\Controllers\HomeController@goHome')->name('home');
 
 /*-------------------------------------------------------------------------------------------------*/
