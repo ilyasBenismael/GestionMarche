@@ -19,24 +19,24 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
+
     <!-- Bootstrap Core Css -->
-    <link href="../../plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{asset('plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="../../plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="{{asset('plugins/node-waves/waves.css')}}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="../../plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{asset('plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="../../plugins/morrisjs/morris.css" rel="stylesheet" />
-
-
+    <link href="{{asset('plugins/morrisjs/morris.css')}}" rel="stylesheet" />
+    {{--    {{asset('')}}--}}
     <!-- Custom Css -->
-    <link href="../../css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="../../css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{asset('css/themes/all-themes.css')}}" rel="stylesheet" />
 
 
 
@@ -51,12 +51,15 @@
 
 
 <style>
-
     /*--  ======================================================style="position: relative;left: 45%;"=====================  --*/
+
     :root {
         --bg: #1B1B1B;
         --highlights: #343434;
         --shadow: #222222;
+        --light:#E0E0E0;
+        --lightShadow:#afafaf;
+        --lightHighlight:#ffffff;
     }
     html,body{height:100%;margin:0;width:100%;}
     body {
@@ -91,7 +94,6 @@
     #themePicker:checked + .themeToggle #lightMode{
         font-size: 40px;
     }
-
     /*--  ===========================================================================  --*/
 </style>
 <!-- #END# Page Style -->
