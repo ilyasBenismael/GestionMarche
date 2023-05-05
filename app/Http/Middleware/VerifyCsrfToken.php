@@ -14,9 +14,7 @@ class VerifyCsrfToken extends Middleware
 
     public function handle($request, Closure|\Closure $next)
     {
-        $response = $next($request);
-        return $response
-            ->header('Cache-Control', 'no-cache, no-store, max-age=0, must-revalidate');
+        return $next($request);
     }
 
     protected $except = [

@@ -4,7 +4,7 @@
 
     <a href="/addRole">add Role</a>
 
-    <table>
+    <table border="1px">
         <tr>
             <th>
                 name
