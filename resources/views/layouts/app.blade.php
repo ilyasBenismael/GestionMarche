@@ -40,7 +40,7 @@
 
 
 
-@yield("css")
+    @yield("css")
 </head>
 
 <body class="theme-red">
@@ -67,7 +67,7 @@
         align-items: center;
     }
     .nightModeIcon{
-    position: absolute;
+        position: absolute;
         top: 20%;
         left: 45%;
     }
@@ -215,7 +215,7 @@
 </section>
 
 <section class="content">
-@yield('content')
+    @yield('content')
 </section>
 
 
@@ -304,4 +304,3 @@
 
 
 </html>
-
