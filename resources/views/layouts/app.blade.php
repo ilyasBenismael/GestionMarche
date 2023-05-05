@@ -14,22 +14,32 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
     <!-- Bootstrap Core Css -->
-    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="{{asset('plugins/bootstrap/css/bootstrap.css')}}" rel="stylesheet">
 
     <!-- Waves Effect Css -->
-    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="{{asset('plugins/node-waves/waves.css')}}" rel="stylesheet" />
 
     <!-- Animation Css -->
-    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="{{asset('plugins/animate-css/animate.css')}}" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <link href="plugins/morrisjs/morris.css" rel="stylesheet" />
-
+    <link href="{{asset('plugins/morrisjs/morris.css')}}" rel="stylesheet" />
+{{--    {{asset('')}}--}}
     <!-- Custom Css -->
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="css/themes/all-themes.css" rel="stylesheet" />
+    <link href="{{asset('css/themes/all-themes.css')}}" rel="stylesheet" />
+
+    <style>
+        .profilPic {
+            border-radius: 5px;
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+        }
+    </style>
+
 </head>
 
 <body class="theme-red">
@@ -70,7 +80,7 @@
         <div class="user-info">
             @auth()
                 <div class="image">
-                    <img src="images/user.png" width="48" height="48" alt="User" />
+                    <img src="{{ asset('images/profils/' . auth()->user()->image) }}" width="60" height="60" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</div>
@@ -79,7 +89,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li role="seperator" class="divider"></li>
-                            <li><a href="#"><i class="material-icons">person</i>Voir mon profil</a></li>
+                            <li><a href="/profil"><i class="material-icons">person</i>Voir mon profil</a></li>
                             <li><a href="#"><i class="material-icons">favorite</i>mes Marchés</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="#"><i class="material-icons">person</i>Editer mon profil</a></li>
@@ -96,6 +106,7 @@
                     </div>
                 </div>
             @endauth
+
         </div>
 
         <!-- #User Info -->
@@ -117,7 +128,7 @@
                 </li>
 
 
-                @if(auth()->check() && auth()->user()->role==1)
+                @if(auth()->check() && auth()->user()->role=='admin')
                     <li class="header">Admin Activities</li>
                     <li>
                         <a href="/users">

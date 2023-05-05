@@ -1,0 +1,8 @@
+DATABASELINK :on cree un lien pour communiquer s1 et s2
+SYSONYME : pour masquer le prioritaire (better performance)
+VUES STANDARDS :  tables virtuelles, 
+VUES MATERIALISEES : tables reel (dupliquation de donnees)
+PROCEDURE : concept administratif (fonction)
+replication : synchrone : on utilise les triggers
+asynchrone : on utilise les snapshots (copie d'une table de la BD)
+allocation : repartir les fragments dans les sites en tenant compte du cout de (stockage) et la performance (delai drepponse)

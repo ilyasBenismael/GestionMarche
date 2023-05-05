@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\role;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -39,7 +40,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('isAdmin');
+      $this->middleware('isAdmin');
+
     }
 
     /**
@@ -55,8 +57,15 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'city' => ['required', 'string', 'max:18'],
-            'role' => ['required','in:1,2,3'],
+            'role' => ['required',],
+            'image' => ['required','image','mimes:jpeg,png,jpg,gif',],
+            'cv' => ['required',],
         ]);
+
+
+
+
+
     }
 
     /**
@@ -65,14 +74,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
+
+
     protected function create(array $data)
     {
+        $image_name = time() . '_' . $data['image']->getClientOriginalName();
+        $data['image']->move(public_path('images').'/profils', $image_name);
+
+        $cv_name = time() . '_' . $data['cv']->getClientOriginalName();
+        $data['cv']->move(public_path('images').'/cvs', $cv_name);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'city' => $data['city'],
             'role' => $data['role'],
+            'image' => $image_name,
+            'cv' => $cv_name,
         ]);
     }
+
+    protected function showRegistrationForm()
+    {
+        $roles = role::all(); // Retrieve data from database
+        return response()->view('auth.register', ['roles' => $roles])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+         // Pass data to view
+    }
+
+
 }
