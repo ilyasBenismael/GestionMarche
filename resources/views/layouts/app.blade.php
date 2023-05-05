@@ -168,7 +168,7 @@
                 </li>
 
 
-                @if(auth()->check() && auth()->user()->role==1)
+                @if(auth()->check() && auth()->user()->role=='admin')
                     <li class="header">Admin Activities</li>
                     <li>
                         <a href="/users">
