@@ -170,7 +170,7 @@ $user = User::find($id);
 
     public function ImportUsers(Request $request)
     {
-        Excel::import(new UsersImport, $request['excel']);
+       Excel::import(new UsersImport, $request['excel']);
         return redirect('/users');
 }
 

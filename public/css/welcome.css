@@ -1,0 +1,109 @@
+:root{
+    --color-body:#D88A5D;
+    --color-body1:#E47130;
+    --color-body2:#EDB532;
+}
+
+body{
+    font-family: 'Changa', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url("../images/koutoubia-mosque-marrakech-sunrise.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height:100vh;
+    backdrop-filter: blur(4px);
+}
+
+
+/*-- == NavBar -Start- == --*/
+.navbar{
+    background: linear-gradient(to top, transparent, #000000a8);
+    height: 75px;
+}
+.navbar .navbar-brand{
+    color: var(--color-body);
+    margin: 0 30px;
+}
+.navbar .navbar-collapse{
+    margin: 0 30px;
+}
+.navbar .navbar-collapse .login-section .text{
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+    color: white;
+}
+.navbar .navbar-collapse .login-section .text:hover{
+    color: var(--color-body);
+
+}
+/*-- == NavBar -End- == --*/
+/*-- == Section -End- == --*/
+.section1{
+    background-color: rgba(255, 255, 255, 0.2);
+    padding: 30px 0;
+    color: white;
+    text-shadow: 1px 1px 8px rgba(0, 0, 0);
+    text-align: center;
+    margin-top: 200px;
+}
+.section1 .header{
+    margin: 40px 0;
+}
+.section1 .header h1{
+    font-size: 3rem;
+}
+.section1 .header-text,
+.section1 .btn
+{
+    margin: 20px 0;
+}
+.section1 .header-text{
+    line-height: 2;
+    font-size: 16px;
+    font-weight: 500;
+}
+.section1 .btn{
+    background-color:var(--color-body);
+    box-shadow: 1px 1px 8px rgba(0, 0, 0,0.5);
+    transition: all 0.4s ease-in-out;
+}
+.section1 .btn span{
+    color: white;
+    margin: 0 15px;
+    text-shadow: none;
+    transition: all 0.4s ease-in-out;
+}
+
+.section1 .btn:hover{
+    background-color:white;
+
+}
+.section1 .btn:hover span{
+    color: var(--color-body);
+}
+
+
+.navbar .login-section .text::selection,
+.navbar .navbar-brand::selection,
+.section1 .header-text br::selection,
+.section1 .header-text::selection,
+.section1 .header h1::selection{
+    background-color: var(--color-body);
+    color: #ffffff;
+}
+/*-- == Section -End- == --*/
+/*-- == Cercle Effect -Start- == --*/
+.circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999999; /* so that it stays on top of all other elements */
+}
+/*-- == Cercle Effect -End- == --*/
