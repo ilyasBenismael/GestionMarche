@@ -9,13 +9,14 @@
     --color-light-body:#F3F5F7;
     /*-- == Night/Light Mode Colors -end- == --*/
     --grey-color: #7f8c8d;
-
+    /*-- Side Bar Colors -start- --*/
     --primary-color: #4EC0E9;
     --info-color: #ED5464;
     --success-color: #4ACFAE;
     --warning-color: #FFCE52;
     --danger-color: #5F9CEC;
     --sunset-color:#D88A5D;
+    /*-- Side Bar Colors -end- --*/
 }
 
 body {
@@ -29,115 +30,6 @@ body {
 body.night-mode {
     background-color: var(--color-light);
     color: var(--color-night-body);
-}
-
-.admin{
-    color: var(--sunset-color);
-}
-.cadre{
-    color: var(--danger-color);
-}
-.consultant{
-    color: var(--success-color);
-}
-main {
-    position: relative;
-    height: 100vh;
-}
-
-.helper {
-    background: rgba(0, 0, 0, 0.2);
-    color: var(--color-light);
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    padding: 1.2em 2em;
-    text-align: center;
-    border-radius: 20px;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.helper span {
-    color: rgba(0, 0, 0, 0.2);
-    font-size: 0.4em;
-    display: block;
-}
-
-.menu {
-    background: var(--color-night);
-    height: 100vh;
-    width: var(--menu-width-desktop);
-    top: 0;
-    left: 0;
-    z-index: 5;
-    outline: none;
-    position: fixed;
-}
-
-.menu .avatar {
-    background: var(--color-night);
-    border-bottom: 2px solid var(--color-light);
-    padding: 2em 0.5em;
-    text-align: center;
-}
-
-.menu .avatar img {
-    width: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    border: 4px solid var(--color-night);
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
-}
-
-.menu .avatar h2 {
-    font-weight: normal;
-    margin-bottom: 0;
-}
-
-.menu ul {
-    line-height: 3;
-    list-style: none;
-    padding: 0.5em 0;
-    margin: 0;
-}
-
-.menu ul li {
-    padding: 0.5em 1em 0.5em 3em;
-    font-size: 0.95em;
-    font-weight: 100;
-    background-repeat: no-repeat;
-    background-position: left 15px center;
-    background-size: auto 20px;
-    transition: all 0.15s linear;
-    cursor: pointer;
-}
-.avatar .info-container .user-helper-dropdown i{
-    margin-top: 10px;
-}
-
-.avatar .user-info .info-container{
-    line-height: 1.8;
-    margin-top: 15px;
-}
-.activities li a{
-    text-decoration: none;
-    color: var(--color-light);
-}
-.activities li a i{
-    margin-right: 8px;
-}
-.activities .header{
-    font-weight: bold;
-    cursor: initial;
-    font-size: 16px;
-    text-align: center;
-    margin: 0;
-    padding: 0;
-}
-.menu .activities li a span{
-    font-weight: 400;
 }
 /*-- Make it Responsive -start- --*/
 @media screen and (max-width: 900px) and (min-width: 400px) {
@@ -302,6 +194,115 @@ main {
     }
 }
 /*-- Make it Responsive -end- --*/
+
+.admin{
+    color: var(--sunset-color);
+}
+.cadre{
+    color: var(--danger-color);
+}
+.consultant{
+    color: var(--success-color);
+}
+main {
+    position: relative;
+    height: 100vh;
+}
+
+.helper {
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--color-light);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    padding: 1.2em 2em;
+    text-align: center;
+    border-radius: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.helper span {
+    color: rgba(0, 0, 0, 0.2);
+    font-size: 0.4em;
+    display: block;
+}
+
+.menu {
+    background: var(--color-night);
+    height: 100vh;
+    width: var(--menu-width-desktop);
+    top: 0;
+    left: 0;
+    z-index: 5;
+    outline: none;
+    position: fixed;
+}
+
+.menu .avatar {
+    background: var(--color-night);
+    border-bottom: 2px solid var(--color-light);
+    padding: 2em 0.5em;
+    text-align: center;
+}
+
+.menu .avatar img {
+    width: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--color-night);
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.2);
+}
+
+.menu .avatar h2 {
+    font-weight: normal;
+    margin-bottom: 0;
+}
+
+.menu ul {
+    line-height: 3;
+    list-style: none;
+    padding: 0.5em 0;
+    margin: 0;
+}
+
+.menu ul li {
+    padding: 0.5em 1em 0.5em 3em;
+    font-size: 0.95em;
+    font-weight: 100;
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    background-size: auto 20px;
+    transition: all 0.15s linear;
+    cursor: pointer;
+}
+.avatar .info-container .user-helper-dropdown i{
+    margin-top: 10px;
+}
+
+.avatar .user-info .info-container{
+    line-height: 1.8;
+    margin-top: 15px;
+}
+.activities li a{
+    text-decoration: none;
+    color: var(--color-light);
+}
+.activities li a i{
+    margin-right: 8px;
+}
+.activities .header{
+    font-weight: bold;
+    cursor: initial;
+    font-size: 16px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.menu .activities li a span{
+    font-weight: 400;
+}
 
 /*-- Ul Color Effect -start- --*/
 .menu-hover-fill li:not(.header) {
@@ -566,11 +567,66 @@ main {
         filter: blur(0px);
     }
 }
+/*-- Night/Light Mode -end- */
 
-
-/*-- Night/Light mode -end- */
-
+/*-- Content Section -start- --*/
 .content{
     margin: 100px 0 0;
 }
+/*-- Content Section -end- --*/
 
+/*-- Side Dropdown Menu -start- --*/
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+.dropdown-btn {
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.4s ease-in-out;
+}
+.dropdown-content {
+    border-radius: 10px;
+    display: none;
+    position: absolute;
+    background-color: var(--color-night-body);
+    min-width: 225px;
+    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
+    z-index: 1;
+    right: 0;
+}
+.dropdown-content a {
+    transition: all 0.4s ease-in-out;
+    color: var(--color-light-body);
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown-content a:hover {
+    border-radius: 6px;
+    color: var(--sunset-color) ;
+    background-color: var(--color-light-body);
+}
+.dropdown-content .dropdown-elmt{
+    padding: 0;
+}
+.dropdown-elmt a{
+    text-align: left;
+}
+.dropdown-elmt a i{
+    margin-right: 20px;
+}
+.dropdown-elmt .signout{
+    text-align: center;
+}
+.dropdown-elmt span{
+    font-weight: 500;
+}
+
+.rotate {
+    transform: rotate(-180deg);
+}
+/*-- Side Dropdown Menu -end- --*/

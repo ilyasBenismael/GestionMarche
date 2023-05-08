@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -51,25 +51,40 @@
                     <div  class="name {{ strtolower(auth()->user()->name) === 'superviseur' ? 'admin' : '' }}{{ strtolower(auth()->user()->name) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->name) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</div>
 
                     <div class="email" style="color: var(--color-light);">{{auth()->user()->email}}</div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="fa-solid fa-chevron-down" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="color: var(--color-light);"></i>
-                        <ul class="dropdown-menu pull-right">
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="#"><i class="material-icons">person</i>Voir mon profil</a></li>
-                            <li><a href="#"><i class="material-icons">favorite</i>mes Marchés</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="#"><i class="material-icons">person</i>Editer mon profil</a></li>
-                            <li> <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    Sign Out
+                    <!-- Custom Dropdown Menu -Start- -->
+                    <div class="dropdown" onclick="toggleDropdown()" style="width: 100%">
+                        <i class="fa-solid fa-chevron-up dropdown-btn rotate"  id="dropdownArrow" style="color: var(--color-light);"></i>
+                        <ul class="dropdown-content" id="dropdownContent">
+                            <li class="dropdown-elmt">
+                                <a href="#">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Voir mon profil</span>
+                                </a>
+                            </li>
+                            <li class="dropdown-elmt">
+                                <a href="#">
+                                    <i class="fa-solid fa-shop-lock"></i>
+                                    <span>Mes Marchés</span>
+                                </a>
+                            </li>
+                            <li class="dropdown-elmt">
+                                <a href="#">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                    <span>Editer mon profil</span>
+                                </a>
+                            </li>
+                            <li class="dropdown-elmt">
+                                <a href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="signout">
+                                    <span>Sign Out</span>
                                 </a>
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                     @csrf
                                 </form>
-                                <i class="material-icons">input</i>
                             </li>
                         </ul>
                     </div>
+                    <!-- Custom Dropdown Menu -End- -->
                 </div>
             @endauth
         </div>
@@ -96,7 +111,7 @@
             <li class="header" style="color: var(--color-light);">Admin Activities </li>
             <li>
                 <a href="/users">
-                    <i class="fa-solid fa-user"></i>
+                    <i class="fa-solid fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
@@ -149,16 +164,11 @@
 
 <main class="content">
     @yield('content')
-    <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown button
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-    </div>
+
+
+
+
+
 </main>
 
 
@@ -177,7 +187,6 @@
 <script src="{{ asset('/js/app.js') }}"></script>
 
 @yield("scripts")
-
 </body>
 
 

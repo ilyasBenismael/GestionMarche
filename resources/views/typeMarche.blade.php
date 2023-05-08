@@ -46,8 +46,12 @@
         </table>
 
 
+
+
         @endsection
         @section('scripts')
+
+
             <script>
                 $(document).ready(function() {
                     $('#dataTable').DataTable( {
