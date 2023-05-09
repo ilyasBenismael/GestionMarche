@@ -18,7 +18,10 @@
     --sunset-color:#D88A5D;
     /*-- Side Bar Colors -end- --*/
 }
-
+*::selection{
+    color: var(--color-light);
+    background: var(--sunset-color);
+}
 body {
     background: var(--color-night-body);
     margin: 0;

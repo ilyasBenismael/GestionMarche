@@ -48,7 +48,7 @@
                     <img src="{{ asset('images/profile.jpg') }}" width="90" height="90" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div  class="name {{ strtolower(auth()->user()->name) === 'superviseur' ? 'admin' : '' }}{{ strtolower(auth()->user()->name) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->name) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}}</div>
+                    <div  class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->role}}</div>
 
                     <div class="email" style="color: var(--color-light);">{{auth()->user()->email}}</div>
                     <!-- Custom Dropdown Menu -Start- -->
