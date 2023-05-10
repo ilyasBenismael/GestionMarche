@@ -1,5 +1,10 @@
 @extends('layouts.app')
-
+<style>
+    .profilPic{
+        width: 80px;
+        height: 80px;
+    }
+</style>
 @section('content')
 
     <form action="/users" method="GET">

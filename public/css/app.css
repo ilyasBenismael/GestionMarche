@@ -34,6 +34,12 @@ body.night-mode {
     background-color: var(--color-light);
     color: var(--color-night-body);
 }
+
+/*-- Data Tables Night Mode Modifications -start- --*/
+#dataTable.night-mode{
+    color: var(--color-light);
+}
+/*-- Data Tables Night Mode Modifications -end- --*/
 /*-- Make it Responsive -start- --*/
 @media screen and (max-width: 900px) and (min-width: 400px) {
     body {
