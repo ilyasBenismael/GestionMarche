@@ -20,7 +20,7 @@ class HomeController extends Controller
         $this->middleware('auth')->only('goHome');
     }
 
-
+//
     /**
      * Show the application dashboard.
      *

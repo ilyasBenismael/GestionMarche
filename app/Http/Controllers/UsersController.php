@@ -67,8 +67,8 @@ class UsersController extends Controller
     public function DownloadCv($cv)
     {
 
-        if (File::exists(public_path('images/cvs/' . $cv))) {
-            $filePath = 'images/cvs/' . $cv;
+        if (File::exists(public_path('files/cvs/' . $cv))) {
+            $filePath = 'files/cvs/' . $cv;
             $headers = [
                 'Content-Type' => 'application/pdf',
                 'Content-Disposition' => 'attachment; filename="' . $cv . '"',];
@@ -93,8 +93,8 @@ class UsersController extends Controller
 
         if ($request['image'] !== null) {
             $image_name = time() . '_' . $request['image']->getClientOriginalName();
-            $request['image']->move(public_path('images') . '/profils', $image_name);
-            $file_patha = public_path('images/profils/'.$user->image);
+            $request['image']->move(public_path('files') . '/profils', $image_name);
+            $file_patha = public_path('files/profils/'.$user->image);
             if (File::exists($file_patha)) {
                 File::delete($file_patha);
             }
@@ -104,9 +104,9 @@ class UsersController extends Controller
 
         if ($request['cv'] !== null) {
             $cv_name = time() . '_' . $request['cv']->getClientOriginalName();
-            $request['cv']->move(public_path('images') . '/cvs', $cv_name);
+            $request['cv']->move(public_path('files') . '/cvs', $cv_name);
 
-            $file_pathb = public_path('images/cvs/'.$user->cv);
+            $file_pathb = public_path('files/cvs/'.$user->cv);
             if (File::exists($file_pathb)) {
                 File::delete($file_pathb);
             }
@@ -151,11 +151,11 @@ class UsersController extends Controller
     {
 
 $user = User::find($id);
-        $file_pathb = public_path('images/cvs/'.$user->cv);
+        $file_pathb = public_path('files/cvs/'.$user->cv);
         if (File::exists($file_pathb)) {
             File::delete($file_pathb);
         }
-        $file_patha = public_path('images/profils/'.$user->image);
+        $file_patha = public_path('files/profils/'.$user->image);
         if (File::exists($file_patha)) {
             File::delete($file_patha);
         }

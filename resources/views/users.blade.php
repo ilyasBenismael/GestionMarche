@@ -43,7 +43,7 @@
         @foreach($users as $user)
             <tr>
                 <td>
-                    <img src="{{ asset('images/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="profilPic">
+                    <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="profilPic">
                 </td>
                 <td>
                     {{$user->name}}
@@ -58,7 +58,7 @@
                     {{$user->role}}
                 </td>
                 <td>
-                    <a href="{{ public_path('images/cvs/'.$user->cv) }}"> {{$user->cv}}</a>
+                    <a href="{{ public_path('files/cvs/'.$user->cv) }}"> {{$user->cv}}</a>
                 </td>
                 <td>
                     <form action="/dowload/{{ $user->cv }}" method="POST">
@@ -80,6 +80,10 @@
                         @method('DELETE')
                         <button class="btn btn-danger">delete</button>
                     </form>
+                </td>
+
+                <td>
+                    <a href="/chat/{{$user->id}}">send message</a>
                 </td>
 
             </tr>

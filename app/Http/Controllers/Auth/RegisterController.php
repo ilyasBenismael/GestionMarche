@@ -78,10 +78,10 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $image_name = time() . '_' . $data['image']->getClientOriginalName();
-        $data['image']->move(public_path('images').'/profils', $image_name);
+        $data['image']->move(public_path('files').'/profils', $image_name);
 
         $cv_name = time() . '_' . $data['cv']->getClientOriginalName();
-        $data['cv']->move(public_path('images').'/cvs', $cv_name);
+        $data['cv']->move(public_path('files').'/cvs', $cv_name);
 
         return User::create([
             'name' => $data['name'],

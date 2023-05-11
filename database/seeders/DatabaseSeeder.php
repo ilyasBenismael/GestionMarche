@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\role;
+use App\Models\TypeMarche;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -54,5 +55,31 @@ class DatabaseSeeder extends Seeder
         foreach ($roles as $role) {
             Role::create($role);
         }
+
+
+
+
+
+        $typeMarches = [
+            [
+                'type' => 'fourniture',
+            ],
+
+            [
+                'type' => 'travaux',
+            ],
+
+            [
+                'type' => 'service',
+            ],
+        ];
+
+        foreach ($typeMarches as $typeMarche) {
+            typemarche::create($typeMarche);
+        }
+
+
+
+
     }
 }

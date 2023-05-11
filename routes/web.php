@@ -40,6 +40,32 @@ Route::post('/importUsers', 'App\Http\Controllers\UsersController@ImportUsers');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@goHome')->name('home');
 
+
+Route::get('/chat/{hisid}', 'App\Http\Controllers\ChatController@goChat');
+Route::post('/sendMessage/{chatid}/{hisid}', 'App\Http\Controllers\ChatController@sendMessage')->name('sendMessage');
+
+
+
+
+
+//Marchees
+Route::get('/marchelist', 'App\Http\Controllers\MarcheController@goMarcheList')->name('marcheList');
+Route::get('/addMarche', 'App\Http\Controllers\MarcheController@goAddMarche');
+Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*-------------------------------------------------------------------------------------------------*/
 
 /*-- == Categorie Prix -Start- == --*/
