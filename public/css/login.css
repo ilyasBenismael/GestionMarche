@@ -1,0 +1,190 @@
+
+:root {
+    --card-height: 65vh;
+    --card-width: calc(var(--card-height) / 1.5);
+    --color-body:#D88A5D;
+    --color-body1:#E47130;
+    --color-body2:#EDB532;
+    --color-night:#1A1C1E;
+}
+
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    background-image: url("../images/koutoubia-mosque-marrakech-sunrise.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    box-sizing: border-box;
+    backdrop-filter: blur(4px);
+}
+
+
+.card {
+    margin:4em;
+    color: white;
+    background: var(--color-night);
+    width: var(--card-width);
+    height: var(--card-height);
+    padding: 3px;
+    position: relative;
+    border-radius: 6px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    display: flex;
+    font-size: 20px;
+    font-family: 'Changa', sans-serif;
+}
+
+
+.card::before {
+    content: "";
+    width: 104%;
+    height: 102%;
+    border-radius: 8px;
+    background-image: linear-gradient(
+        var(--rotate)
+        , var(--color-body), var(--color-body1) 43%, var(--color-body2));
+    position: absolute;
+    z-index: -1;
+    top: -1%;
+    left: -2%;
+    animation: spin 2.5s linear infinite;
+}
+
+.card::after {
+    position: absolute;
+    content: "";
+    top: calc(var(--card-height) / 6);
+    left: 0;
+    right: 0;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    transform: scale(0.8);
+    filter: blur(calc(var(--card-height) / 6));
+    background-image: linear-gradient(
+        var(--rotate)
+        , var(--color-body), var(--color-body1) 43%, var(--color-body2));
+    opacity: 1;
+    transition: opacity .5s;
+    animation: spin 2.5s linear infinite;
+}
+.card-header{
+    margin-top: 25px;
+    font-size: 40px;
+}
+.card-body{
+    line-height: 3;
+}
+/*-- Check Box -start- --*/
+.form-check input[type="checkbox"] {
+    padding: 10px;
+    margin-bottom: -5px;
+    appearance: none; /* Hide the default checkbox */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 20px; /* Set the dimensions of the custom checkbox */
+    height: 20px;
+    border: 2px solid #aaa; /* Set the border color */
+    border-radius: 50%; /* Make it appear as a circle */
+    outline: none; /* Remove the default focus outline */
+    transition: border-color 0.3s ease-in-out; /* Add a smooth transition */
+}
+.form-check input[type="checkbox"]:checked {
+    border-color: var(--color-body); /* Change the border color when checked */
+    background: var(--color-body);
+}
+.form-check input[type="checkbox"]:checked .form-check-label{
+    color: var(--color-body);
+}
+.form-check,
+.form-check-label{
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE/Edge */
+    user-select: none; /* Standard syntax */
+}
+/*-- Check Box -end- --*/
+@keyframes spin {
+    0% {
+        --rotate: 0deg;
+    }
+    100% {
+        --rotate: 360deg;
+    }
+}
+
+
+/*-- == login Button -start- == --*/
+.footer-section .login-btn button{
+    border-radius: 8px;
+    line-height: 2;
+    padding: 0 18px;
+    border: none;
+    transition: all 0.4s ease-in-out;
+    text-decoration: none;
+    color: white;
+    background-color: var(--color-body);
+
+}
+.footer-section .login-btn button:hover{
+    color: var(--color-body);
+    background-color: white;
+}
+/*-- == login Button -start- == --*/
+
+/*-- == Forgot Pass -start- == --*/
+.forgot-pass a{
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: white;
+}
+.forgot-pass a:hover{
+    color:var(--color-body);
+}
+/*-- == Forgot Pass -end- == --*/
+input[type='password'],
+input[type = 'email']{
+    border: solid 3px black;
+}
+input[type='password']:focus,
+input[type = 'email']:focus{
+    border: solid 3px var(--color-body);
+    box-shadow: none;
+}
+/*-- == Selection -start- == --*/
+.card-header::selection,
+.email::selection,
+.password::selection,
+.form-check-label::selection,
+.footer-section button::selection,
+.forgot-pass a::selection
+{
+    background-color: var(--color-body);
+    color: #ffffff;
+}
+/*-- == Selection -end- == --*/
+/*-- == Cercle Effect -Start- == --*/
+.circle {
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999999; /* so that it stays on top of all other elements */
+}
+/*-- == Cercle Effect -End- == --*/
+
