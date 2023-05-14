@@ -40,7 +40,7 @@ return new class extends Migration
             $table->date('date_reception_provisoire')->nullable();
             $table->date('date_reception_definitive')->nullable();
             $table->date('date_resiliation')->nullable();
-            $table->date('motif_resiliation')->nullable();
+            $table->string('motif_resiliation')->nullable();
             $table->string('attributaire')->nullable();
             $table->string('statut');
 

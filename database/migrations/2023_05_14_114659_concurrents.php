@@ -13,16 +13,19 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appeloffres', function (Blueprint $table) {
+        Schema::create('concurrents', function (Blueprint $table) {
             $table->id();
+
+            $table->unsignedBigInteger('appeloffres_id');; // Foreign key
+
+            $table->string('nom');
+            $table->string('ville');
+            $table->string('montant');
+            $table->string('statut');
             $table->timestamps();
-            $table->integer('numero');
-            $table->integer('estimation_globale');
-            $table->string('estimation_detaillee');
-            $table->string('objet');
-            $table->date('date_douverture_des_plis');
 
 
+            $table->foreign('appeloffres_id')->references('id')->on('appeloffres');
         });
     }
 
@@ -33,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appeloffres');
+        //
     }
 };

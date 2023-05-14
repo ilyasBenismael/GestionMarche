@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\CategoriePrixController;
+use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\TypeMarcheController;
+use App\Models\appeloffre;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -98,9 +100,34 @@ Route::put('/typeMarche/{marche}', [TypeMarcheController::class, 'update'])->nam
 Route::delete('/typeMarche/{id}', [TypeMarcheController::class, 'destroy'])->name('typeMarche.destroy');
 /*-- == Type Marche -End- == --*/
 
+/*-- == Concurrent -Start- == --*/
+Route::get('/concurrent', [ConcurrentController::class, 'myListe'])->name('concurrent');
+Route::post('/concurrent', [ConcurrentController::class, 'store'])->name('concurrent.store');
 
 
+Route::get('/concurrent/create/{appeloffre}', [ConcurrentController::class, 'create'])->name('concurrent.create');
+//Route::get('/concurrent/create', [ConcurrentController::class, 'create'])->name('concurrent.create');
 
+Route::get('/concurrent/{id}', [ConcurrentController::class, 'show'])->name('concurrent.show');
+
+Route::get('/concurrent/{id}/edit', [ConcurrentController::class, 'edit'])->name('concurrent.edit');
+Route::put('/concurrent/{nom}', [ConcurrentController::class, 'update'])->name('concurrent.update');
+
+
+Route::delete('/concurrent/{id}', [ConcurrentController::class, 'destroy'])->name('concurrent.destroy');
+/*-- == Concurrent -End- == --*/
+
+
+/*-- == Appel Offre -start- == --*/
+
+Route::get('/appeloffre/{id}', function ($id) {
+    $appelOffres = AppelOffre::with('concurrents')->find($id);
+    $concurrents = $appelOffres->concurrents;
+
+    return view('appeloffres.show', compact('appelOffres', 'concurrents'));
+})->name('appeloffre');
+
+/*-- == Appel Offre -end- == --*/
 
 /*-------------------------------------------------------------------------------------------------*/
 
