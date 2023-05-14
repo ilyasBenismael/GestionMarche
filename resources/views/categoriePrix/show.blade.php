@@ -9,13 +9,12 @@
 
     <div class="card-body">
             <div class="form-group">
-                <label for="nom" class="nom">Nom</label>
-                <input type="text" class="form-control" placeholder="nom"  name="nom" value="{{$concurrent->nom}}">
+                <label for="marche" class="marche">Marche</label>
+                <input type="text" disabled class="form-control rounded-0" placeholder="marche"  name="marche" value="{{$categoriePrix->marche}}">
             </div>
             <div class="form-group">
-                <label for="ville" class="ville">Ville</label>
-                <input type="text" class="form-control" placeholder="ville"  name="ville" value="{{$concurrent->ville}}">
+                <label for="designation" class="designation">Designation</label>
+                <input type="text" disabled class="form-control rounded-0" placeholder="designation"  name="designation" value="{{$categoriePrix->designation}}">
             </div>
-            <div class="form-group">
-                <label for="montant" class="montant">Montant</label>
-               
+    </div>
+@endsection

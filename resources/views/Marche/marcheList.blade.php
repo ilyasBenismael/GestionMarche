@@ -4,7 +4,7 @@
 
     <a href="/addMarche">Add Marche</a>
 
-    <table border="1px">
+    <table >
     <tr>
         <th>
             numero
@@ -13,15 +13,17 @@
             statut
         </th>
     </tr>
-    @foreach($marches as $marche)
-        <tr>
-            <td>
-                {{$marche->numero_marche}}
-            </td>
-            <td>
-                {{$marche->statut}}
-            </td>
-        </tr>
+        @foreach($marches as $marche)
+            <tr>
+                <td>
+                    {{$marche->numero_marche}}
+                </td>
+                <td>
+                    {{$marche->statut}}
+                </td>
+            </tr>
         @endforeach
-        </table>
+
+
+    </table>
 @endsection
