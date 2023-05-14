@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
@@ -14,21 +15,28 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
     <!------------------------------------------------------>
     <!--Font Awesome-->
-    <link rel="stylesheet" href="../../css/all.min.css">
-    <link rel="stylesheet" href="../../css/fontawesome.min.css">
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/fontawesome.min.css') }}">
     <!--Font Awesome-->
     <!--Bootstrap-->
-    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <!--Bootstrap-->
     <!--Style Css-->
-
-    <link rel="stylesheet" href="{{ asset('/css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <!--Style Css-->
     <!--Google Fonts-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!--Google Fonts-->
+
+
+<style>
+    .profilPic{
+        width: 80px;
+        height: 80px;
+    }
+</style>
 
 
 </head>
@@ -46,7 +54,7 @@
         <div class="user-info">
             @auth()
                 <div class="image">
-                    <img src="{{ asset('images/profile.jpg') }}" width="90" height="90" alt="User" />
+                    <img src={{ asset('files/profils/' . auth()->user()->image) }} width="90" height="90" alt="User" />
                 </div>
                 <div class="info-container">
                     <div  class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->role}}</div>
@@ -165,14 +173,7 @@
 
 <main class="content">
     @yield('content')
-
-
-
-
-
 </main>
-
-
 
 
 <script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -184,8 +185,8 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
 <script src="{{ asset('path/to/jquery.min.js') }}"></script>
-<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 @yield("scripts")
 </body>
