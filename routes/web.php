@@ -55,7 +55,10 @@ Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
 
 
 
-
+//graphs
+Route::get('/addGraph', 'App\Http\Controllers\GraphController@goAddGraph');
+Route::get('/graph', 'App\Http\Controllers\GraphController@goGraph');
+Route::post('/addGraph', 'App\Http\Controllers\GraphController@addGraph');
 
 
 

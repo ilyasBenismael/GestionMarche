@@ -270,9 +270,6 @@
 </section>
 
 <section class="content">
-
-
-
     <div class="conversation">
         <div class="conversation-header">
             <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="user-image">
@@ -290,18 +287,62 @@
         @endforeach
     </div>
 
-    <form method="POST" action="{{ route('sendMessage', ['chatid' => $chatid, 'hisid' => $user->id]) }}" onsubmit="validateMessage(event)">
+    <form id="messageForm" method="POST" action="{{ route('sendMessage', ['chatid' => $chatid, 'hisid' => $user->id]) }}">
         @csrf
         <div class="input-area">
             <input type="text" name="context" placeholder="Type a message..." required autocomplete="off">
             <button type="submit">Send Message</button>
         </div>
     </form>
-
-
-
-
 </section>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#messageForm').on('submit', function(e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var message = $('input[name="context"]').val(); // Get the message input value
+
+            $.ajax({
+                type: 'POST',
+                url: '{{ route('sendMessage', ['chatid' => $chatid, 'hisid' => $user->id]) }}',
+                data: {
+                    context: message
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $('input[name="context"]').val(''); // Clear the message input
+
+                        // Update the chat interface with the new message and timestamp
+                        var newMessage = '<div class="message">' +
+                            '<div class="bubble sender">' +
+                            message +
+                            '<div class="time">' + response.timestamp + '</div>' +
+                            '</div>' +
+                            '</div>';
+
+                        $('.conversation').append(newMessage);
+                        scrollToBottom(); // Scroll to the bottom of the conversation
+                    }
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+
+    function scrollToBottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    window.addEventListener("load", function() {
+        scrollToBottom();
+    });
+</script>
+
+
 
 </body>
 

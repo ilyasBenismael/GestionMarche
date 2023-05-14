@@ -40,13 +40,14 @@ class ChatController extends Controller
 
     public function sendMessage(Request $request, $chatid, $hisid)
     {
-         Message::create([
+         $message=Message::create([
             'sender' => auth()->id(),
             'receiver' => $hisid,
             'msg' => $request['context'],
             'chat' => $chatid,
         ]);
-         return redirect('/chat/'.$hisid);
+
+        return response()->json(['success' => true, 'timestamp' => $message->created_at->format('Y-m-d H:i')]);
     }
 
 
