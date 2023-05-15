@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriePrixController;
 use App\Http\Controllers\ConcurrentController;
+use App\Http\Controllers\EffectController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
 use Illuminate\Support\Facades\Auth;
@@ -106,7 +107,6 @@ Route::post('/concurrent', [ConcurrentController::class, 'store'])->name('concur
 
 
 Route::get('/concurrent/create/{appeloffre}', [ConcurrentController::class, 'create'])->name('concurrent.create');
-//Route::get('/concurrent/create', [ConcurrentController::class, 'create'])->name('concurrent.create');
 
 Route::get('/concurrent/{id}', [ConcurrentController::class, 'show'])->name('concurrent.show');
 
@@ -128,6 +128,10 @@ Route::get('/appeloffre/{id}', function ($id) {
 })->name('appeloffre');
 
 /*-- == Appel Offre -end- == --*/
+
+/*-- == Effects -start- == --*/
+Route::get('/effects', [EffectController::class, 'effects'])->name('effects');
+/*-- == Effects -end- == --*/
 
 /*-------------------------------------------------------------------------------------------------*/
 

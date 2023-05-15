@@ -151,7 +151,10 @@
 
 <nav class="navbar">
     <div class="col-4">
-        <i class="fa-solid fa-angles-right" style="color: var(--color-light);"></i> <!--fa-beat-fade-->
+        <div class="effectpage">
+            <a href="/effects"><i class="fa-solid fa-angles-right" style="color: var(--color-light);"></i></a> <!--fa-beat-fade-->
+            <span class="effects">Effets</span>
+        </div>
     </div>
     <div class="col-4">
         <a class="header" style="color: var(--color-light);" href="/home">Alwilaya Marrakech - Marché</a>
@@ -183,9 +186,10 @@
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
-<script src="{{ asset('path/to/jquery.min.js') }}"></script>
+<script src="{{ asset('/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
+<script src="{{ asset('/js/effects.js') }}"></script>
 
 @yield("scripts")
 </body>

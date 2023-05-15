@@ -13,9 +13,9 @@ class TypeMarcheController extends Controller
     public function myListe()
     {
         $typeMarche = TypeMarche::all();
-         return view("typeMarche")->with([
+         return response()->view("typeMarche")->with([
              'typeMarche' => $typeMarche
-         ]);
+         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
 
     }
 
@@ -25,7 +25,7 @@ class TypeMarcheController extends Controller
     public function create()
     {
         //
-        return view('typeMarches.add');
+        return response()->view('typeMarches.add')->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
@@ -39,7 +39,7 @@ class TypeMarcheController extends Controller
            'type' => 'required|string|max:50|unique:typeMarches,type',
         ]);
         TypeMarche::create($request->except('_token'));
-        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche added successfully.']);
+        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         // -----------------------------------
 
     }
@@ -51,7 +51,7 @@ class TypeMarcheController extends Controller
     {
         $typeMarche = TypeMarche::findOrFail($id);
 
-        return view('typeMarches.show', ['typeMarche' => $typeMarche]);
+        return response()->view('typeMarches.show', ['typeMarche' => $typeMarche])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
@@ -61,9 +61,9 @@ class TypeMarcheController extends Controller
     {
         //
         $typeMarche = TypeMarche::findOrFail($id);
-        return view('typeMarches.edit')->with([
+        return response()->view('typeMarches.edit')->with([
             'typeMarche' => $typeMarche,
-        ]);
+        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
 
@@ -78,13 +78,11 @@ class TypeMarcheController extends Controller
             'type' => 'required|string|max:50|unique:typeMarches,id,'.$typeMarche->type,//check it again
         ]);
 
-        //To Update Table we Two Methods Simple way
-        //$typeMarche->update($request->except('_token','_method'));
         //Flexible Way
         $typeMarche->type = $validatedData['type'];
 
         $typeMarche->save();
-        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche updated successfully.']);
+        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche updated successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         // -----------------------------------
     }
 
@@ -96,6 +94,6 @@ class TypeMarcheController extends Controller
         //
         $typeMarche = TypeMarche::findOrFail($id);
         $typeMarche->delete();
-        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche deleted successfully.']);
+        return redirect()->route('typeMarche')->with(['success'=>'TypeMarche deleted successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 }

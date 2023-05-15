@@ -1,0 +1,179 @@
+@import "compass";
+body {
+    background: #d4e3e6;
+}
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -200px;
+    margin-left: -175px;
+    width: 350px;
+    background: #fff;
+    border-radius: 10px;
+}
+.container .background {
+    height: 252px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px 10px 0 0;
+    transition-property: background;
+    transition-duration: 2s;
+}
+.container .background .forest-top svg polygon, .container .background .forest-bot svg path {
+    transition-property: fill;
+    transition-duration: 2s;
+}
+.container .background .stars {
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 2s;
+}
+.container .background.day {
+    background-color: #0aceff;
+}
+.container .background.day .cloud {
+    opacity: 1;
+}
+.container .background.day .forest-top svg polygon {
+    fill: #149cbf;
+}
+.container .background.day .forest-bot svg path {
+    fill: #0d87a3;
+}
+.container .background.night {
+    background-color: #172a60;
+}
+.container .background.night .forest-top svg polygon {
+    fill: #18214f;
+}
+.container .background.night .forest-bot svg path {
+    fill: #172a60;
+}
+.container .background.night .cloud {
+    opacity: 0.2;
+}
+.container .background.night .stars {
+    opacity: 0.28;
+}
+.container .background .overlay {
+    position: absolute;
+    z-index: 10;
+    width: 0;
+    height: 0;
+    border-top: 252px solid rgba(255, 255, 255, 0.06);
+    border-right: 350px solid transparent;
+}
+.container .background .cloud {
+    position: absolute;
+    width: 100px;
+    transition-property: opacity;
+    transition-duration: 2s;
+}
+.container .background .cloud.top {
+    top: -15px;
+    left: 0;
+}
+.container .background .cloud.top-backup {
+    top: -15px;
+    left: -100px;
+}
+.container .background .cloud.mid {
+    top: 35px;
+    left: 200px;
+}
+.container .background .cloud.mid-backup {
+    top: 35px;
+    left: 0;
+}
+.container .background .cloud.bot {
+    top: 65px;
+    left: -30px;
+}
+.container .background .cloud.bot-backup {
+    top: 65px;
+    left: -230px;
+}
+.container .background .forest-top, .container .background .forest-bot {
+    position: absolute;
+    bottom: -3px;
+}
+.container .background .forest-top {
+    bottom: 10px;
+}
+.container .background .moon, .container .background .sun {
+    bottom: -40px;
+}
+.container .background .moon {
+    position: absolute;
+    left: 10px;
+    transform: scale(0.6, 1);
+}
+.container .background .moon svg {
+    width: 150px;
+    height: 150px;
+}
+.container .background .sun {
+    position: absolute;
+    left: 10px;
+}
+.container .background .sun svg {
+    width: 150px;
+    height: 150px;
+}
+.container .text {
+    text-align: center;
+    color: #172a60;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+.container .text h3 {
+    font-size: 26px;
+    font-weight: bold;
+    padding-top: 35px;
+}
+.container .text p {
+    color: #69738e;
+    font-size: 13px;
+    margin-top: 10px;
+}
+.container .text .lbl {
+    position: relative;
+    display: block;
+    height: 34px;
+    width: 65px;
+    background: #dfe4f5;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 30px auto;
+}
+.container .text .lbl:after {
+    position: absolute;
+    right: -4px;
+    top: -2px;
+    display: block;
+    width: 38px;
+    height: 38px;
+    border-radius: 30px;
+    background: #172a60;
+    box-shadow: 0 2px 5px -1px rgba(23, 42, 96, 0.75);
+    content: '';
+    transition: all 0.3s ease;
+}
+.container .text .lbl:active:after {
+    transform: scale(1.15, 0.85);
+}
+.container .text .cbx:checked ~ label {
+    background: #cee7ed;
+}
+.container .text .cbx:checked ~ label:after {
+    left: -2px;
+    background: #0cf;
+    box-shadow: 0 2px 5px -1px rgba(0, 204, 255, 0.75);
+}
+.container .text .hidden {
+    display: none;
+}
+.container.day h3 {
+    color: #0c8faf;
+}
