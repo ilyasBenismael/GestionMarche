@@ -9,6 +9,8 @@
     <title>Gestion du Marché</title>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/js/bootstrap.bundle.min.js"></script>
 
     <!------------------------------------------------------>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
@@ -109,7 +111,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/marchelist">
                 <i class="fa-solid fa-shop"></i>
                 <span>Marchés</span>
             </a>
