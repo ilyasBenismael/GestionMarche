@@ -43,9 +43,6 @@ body.night-mode {
 /*-- Make it Responsive -start- --*/
 
 @media screen and (max-width: 1700px) and (max-height: 850px){
-    body{
-        background: blue;
-    }
     .menu{
         overflow: scroll;
     }
