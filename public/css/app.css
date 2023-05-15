@@ -639,3 +639,12 @@ main {
     transform: rotate(-180deg);
 }
 /*-- Side Dropdown Menu -end- --*/
+/*-- Notification Menu -start- --*/
+.notification{
+    color:white;
+    position: absolute;
+    top: 40px;
+    font-size: 28px;
+    right: 78px;
+}
+/*-- Notification Menu -end- --*/

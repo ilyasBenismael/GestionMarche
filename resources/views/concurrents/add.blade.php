@@ -11,7 +11,7 @@
     <div class="card-body">
         <form action="{{route('concurrent.store')}}" method="POST">
             @csrf
-            <input type="hidden" name="appeloffre_id" value="{{ $appeloffre->id }}">
+            <input type="text" disabled name="appeloffre_id" value="{{ $appeloffre->id }}">
             <div class="form-group">
                 <label for="nom" class="nom">Nom</label>
                 <input type="text" class="form-control" placeholder="nom"  name="nom" value="{{old('nom')}}">

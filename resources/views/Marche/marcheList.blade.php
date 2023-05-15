@@ -12,6 +12,9 @@
         <th>
             statut
         </th>
+        <th>
+            statut
+        </th>
     </tr>
         @foreach($marches as $marche)
             <tr>
