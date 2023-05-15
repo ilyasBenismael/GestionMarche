@@ -45,6 +45,7 @@
         <div class="user-info">
             @auth()
                 <div class="image">
+                    <i class="fa-solid fa-bell notification"></i> <!-- fa-shake -->
                     <img src="{{ asset('images/profile.jpg') }}" width="90" height="90" alt="User" />
                 </div>
                 <div class="info-container">
@@ -100,7 +101,7 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="/marchelist">
                 <i class="fa-solid fa-shop"></i>
                 <span>Marchés</span>
             </a>
@@ -153,7 +154,7 @@
         <i class="fa-solid fa-angles-right" style="color: var(--color-light);"></i> <!--fa-beat-fade-->
     </div>
     <div class="col-4">
-        <a class="header" style="color: var(--color-light);">Alwilaya Marrakech - Marché</a>
+        <a class="header" style="color: var(--color-light);" href="/home">Alwilaya Marrakech - Marché</a>
     </div>
     <div class="nightmode tumbler-wrapper col-1" >
         <div class="wrapper ">
