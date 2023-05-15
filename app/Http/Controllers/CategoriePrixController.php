@@ -13,9 +13,9 @@ class CategoriePrixController extends Controller
     public function myListe()
     {
         $categoriePrix = CategoriePrix::all();
-        return response()->view("categoriePrix")->with([
+        return view("categoriePrix")->with([
             'categoriePrix' => $categoriePrix
-        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        ]);
 
     }
 
@@ -25,7 +25,7 @@ class CategoriePrixController extends Controller
     public function create()
     {
         //
-        return response()->view('categoriePrix.add')->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return view('categoriePrix.add');
     }
 
     /**
@@ -40,7 +40,7 @@ class CategoriePrixController extends Controller
             'designation'=>'required|string',
         ]);
         CategoriePrix::create($request->except('_token'));
-        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix added successfully.']);
         // -----------------------------------
 
     }
@@ -52,7 +52,7 @@ class CategoriePrixController extends Controller
     {
         $categoriePrix = CategoriePrix::findOrFail($id);
 
-        return response()->view('categoriePrix.show', ['categoriePrix' => $categoriePrix])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return view('categoriePrix.show', ['categoriePrix' => $categoriePrix]);
     }
 
     /**
@@ -62,9 +62,9 @@ class CategoriePrixController extends Controller
     {
         //
         $categoriePrix = CategoriePrix::findOrFail($id);
-        return response()->view('categoriePrix.edit')->with([
+        return view('categoriePrix.edit')->with([
             'categoriePrix' => $categoriePrix,
-        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        ]);
     }
 
 
@@ -87,7 +87,7 @@ class CategoriePrixController extends Controller
         $categoriePrix->designation = $validatedData['designation'];
 
         $categoriePrix->save();
-        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix updated successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix updated successfully.']);
         // -----------------------------------
     }
 
@@ -99,6 +99,6 @@ class CategoriePrixController extends Controller
         //
         $categoriePrix = CategoriePrix::findOrFail($id);
         $categoriePrix->delete();
-        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix deleted successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix deleted successfully.']);
     }
 }
