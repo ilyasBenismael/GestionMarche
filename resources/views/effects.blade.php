@@ -3,29 +3,28 @@
 
 @section('content')
 
-    <div class="container">
-        <div class="background night">
-            <div class="overlay" id="overlay"></div>
-            <div class="sun" id="sun"></div>
-            <div class="moon" id="moon"></div>
-            <div class="stars" id="stars"></div>
-            <div class="cloud top" id="cloud-top"></div>
-            <div class="cloud mid" id="cloud-mid"></div>
-            <div class="cloud bot-backup" id="cloud-bot-backup"></div>
-            <div class="forest-top" id="forest-top"></div>
-            <div class="forest-bot" id="forest-bot"></div>
-        </div>
-        <div class="text">
-            <h3>Night mode on</h3>
-            <p>Toggle switch to change lighting</p>
-            <input type="checkbox" class="cbx hidden" id="unchecked">
-            <label for="unchecked" class="lbl"></label>
+
+    <div class="myBox col-4">
+        <div class="nightContainer">
+            <div class="tumbler-wrapper" >
+                <div class="wrapper ">
+                    <input type="checkbox" name="checkbox" class="switch001 icon">
+                </div>
+            </div>
+            <div class="text-container" style="text-align: center">
+                <p style="color: black;padding: 5px 0">switch from here</p>
+                <input type="checkbox" id="codepen"  name="checkbox" class="checkbox switchh">
+                <label for="codepen" style="overflow: hidden"></label>
+            </div>
         </div>
     </div>
 
-@endsection
 
-<script src="{{ asset('/dist/jquery.min.js') }}"></script>
+
+
+
+
+@endsection
 
     <script src="{{ asset('/js/effects.js') }}"></script>
 

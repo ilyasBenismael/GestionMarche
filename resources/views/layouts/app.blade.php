@@ -159,7 +159,7 @@
     <div class="col-4">
         <a class="header" style="color: var(--color-light);" href="/home">Alwilaya Marrakech - Marché</a>
     </div>
-    <div class="nightmode tumbler-wrapper col-1" >
+    <div class="nightmode tumbler-wrapper col-2" style="text-align: end">
         <div class="wrapper ">
             <input type="checkbox" name="checkbox" class="switch icon">
         </div>

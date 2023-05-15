@@ -41,7 +41,22 @@ body.night-mode {
 }
 /*-- Data Tables Night Mode Modifications -end- --*/
 /*-- Make it Responsive -start- --*/
-@media screen and (max-width: 900px) and (min-width: 400px) {
+
+@media screen and (max-width: 1700px) and (max-height: 850px){
+    body{
+        background: blue;
+    }
+    .menu{
+        overflow: scroll;
+    }
+    .legal {
+        position: relative !important;
+    }
+
+
+}
+
+@media screen and (max-width: 900px) and (min-width: 400px)  {
     body {
         padding-left: var(--menu-width-tablet);
     }
@@ -158,50 +173,6 @@ body.night-mode {
         font-size: 1.2em;
     }
 }
-
-@media screen and (max-width: 400px) {
-    body {
-        padding-left: 0;
-    }
-
-    .menu {
-        width: var(--menu-width-smartphone);
-        box-shadow: 0 0 0 100em rgba(0, 0, 0, 0);
-        transform: translate3d(var(--menu-width-smartphone), 0, 0);
-        transition: all 0.3s ease-in-out;
-    }
-
-    .menu .smartphone-menu-trigger {
-        width: 40px;
-        height: 40px;
-        position: absolute;
-        left: 100%;
-        background: var(--color-night);
-    }
-
-    .menu .smartphone-menu-trigger:before,
-    .menu .smartphone-menu-trigger:after {
-        content: '';
-        width: 50%;
-        height: 2px;
-        background: #fff;
-        border-radius: 10px;
-        position: absolute;
-        top: 45%;
-        left: 50%;
-        transform: translate3d(-50%, -50%, 0);
-    }
-
-    .menu .smartphone-menu-trigger:after {
-        top: 55%;
-        transform: translate3d(-50%, -50%, 0);
-    }
-
-    .menu ul li {
-        padding: 1em 1em 1em 3em;
-        font-size: 1.2em;
-    }
-}
 /*-- Make it Responsive -end- --*/
 
 .admin{
@@ -215,7 +186,7 @@ body.night-mode {
 }
 main {
     position: relative;
-    height: 100vh;
+    max-height: 100vh;
 }
 
 .helper {
