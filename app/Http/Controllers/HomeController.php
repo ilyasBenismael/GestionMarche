@@ -33,7 +33,6 @@ class HomeController extends Controller
     public function goHome()
     {
 
-
         $roles = role::pluck('name')->toArray();
         $userscount = [];
 
@@ -42,18 +41,14 @@ class HomeController extends Controller
             $userscount[] = $count;
         }
 
-
-
-
-//        $client = new Client();
-//        $crawler = $client->request('GET', 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AllCons&EnCours&searchAnnCons');
-//        $element = $crawler->filter('form#ctl0_ctl2 div#middle div#ctl0_CONTENU_PAGE_panelResult div#main-part div#ctl0_CONTENU_PAGE_resultSearch_panelElementsFound div#tabNav div#ongletLayer div.content table.table-results a tbody tr:first-child td.col-450[headers="cons_intitule"] div#ctl0_CONTENU_PAGE_resultSearch_tableauResultSearch_ctl1_panelBlocObjet')->text();
-//
+        $client = new Client();
+        $crawler = $client->request('GET', 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AllCons&EnCours&searchAnnCons');
+        $element = $crawler->filter('#ctl0_CONTENU_PAGE_resultSearch_nombreElement')->first()->text();
 
         return response()->view('home', [
             'roles' => $roles,
             'userscount' => $userscount,
-//            'element' => $element
+            'element' => $element
         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 

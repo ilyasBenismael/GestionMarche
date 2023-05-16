@@ -13,7 +13,7 @@
             statut
         </th>
         <th>
-            statut
+            action
         </th>
     </tr>
         @foreach($marches as $marche)
@@ -23,6 +23,9 @@
                 </td>
                 <td>
                     {{$marche->statut}}
+                </td>
+                <td>
+                    <a href="/marche/{{$marche->id}}">show marche</a>
                 </td>
             </tr>
         @endforeach

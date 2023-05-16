@@ -23,9 +23,9 @@ class ConcurrentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(AppelOffre $appeloffre)
+    public function create($appel_id)
     {
-        return view('concurrents.add', compact('appeloffre'));
+        return view('concurrents.add', compact('appel_id'));
     }
 
     /**
@@ -40,7 +40,7 @@ class ConcurrentController extends Controller
             'ville' => 'required|string|max:50',
             'montant' => 'required|string|max:50',
             'statut' => 'required|string|max:50',
-            'appeloffre_id' => 'required|exists:appeloffres,id',
+            'appeloffre_id' => 'required',
         ]);
 
         // new added
@@ -53,7 +53,7 @@ class ConcurrentController extends Controller
         $concurrent->save();
 
         //Concurrent::create($request->except('_token'));
-        return redirect()->route('marcheList')->with(['success'=>'Concurrent added successfully.']);
+        return redirect('/appeloffre/'.$request->appeloffre_id)->with(['success'=>'Concurrent added successfully.']);
         // -----------------------------------
 
     }
@@ -113,7 +113,14 @@ class ConcurrentController extends Controller
     {
         //
         $concurrent = Concurrent::findOrFail($id);
-        $concurrent->delete();
-        return redirect()->route('concurrent')->with(['success'=>'Concurrent deleted successfully.']);
+        $appel=appeloffre::where('id', '=', $concurrent->appel_doffre)->first();
+        if($appel!=null){
+            $concurrent->delete();
+            return redirect()->route('concurrent')->with(['success'=>'Concurrent deleted successfully.']);
+        }else{
+            return redirect()->route('concurrent')->with(['fail'=>'mimknch hit mrtabt b appel doffre']);
+        }
+
+
     }
 }

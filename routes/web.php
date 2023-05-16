@@ -53,7 +53,12 @@ Route::post('/sendMessage/{chatid}/{hisid}', 'App\Http\Controllers\ChatControlle
 //Marchees
 Route::get('/marchelist', 'App\Http\Controllers\MarcheController@goMarcheList')->name('marcheList');
 Route::get('/addMarche', 'App\Http\Controllers\MarcheController@goAddMarche');
+Route::get('/marche/{id}', 'App\Http\Controllers\MarcheController@goMarche');
 Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
+Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre');
+
+
+
 
 
 
@@ -99,14 +104,18 @@ Route::get('/typeMarche/{id}', [TypeMarcheController::class, 'show'])->name('typ
 Route::get('/typeMarche/{id}/edit', [TypeMarcheController::class, 'edit'])->name('typeMarche.edit');
 Route::put('/typeMarche/{marche}', [TypeMarcheController::class, 'update'])->name('typeMarche.update');
 
-
 Route::delete('/typeMarche/{id}', [TypeMarcheController::class, 'destroy'])->name('typeMarche.destroy');
 /*-- == Type Marche -End- == --*/
+
+
+
+
+
+
 
 /*-- == Concurrent -Start- == --*/
 Route::get('/concurrent', [ConcurrentController::class, 'myListe'])->name('concurrent');
 Route::post('/concurrent', [ConcurrentController::class, 'store'])->name('concurrent.store');
-
 
 Route::get('/concurrent/create/{appeloffre}', [ConcurrentController::class, 'create'])->name('concurrent.create');
 //Route::get('/concurrent/create', [ConcurrentController::class, 'create'])->name('concurrent.create');
@@ -116,21 +125,11 @@ Route::get('/concurrent/{id}', [ConcurrentController::class, 'show'])->name('con
 Route::get('/concurrent/{id}/edit', [ConcurrentController::class, 'edit'])->name('concurrent.edit');
 Route::put('/concurrent/{nom}', [ConcurrentController::class, 'update'])->name('concurrent.update');
 
-
 Route::delete('/concurrent/{id}', [ConcurrentController::class, 'destroy'])->name('concurrent.destroy');
 /*-- == Concurrent -End- == --*/
 
 
-/*-- == Appel Offre -start- == --*/
 
-Route::get('/appeloffre/{id}', function ($id) {
-    $appelOffres = AppelOffre::with('concurrents')->find($id);
-    $concurrents = $appelOffres->concurrents;
-
-    return view('appeloffres.show', compact('appelOffres', 'concurrents'));
-})->name('appeloffre');
-
-/*-- == Appel Offre -end- == --*/
 
 /*-------------------------------------------------------------------------------------------------*/
 
