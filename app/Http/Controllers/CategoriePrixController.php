@@ -80,8 +80,6 @@ class CategoriePrixController extends Controller
             'designation'=>'required|string',
         ]);
 
-        //To Update Table we Two Methods Simple way
-        //$categoriePrix->update($request->except('_token','_method'));
         //Flexible Way
         $categoriePrix->marche = $validatedData['marche'];
         $categoriePrix->designation = $validatedData['designation'];
