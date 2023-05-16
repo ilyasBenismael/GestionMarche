@@ -1,35 +1,40 @@
 :root {
-    --red: #102B82;
-    --green: #F5DAAA;
-    --btnWidth: 116px;
+    --night: #102B82;
+    --sun: #F5DAAA;
     --switchWidth: 110px;
     --switchHeight: 30px;
     --padding: 7px;
 }
+/*-- Text Header -start- --*/
+.header{
+    text-align: center;
+    margin-bottom: 25px;
+}
+/*-- Text Header -end- --*/
+
 
 /*-- Night/Light mode -start- */
 
 .myBox{
     display: flex;
+    align-items: flex-end;
     justify-content: center;
 }
 
 .switch001{
     position: relative;
-    width: 130px;
-    height: 165px;
+    width: 205px;
+    height: 220px;
     margin: 0;
     appearance: none;
     -webkit-appearance: none;
     background-image: url("../images/night.png");
     background-size: cover;
-
     background-repeat: no-repeat;
     border-radius: 25px;
     box-shadow: inset 0 0 2px rgba(255,255,255,.7);
     transition: background-image .7s ease-in-out;
     outline: none;
-    cursor: pointer;
     overflow: hidden;
 }
 
@@ -46,13 +51,13 @@
 
 .switch001:checked:before{
     content: '';
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     position: absolute;
     left: 15px;
     top: 15px;
-    transform-origin: 53px 10px;
+    transform-origin: 88px 20px;
     background-color: transparent;
     box-shadow: 5px -1px 0 #fff;
     filter: blur(0px);
@@ -93,8 +98,8 @@
 
 .switch001:before{
     content: '';
-    width: 15px;
-    height: 15px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     position: absolute;
     left: 15px;
@@ -105,7 +110,7 @@
     0 0 20px #f5deb4,
     0 0 30px #f5deb4,
     inset 0 0 2px #efd3a3;
-    transform-origin: 53px 10px;
+    transform-origin: 88px 20px;
     animation: moon .7s forwards ease;
 }
 @keyframes moon{
@@ -130,10 +135,6 @@
     }
 }
 
-
-/*-- Night/Light Mode -end- */
-
-
 .checkbox {
     display: none;
 }
@@ -145,10 +146,10 @@
     height: var(--switchHeight);
     background: linear-gradient(
         to right,
-        var(--red) 0,
+        var(--night) 0,
         #1F429B 45%,
         #F5DAAA 55%,
-        var(--green) 100%
+        var(--sun) 100%
     ) 0 0;
     background-size: calc((var(--switchWidth) * 2) + 50px) 100%;
     border-radius: 70px;
@@ -172,7 +173,7 @@
     font-family: 'Cabin', sans-serif;
     font-size: 35px;
     font-weight: bold;
-    color: var(--red);
+    color: var(--night);
     letter-spacing: 3px;
     text-transform: uppercase;
     transition: left 500ms ease, color 500ms ease, transform 150ms ease;
@@ -188,14 +189,50 @@
 
 .checkbox:checked + label:before {
     content: '';
-    color: var(--green);
+    color: var(--sun);
     left: 1px;
 }
 
 
 .nightContainer{
-    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 350px;
+    width: 240px;
     padding: 15px;
     background: white;
     border-radius: 20px 20px 10px 10px;
+    box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);
 }
+
+
+.text-container {
+    position: relative;
+    margin-top: auto;
+    text-align: center;
+}
+
+/*-- Night/Light Mode -end- */
+
+/*-- Mouse Effect 1 -start- */
+.mouseEffect1{
+background: white;
+    height: 350px;
+    width: 240px;
+}
+
+.circle1 {
+    height: 24px;
+    width: 24px;
+    border-radius: 24px;
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 99999999; /* so that it stays on top of all other elements */
+}
+/*-- Mouse Effect 1 -end- */
+
