@@ -25,6 +25,7 @@ return new class extends Migration
         Schema::create('marches', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->unsignedBigInteger('marche_id');
             $table->integer('appel_doffre');
             $table->integer('numero_marche');
             $table->integer('exercice');

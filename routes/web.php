@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AttachementController;
 use App\Http\Controllers\CategoriePrixController;
 use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
+use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
 use Illuminate\Support\Facades\Auth;
@@ -134,6 +136,43 @@ Route::delete('/concurrent/{id}', [ConcurrentController::class, 'destroy'])->nam
 /*-- == Effects -start- == --*/
 Route::get('/effects', [EffectController::class, 'effects'])->name('effects');
 /*-- == Effects -end- == --*/
+
+/*-- == Attachement -Start- == --*/
+
+Route::get('/attachement', [AttachementController::class, 'myListe'])->name('attachement');
+Route::post('/attachement', [AttachementController::class, 'store'])->name('attachement.store');
+
+
+Route::get('/attachement/create/{marche}', [AttachementController::class, 'create'])->name('attachement.create');
+
+Route::get('/attachement/{id}', [AttachementController::class, 'show'])->name('attachement.show');
+
+Route::get('/attachement/{id}/edit', [AttachementController::class, 'edit'])->name('attachement.edit');
+Route::put('/attachement/{numero}', [AttachementController::class, 'update'])->name('attachement.update');
+
+
+Route::delete('/attachement/{id}', [AttachementController::class, 'destroy'])->name('attachement.destroy');
+/*-- == Attachement -End- == --*/
+
+/*-- == Prix -Start- == --*/
+
+Route::get('/prix', [PrixController::class, 'myListe'])->name('prix');
+Route::post('/prix', [PrixController::class, 'store'])->name('prix.store');
+
+
+Route::get('/prix/create/{marche}', [PrixController::class, 'create'])->name('prix.create');
+
+Route::get('/prix/{id}', [PrixController::class, 'show'])->name('prix.show');
+
+Route::get('/prix/{id}/edit', [PrixController::class, 'edit'])->name('prix.edit');
+Route::put('/prix/{numero}', [PrixController::class, 'update'])->name('prix.update');
+
+
+Route::delete('/prix/{id}', [PrixController::class, 'destroy'])->name('prix.destroy');
+/*-- == Prix -End- == --*/
+
+
+
 
 /*-------------------------------------------------------------------------------------------------*/
 
