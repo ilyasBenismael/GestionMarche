@@ -8,6 +8,8 @@
     <title>Gestion du Marché</title>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+
     <!------------------------------------------------------>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
@@ -46,7 +48,7 @@
             @auth()
                 <div class="image">
                     <i class="fa-solid fa-bell notification"></i> <!-- fa-shake -->
-                    <img src="{{ asset('images/profile.jpg') }}" width="90" height="90" alt="User" />
+                    <img src={{ asset('files/profils/' . auth()->user()->image) }} width="90" height="90" alt="User" />
                 </div>
                 <div class="info-container">
                     <div  class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->role}}</div>
@@ -168,10 +170,6 @@
 
 <main class="content">
     @yield('content')
-
-
-
-
 
 </main>
 

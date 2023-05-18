@@ -11,30 +11,31 @@
     <h1>your graph :</h1>
     <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
         <div style="width: 50%;">
-            <canvas id="lineChart"></canvas>
+            <canvas id="lineChart" style="z-index: 1;"></canvas>
         </div>
         <div style="width: 50%; ">
-            <canvas id="barChart"></canvas>
+            <canvas id="barChart" style="z-index: 1;"></canvas>
         </div>
     </div>
 
     <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
         <div style="width: 50%;">
-            <canvas id="pieChart"></canvas>
+            <canvas id="pieChart" style="z-index: 1;"></canvas>
         </div>
         <div style="width: 50%; ">
-            <canvas id="radarChart"></canvas>
+            <canvas id="radarChart" style="z-index: 1;"></canvas>
         </div>
     </div>
 
     <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
         <div style="width: 50%;">
-            <canvas id="doughnutChart"></canvas>
+            <canvas id="doughnutChart" style="z-index: 1;"></canvas>
         </div>
         <div style="width: 50%; ">
-            <canvas id="polarAreaChart"></canvas>
+            <canvas id="polarAreaChart" style="z-index: 1;"></canvas>
         </div>
     </div>
+
 
 
 
@@ -212,11 +213,6 @@
                     }
                 }
             });
-
-
-
-
-
         });
     </script>
 
