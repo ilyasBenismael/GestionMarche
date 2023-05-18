@@ -30,7 +30,17 @@ class DatabaseSeeder extends Seeder
                 'role' => 'admin',
                 'cv'=>'Unknown',
                 'image' => 'Unknown',
-            ]
+            ],
+            [
+            'name' => 'amin raghib',
+            'email' => 'amin@email.com',
+            'password' => bcrypt('amin123456'),
+            'remember_token' => Str::random(10),
+            'city' => 'Unknown',
+            'role' => 'admin',
+            'cv'=>'Unknown',
+            'image' => 'Unknown',
+        ]
         ];
 
         foreach ($users as $user) {

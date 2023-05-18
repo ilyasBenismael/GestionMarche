@@ -25,6 +25,7 @@
                 <th>Ville</th>
                 <th>Montant</th>
                 <th>Statut</th>
+                <th>action</th>
             </tr>
             </thead>
             <tbody>
@@ -34,14 +35,15 @@
                     <td>{{ $concurrent->ville }}</td>
                     <td>{{ $concurrent->montant }}</td>
                     <td>{{ $concurrent->statut }}</td>
+                    <td><a href="/concurrent/{{ $concurrent->id }}">delete</a></td>
                 </tr>
             @endforeach
-            <a href="/concurrent/create/{{ $appelOffres->id }}">Add New Concurrent</a>
+            <a href="/concurrent/create/{{ $appel_id }}">Add New Concurrent</a>
             </tbody>
         </table>
     @else
         <p>No concurrents found.</p>
-        <a href="/concurrent/create/{{ $appelOffres->id }}">Add New Concurrent</a>
+        <a href="/concurrent/create/{{ $appel_id }}">Add New Concurrent</a>
     @endif
 
 @endsection

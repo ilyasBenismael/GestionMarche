@@ -2,11 +2,6 @@
 
 @section('content')
 
-    <h1>nombre de consultation : {{$element}}</h1>
-
-
-    <a href="/addGraph" style="margin-top: 100px;">make a graph</a>
-
 
     <h1>your graph :</h1>
     <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
@@ -42,8 +37,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Assuming you have the user array and post count data available
-            var labels = {!! json_encode($roles) !!};
-            var values = {!! json_encode($userscount) !!};
+            var labels = {!! json_encode($labels) !!};
+            var values = {!! json_encode($values) !!};
+
 
             // Create the chart
             var ctx = document.getElementById('pieChart').getContext('2d');

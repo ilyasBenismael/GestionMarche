@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\appeloffre;
+use App\Models\Concurrent;
 use App\Models\marche;
 use App\Models\typemarche;
 use Illuminate\Http\Request;
@@ -22,6 +23,34 @@ class MarcheController extends Controller
         $marches=marche::all();
         return response()->view('Marche/marcheList', ['marches'=>$marches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
+
+
+
+
+    public function goMarche($id)
+    {
+        $marche=marche::find($id);
+        $appel=appeloffre::where('numero', '=', $marche->appel_doffre)->first();
+
+        $data = [
+            'marche'=>$marche,
+            'appel' => $appel
+        ];
+
+        return response()->view('Marche/marche', $data)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
+
+
+    public function goappelOffre($id)
+    {
+        $appelOffres = appeloffre::find($id);
+        $concurrents = Concurrent::where('appeloffres_id', 'LIKE', $id)->get();
+        $appel_id = $id;
+    return view('appeloffres.show', compact('appelOffres', 'concurrents', 'appel_id'));
+    }
+
+
+
 
     public function goAddMarche()
     {
