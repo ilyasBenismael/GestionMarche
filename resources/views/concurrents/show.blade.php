@@ -8,9 +8,21 @@
     </div>
 
     <div class="card-body">
-            <div class="form-group">
-                <label for="type" class="marche">Type</label>
-                <input type="text" disabled class="form-control rounded-0" placeholder="Type"  name="type" value="{{$typeMarche->type}}">
-            </div>
+        <div class="form-group">
+            <label for="nom" class="nom">Nom</label>
+            <input type="text" disabled class="form-control" placeholder="nom"  name="nom" value="{{$concurrent->nom}}">
+        </div>
+        <div class="form-group">
+            <label for="ville" class="ville">Ville</label>
+            <input type="text" disabled class="form-control" placeholder="ville"  name="ville" value="{{$concurrent->ville}}">
+        </div>
+        <div class="form-group">
+            <label for="montant" class="montant">Montant</label>
+            <input type="text" disabled class="form-control" placeholder="montant"  name="montant" value="{{$concurrent->montant}}">
+        </div>
+        <div class="form-group">
+            <label for="statut" class="statut">Statut</label>
+            <input type="text" disabled class="form-control" placeholder="statut"  name="statut" value="{{$concurrent->statut}}">
+        </div>
     </div>
 @endsection

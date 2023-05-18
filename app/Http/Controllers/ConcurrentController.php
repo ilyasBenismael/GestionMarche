@@ -14,9 +14,9 @@ class ConcurrentController extends Controller
     public function myListe()
     {
         $concurrent = Concurrent::all();
-        return response()->view("concurrent")->with([
+        return view("concurrent")->with([
             'concurrent' => $concurrent
-        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        ]);
 
     }
 
@@ -25,7 +25,7 @@ class ConcurrentController extends Controller
      */
     public function create(AppelOffre $appeloffre)
     {
-        return response()->view('concurrents.add', compact('appeloffre'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return view('concurrents.add', compact('appeloffre'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ConcurrentController extends Controller
         $concurrent->save();
 
         //Concurrent::create($request->except('_token'));
-        return redirect()->route('marcheList')->with(['success'=>'Concurrent added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('marcheList')->with(['success'=>'Concurrent added successfully.']);
         // -----------------------------------
 
     }
@@ -65,7 +65,7 @@ class ConcurrentController extends Controller
     {
         $concurrent = Concurrent::findOrFail($id);
 
-        return response()->view('concurrents.show', ['concurrent' => $concurrent])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return view('concurrents.show', ['concurrent' => $concurrent]);
     }
 
     /**
@@ -75,9 +75,9 @@ class ConcurrentController extends Controller
     {
         //
         $concurrent = Concurrent::findOrFail($id);
-        return response()->view('concurrents.edit')->with([
+        return view('concurrents.edit')->with([
             'concurrent' => $concurrent,
-        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        ]);
     }
 
 
@@ -102,7 +102,7 @@ class ConcurrentController extends Controller
         $concurrent->statut = $validatedData['statut'];
 
         $concurrent->save();
-        return redirect()->route('concurrent')->with(['success'=>'Concurrent updated successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('concurrent')->with(['success'=>'Concurrent updated successfully.']);
         // -----------------------------------
     }
 
@@ -114,6 +114,6 @@ class ConcurrentController extends Controller
         //
         $concurrent = Concurrent::findOrFail($id);
         $concurrent->delete();
-        return redirect()->route('concurrent')->with(['success'=>'Concurrent deleted successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->route('concurrent')->with(['success'=>'Concurrent deleted successfully.']);
     }
 }

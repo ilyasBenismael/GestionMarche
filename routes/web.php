@@ -104,7 +104,7 @@ Route::delete('/typeMarche/{id}', [TypeMarcheController::class, 'destroy'])->nam
 /*-- == Type Marche -End- == --*/
 
 /*-- == Concurrent -Start- == --*/
-Route::get('/concurrent', [ConcurrentController::class, 'myListe'])->name('concurrent');
+Route::get('/concurrents', [ConcurrentController::class, 'myListe'])->name('concurrent');
 Route::post('/concurrent', [ConcurrentController::class, 'store'])->name('concurrent.store');
 
 
@@ -137,7 +137,6 @@ Route::get('/effects', [EffectController::class, 'effects'])->name('effects');
 
 /*-- == Attachement -Start- == --*/
 
-Route::get('/attachement', [AttachementController::class, 'myListe'])->name('attachement');
 Route::post('/attachement', [AttachementController::class, 'store'])->name('attachement.store');
 
 
@@ -154,7 +153,6 @@ Route::delete('/attachement/{id}', [AttachementController::class, 'destroy'])->n
 
 /*-- == Prix -Start- == --*/
 
-Route::get('/prix', [PrixController::class, 'myListe'])->name('prix');
 Route::post('/prix', [PrixController::class, 'store'])->name('prix.store');
 
 
