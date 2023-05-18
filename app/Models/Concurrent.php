@@ -10,14 +10,13 @@ class Concurrent extends Model
     use HasFactory;
 
     protected $table = 'concurrents';
+
     protected $fillable = [
         'nom',
         'ville',
         'montant',
         'statut',
     ];
-
-
 
     public function appelOffres()
     {

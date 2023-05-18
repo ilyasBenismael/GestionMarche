@@ -14,11 +14,7 @@ return new class extends Migration
         Schema::create('attachements', function (Blueprint $table) {
             $table->id();
             $table->date("date");
-            //
-            //$table->unsignedBigInteger("marche_id");
-            //$table->foreign('marche_id')->references('id')->on('marches'); // Calling Table Marche Using foreign Key 
             $table->string("marche");
-            //
             $table->integer("numero");
             $table->integer("montant_de_revision");
             $table->timestamps();
