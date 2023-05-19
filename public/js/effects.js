@@ -13,11 +13,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 /*-- Mouse Effect 1 -start--*/
 
+let isActivated1 = false;
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle1");
-let isActive = true;
 
-const colors = [
+const colorss = [
     "#ffb56b",
     "#fdaf69",
     "#f89d63",
@@ -45,17 +45,16 @@ const colors = [
 circles.forEach(function (circle, index) {
     circle.x = 0;
     circle.y = 0;
-    circle.style.backgroundColor = colors[index % colors.length];
+    circle.style.backgroundColor = colorss[index % colorss.length];
 });
 
 window.addEventListener("mousemove", function(e){
     coords.x = e.clientX;
     coords.y = e.clientY;
-
 });
 
-function animateCircles() {
-
+function animateCircless() {
+    if (isActivated1){
     let x = coords.x;
     let y = coords.y;
 
@@ -73,12 +72,32 @@ function animateCircles() {
         y += (nextCircle.y - y) * 0.3;
     });
 
-    requestAnimationFrame(animateCircles);
+    requestAnimationFrame(animateCircless);
+    }
 }
 
-if(isActive === true){
-    animateCircles();
+
+
+function checkActivation(isActivated) {
+    if (isActivated === true) {
+        isActivated1 = true;
+        animateCircless();
+
+    } else if (isActivated === false) {
+        isActivated1 = false;
+
+    }
 }
+
+
+if(isActivated1){
+    animateCircless();
+}
+else if(!isActivated1){
+    circles.style.width = '0px';
+    circles.style.height = '0px';
+}
+
 
 /*-- Mouse Effect 1 -end- */
 

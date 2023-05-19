@@ -15,6 +15,12 @@
         <th>
             action
         </th>
+        <th>
+            attachement
+        </th>
+        <th>
+            prix
+        </th>
     </tr>
         @foreach($marches as $marche)
             <tr>
@@ -26,6 +32,12 @@
                 </td>
                 <td>
                     <a href="/marche/{{$marche->id}}">show marche</a>
+                </td>
+                <td>
+                    <a href="/attachement/create/{{$marche->id}}">Create attachement</a>
+                </td>
+                <td>
+                    <a href="/prix/create/{{$marche->id}}">Create prix</a>
                 </td>
             </tr>
         @endforeach

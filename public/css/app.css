@@ -23,11 +23,7 @@
     background: var(--sunset-color);
 }
 
-*::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(180deg, #d0368a 0%, #708ad4 99%);
-    box-shadow: inset 2px 2px 5px 0 rgba(0,0,0, 0.5);
-    border-radius: 100px;
-}
+
 
 body {
     background: var(--color-night-body);
@@ -38,15 +34,10 @@ body {
     min-height: 100vh;
 }
 body.night-mode {
-    background-color: var(--color-light);
+    background-color: var(--color-light-body);
     color: var(--color-night-body);
 }
 
-/*-- Data Tables Night Mode Modifications -start- --*/
-#dataTable.night-mode{
-    color: var(--color-light);
-}
-/*-- Data Tables Night Mode Modifications -end- --*/
 /*-- Make it Responsive -start- --*/
 
 @media screen and (max-height: 850px){
@@ -56,6 +47,7 @@ body.night-mode {
     .legal {
         position: relative !important;
     }
+
 
 
 }
@@ -651,3 +643,53 @@ main {
     right: 78px;
 }
 /*-- Notification Menu -end- --*/
+
+/*-- Data Tables Night Mode Modifications -start- --*/
+#dataTable.night-mode{
+    background-color : var(--color-night);
+    color: var(--color-light);
+    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
+    border-radius: 20px;
+}
+
+.dataTablestyle {
+    background: var(--color-light);
+    border-radius: 20px;
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+}
+
+
+.dataTablestyleBody{
+    text-align: center;
+}
+
+
+.dataTablestyleHead{
+    text-align: center !important;
+}
+
+
+.dt-buttons .dt-button {
+    background-color: var(--sunset-color);
+
+    color: var(--color-light);
+
+    border-radius: 10px;
+
+}
+
+
+.linksBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.linksBtn .middle{
+    margin: 0 12px;
+}
+
+.linksBtn form{
+    margin: 0;
+}
+/*-- Data Tables Night Mode Modifications -end- --*/
