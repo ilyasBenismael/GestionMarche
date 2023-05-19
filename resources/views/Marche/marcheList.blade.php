@@ -30,7 +30,6 @@
             </tr>
         @endforeach
 
-
     </table>
 
 

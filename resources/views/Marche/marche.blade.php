@@ -3,7 +3,11 @@
 @section('content')
 
     <h5>Marche : {{$marche->numero_marche}}</h5>
-    <h5>Type : {{$marche->type_de_marche}}</h5>
+    <h5>exercice : {{$marche->exercice}}</h5>
+    <h5>statut : {{$marche->statut}}</h5>
+    <h5>responsable_de_suivi : {{$marche->responsable_de_suivi}}</h5>
+    <h5>montant : {{$marche->montant}}</h5>
+
 
     <h5>Appel d'offre :</h5>
     @if($appel==null)

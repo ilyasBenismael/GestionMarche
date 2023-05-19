@@ -72,8 +72,8 @@ class MarcheController extends Controller
             'numero_marche' => 'required',
             'exercice' => 'required',
             'type_de_marche' => 'required',
-            'date_approbation' => 'required',
-            'date_notification_approbation' => 'required',
+            'responsable_de_suivi' => 'required',
+            'montant' => 'required',
         ]);
 
 
@@ -98,9 +98,9 @@ class MarcheController extends Controller
             'numero_marche' => $request['numero_marche'],
             'exercice' => $request['exercice'],
             'type_de_marche' => $request['type_de_marche'],
-            'date_approbation' => $request['date_approbation'],
-            'date_notification_approbation' => $request['date_notification_approbation'],
             'statut' => "en instance",
+            'responsable_de_suivi' =>$request['responsable_de_suivi'],
+            'montant' => $request['montant'],
         ]);
 
         return redirect('/marchelist');

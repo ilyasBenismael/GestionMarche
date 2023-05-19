@@ -31,6 +31,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!--Google Fonts-->
 
+    <style>
+        .profilPic{
+            width: 60px;
+            height: 60px;
+        }
+    </style>
 
 </head>
 
