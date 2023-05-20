@@ -9,7 +9,7 @@
     <h5>montant : {{$marche->montant}}</h5>
 
 
-    <h5>Appel d'offre :</h5>
+    <h5>Appel d'offre : </h5>
     @if($appel==null)
         <h6>no appel d'offre</h6>
     @else

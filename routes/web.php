@@ -61,6 +61,14 @@ Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
 Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre');
 
 
+//attributaire
+Route::get('/attributaires/create', 'App\Http\Controllers\AttributaireController@create')->name('attributaires.create');
+Route::post('/attributaires', 'App\Http\Controllers\AttributaireController@store')->name('attributaires.store');
+Route::get('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@show')->name('attributaires.show');
+Route::get('/attributaires/{attributaire}/edit', 'App\Http\Controllers\AttributaireController@edit')->name('attributaires.edit');
+Route::put('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@update')->name('attributaires.update');
+
+
 
 
 
