@@ -37,16 +37,16 @@ class AttachementController extends Controller
             'marche' => 'required|string|max:50',
             'date' => 'required|date|max:50',
             'montant_de_revision' => 'required|numeric|max:50',
-            'marche_id' => 'required|exists:marche,id',
+            'marche_id' => 'required|exists:marches,id',
         ]);
 
         // new added
         $attachement = new Attachement();
         $attachement->numero = $request->numero;
-        $attachement->marche = $request->marche;
+       // $attachement->marche = $request->marche;
         $attachement->date = $request->date;
         $attachement->montant_de_revision = $request->montant_de_revision;
-        $attachement->marche_id = $request->marche_id;
+        $attachement->marche = $request->marche_id;
         $attachement->save();
 
         //Attachement::create($request->except('_token'));

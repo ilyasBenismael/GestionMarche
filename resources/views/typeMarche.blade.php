@@ -22,12 +22,12 @@
                 <tr>
                     <td>{{$index+1}}</td>
                     <td>{{$marche->type}}</td>
-                    <td>
+                    <td class="linksBtn">
                         <a href="{{route("typeMarche.show", ['id' => $marche->id])}}" class="btn btn-sm btn-primary">
                             Show
                             <i class="fas fa-eye"></i>
                         </a>
-                        <a href="{{ route('typeMarche.edit', ['id' => $marche->id]) }}" class="btn btn-sm btn-warning">
+                        <a href="{{ route('typeMarche.edit', ['id' => $marche->id]) }}" class="btn btn-sm btn-warning middle">
                             Edit
                             <i class="fas fa-edit"></i>
                         </a>

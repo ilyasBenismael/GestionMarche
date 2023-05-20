@@ -25,7 +25,7 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return \Illuminate\Http\Response
      */
 
 
@@ -40,16 +40,17 @@ class HomeController extends Controller
             $count = User::where('role', $role)->count();
             $userscount[] = $count;
         }
-
+/*
         $client = new Client();
         $crawler = $client->request('GET', 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AllCons&EnCours&searchAnnCons');
         $element = $crawler->filter('#ctl0_CONTENU_PAGE_resultSearch_nombreElement')->first()->text();
-
+*/
         return response()->view('home', [
             'roles' => $roles,
             'userscount' => $userscount,
-            'element' => $element
+            /*'element' => $element*/
         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+
     }
 
 

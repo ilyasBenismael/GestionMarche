@@ -24,12 +24,12 @@
             <td>{{$index+1}}</td>
             <td>{{$prix->marche}}</td>
             <td>{{$prix->designation}}</td>
-            <td>
+            <td  class="linksBtn">
                 <a href="{{route("categoriePrix.show", ['id' => $prix->id])}}" class="btn btn-sm btn-primary">
                     Show
                     <i class="fas fa-eye"></i>
                 </a>
-                <a href="{{ route('categoriePrix.edit', ['id' => $prix->id]) }}" class="btn btn-sm btn-warning">
+                <a href="{{ route('categoriePrix.edit', ['id' => $prix->id]) }}" class="btn btn-sm btn-warning middle">
                     Edit
                     <i class="fas fa-edit"></i>
                 </a>

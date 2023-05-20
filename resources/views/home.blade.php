@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <h1>nombre de consultation : {{$element}}</h1>
+    <h1>nombre de consultation : $element</h1>
 
 
     <a href="/addGraph" style="margin-top: 100px;">make a graph</a>
