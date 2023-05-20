@@ -1,9 +1,51 @@
-@extends('layouts.app')
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="../../../css/all.min.css">
+    <link rel="stylesheet" href="../../../css/fontawesome.min.css">
+    <!--Font Awesome-->
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="{{ asset('/css/bootstrap.min.css') }}">
+    <!--Bootstrap-->
+    <!--Style Css-->
+    <link rel="stylesheet" href="{{ asset('/css/login.css') }}">
+    <!--Style Css-->
+    <!--Google Fonts-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!--Google Fonts-->
+</head>
+<body>
+<!-- Cercle Effect -Start- -->
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<div class="circle"></div>
+<!-- Cercle Effect -End- -->
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
@@ -59,7 +101,11 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-@endsection
+
+
+
+
+<script src="{{ asset('/css/bootstrap.min.css') }}"></script>
+<script src="{{ asset('/js/login.js') }}"></script>
+</body>
+</html>

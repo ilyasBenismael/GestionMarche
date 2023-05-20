@@ -1,98 +1,99 @@
 @extends('layouts.app')
 
+
 @section('content')
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 
-    <form action="/users" method="GET">
-    @csrf
-    <label for="criteria">criteria</label>
+    <div class="container">
 
-        <div class="form-group form-float">
-            <div class="form-line">
-                <select name="criteria" id="criteria" class="form-control">
-                    <option value="name">name</option>
-                    <option value="city">city</option>
-                    <option value="role">role</option>
-                </select>
-            </div>
-        </div>
-    <input value="{{ old('words') }}" type="text" id="words" name="words">
-    <button type="submit">filter</button>
-    </form>
 
-    <table border="1px" >
-        <tr>
-            <th>
-                Profil
-            </th>
-            <th>
-                name
-            </th>
-            <th>
-                email
-            </th>
-            <th>
-                city
-            </th>
-            <th>
-                role
-            </th>
-            <th>
-                cv
-            </th>
-        </tr>
-        @foreach($users as $user)
+        <table class="table night-mode" id="dataTable" >
             <tr>
-                <td>
-                    <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="profilPic">
-                </td>
-                <td>
-                    {{$user->name}}
-                </td>
-                <td>
-                    {{$user->email}}
-                </td>
-                <td>
-                    {{$user->city}}
-                </td>
-                <td>
-                    {{$user->role}}
-                </td>
-                <td>
-                    <a href="{{ public_path('files/cvs/'.$user->cv) }}"> {{$user->cv}}</a>
-                </td>
-                <td>
-                    <form action="/dowload/{{ $user->cv }}" method="POST">
-                        @csrf
-                        <button class="btn btn-danger">download cv</button>
-                    </form>
-                </td>
-
-                <td>
-                    <a href="/user/{{ $user->id }}">update</a>
-                </td>
-                <td>
-                    <a href="/ChangePassword/{{ $user->id }}">change password</a>
-                </td>
-
-                <td>
-                    <form action="/user/{{ $user->id }}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger">delete</button>
-                    </form>
-                </td>
-
-                <td>
-                    <a href="/chat/{{$user->id}}">send message</a>
-                </td>
-
+                <th>
+                    Profil
+                </th>
+                <th>
+                    name
+                </th>
+                <th>
+                    email
+                </th>
+                <th>
+                    city
+                </th>
+                <th>
+                    role
+                </th>
+                <th>
+                    cv
+                </th>
+                <th>
+                    <a href="/register">add User</a>
+                </th>
             </tr>
-        @endforeach
-    </table>
+            @foreach($users as $user)
+                <tr>
+                    <td>
+                        <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="profilPic">
+                    </td>
+                    <td>
+                        {{$user->name}}
+                    </td>
+                    <td>
+                        {{$user->email}}
+                    </td>
+                    <td>
+                        {{$user->city}}
+                    </td>
+                    <td>
+                        {{$user->role}}
+                    </td>
+                    <td>
+                        <a href="{{ public_path('files/cvs/'.$user->cv) }}"> {{$user->cv}}</a>
+                    </td>
+                    <td>
+                        <form action="/dowload/{{ $user->cv }}" method="POST">
+                            @csrf
+                            <button class="btn btn-danger">download cv</button>
+                        </form>
+                    </td>
 
-    <div>
-            <a href="/register">add user</a>
-    </div>
+                    <td>
+                        <a href="/user/{{ $user->id }}">update</a>
+                    </td>
+                    <td>
+                        <a href="/ChangePassword/{{ $user->id }}">change password</a>
+                    </td>
+
+                    <td>
+                        <form action="/user/{{ $user->id }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger">delete</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <a href="/chat/{{$user->id}}">send message</a>
+                    </td>
+
+                </tr>
+            @endforeach
+        </table>
 
 
+
+        @endsection
+        @section('scripts')
+            <script>
+                $(document).ready(function() {
+                    $('#dataTable').DataTable( {
+                        dom: 'Bfrtip',
+                        buttons: [
+                            'copy', 'excel', 'pdf', 'print'
+                        ]
+                    } );
+                } );
+            </script>
 @endsection
