@@ -645,6 +645,11 @@ main {
 /*-- Notification Menu -end- --*/
 
 /*-- Data Tables Night Mode Modifications -start- --*/
+#dataTable{
+    border-radius: 20px;
+    background: var(--color-light);
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+}
 #dataTable.night-mode{
     background-color : var(--color-night);
     color: var(--color-light);
@@ -668,16 +673,32 @@ main {
     text-align: center !important;
 }
 
-
+#dataTable_paginate .current,
 .dt-buttons .dt-button {
-    background-color: var(--sunset-color);
+    background-color: var(--sunset-color) !important;
 
-    color: var(--color-light);
+    color: var(--color-light) !important;
+
+    border-radius: 10px;
+
+}
+.dt-buttons{
+    margin-bottom: 15px;
+}
+
+#dataTable_paginate .current:hover,
+.dt-buttons .dt-button:hover {
+    background-color: var(--color-light) !important;
+
+    color: var(--sunset-color) !important;
 
     border-radius: 10px;
 
 }
 
+tbody tr td{
+    border-style: none;
+}
 
 .linksBtn{
     display: flex;
@@ -692,4 +713,82 @@ main {
 .linksBtn form{
     margin: 0;
 }
+
+/*--------------------------------------------------------------------------------------*/
+#dataTable_filter {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+
+
+#dataTable_filter label {
+    display: flex;
+    align-items: center;
+}
+
+
+#dataTable_filter input[type="search"] {
+    font-family: 'Inconsolata', monospace;
+    width: 50px;
+    height: 40px;
+    outline: none;
+    border: none;
+    background: var(--sunset-color);
+    color: white;
+    text-shadow: 0 0 10px var(--sunset-color);
+    padding: 0 15px;
+    /*padding: 0 80px 0 20px;*/
+    border-radius: 30px;
+    /*box-shadow: 0 0 25px 0 var(--sunset-color), 0 20px 25px 0 rgba(0, 0, 0, 0.2);*/
+    transition: all 1s;
+    /*opacity: 0;*/
+    z-index: 5;
+    font-weight: bolder;
+    letter-spacing: 0.1em;
+}
+
+#dataTable_filter input[type="search"]:hover {
+    cursor: pointer;
+}
+
+#dataTable_filter input[type="search"]:focus {
+    width: 300px;
+    opacity: 1;
+    cursor: text;
+}
+
+#dataTable_filter input[type="search"]:focus ~ .search {
+    right: -250px;
+    background: #151515;
+    z-index: 6;
+}
+
+#dataTable_filter input[type="search"]:focus ~ .search::before {
+    top: 0;
+    left: 0;
+    width: 25px;
+}
+
+#dataTable_filter input[type="search"]:focus ~ .search::after {
+    top: 0;
+    left: 0;
+    width: 25px;
+    height: 2px;
+    border: none;
+    background: white;
+    border-radius: 0%;
+    transform: rotate(-45deg);
+}
+
+#dataTable_filter input[type="search"]::placeholder {
+    color: white;
+    opacity: 0.5;
+    font-weight: bolder;
+}
+/*--------------------------------------------------------------------------------------*/
+
+
+
+
 /*-- Data Tables Night Mode Modifications -end- --*/

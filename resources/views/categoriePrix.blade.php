@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 <div class="container">
 
-<table class="table" id="dataTable">
+<table class="table night-mode" id="dataTable">
     <thead>
     <tr>
         <th>ID</th>
