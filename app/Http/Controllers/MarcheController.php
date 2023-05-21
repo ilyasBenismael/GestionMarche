@@ -50,6 +50,17 @@ class MarcheController extends Controller
     }
 
 
+    public function destroy($id)
+    {
+        $marche = Marche::find($id);
+
+        if (!$marche) {
+            // Marche not found
+            return redirect('/marchelist')->back()->withErrors('Marche not found.');
+        }
+        $marche->delete();
+        return redirect('/marchelist')->withSuccess('Marche deleted successfully.');
+    }
 
 
     public function goAddMarche()
@@ -105,5 +116,43 @@ class MarcheController extends Controller
 
         return redirect('/marchelist');
     }
+
+
+
+    public function update(Request $request, $id)
+    {
+        $marche = Marche::find($id);
+
+        if (!$marche) {
+            // Marche not found
+            return redirect()->back()->withErrors('Marche not found.');
+        }
+
+        $marche->exercice = $request->input('exercice');
+        $marche->type_de_marche = $request->input('type_de_marche');
+        $marche->date_approbation = $request->input('date_approbation');
+        $marche->date_notification_approbation = $request->input('date_notification_approbation');
+        $marche->date_ordre_service = $request->input('date_ordre_service');
+        $marche->delai_dexecution = $request->input('delai_dexecution');
+        $marche->responsable_de_suivi = $request->input('responsable_de_suivi');
+        $marche->montant = $request->input('montant');
+        $marche->prix_revisable = $request->input('prix_revisable');
+        $marche->delai_garantie = $request->input('delai_garantie');
+        $marche->date_reception_provisoire = $request->input('date_reception_provisoire');
+        $marche->date_reception_definitive = $request->input('date_reception_definitive');
+        $marche->date_resiliation = $request->input('date_resiliation');
+        $marche->motif_resiliation = $request->input('motif_resiliation');
+        $marche->attributaire = $request->input('attributaire');
+
+        $marche->save();
+
+        return redirect('/marchelist')->withSuccess('Marche updated successfully.');
+    }
+
+
+
+
+
+
 
 }

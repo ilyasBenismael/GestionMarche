@@ -30,9 +30,26 @@
                 <td>
                     <a href="/marche/{{$marche->id}}">edit marche</a>
                 </td>
+                <td>
+                    <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <a href="/attachement/create/{{$marche->id}}">Create attachement</a>
+                </td>
+                <td>
+                    <a href="/prix/create/{{$marche->id}}">Create prix</a>
+                </td>
+                <td>
+                   <button>
+                       renseigner les dates
+                   </button>
+                </td>
             </tr>
         @endforeach
-
     </table>
 
 

@@ -17,15 +17,11 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedBigInteger('appeloffres_id');; // Foreign key
-
             $table->string('nom');
             $table->string('ville');
             $table->string('montant');
             $table->string('statut');
             $table->timestamps();
-
-
-            $table->foreign('appeloffres_id')->references('id')->on('appeloffres');
         });
     }
 

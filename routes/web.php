@@ -59,6 +59,7 @@ Route::get('/addMarche', 'App\Http\Controllers\MarcheController@goAddMarche');
 Route::get('/marche/{id}', 'App\Http\Controllers\MarcheController@goMarche');
 Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
 Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre');
+Route::delete('/marche/{id}', 'App\Http\Controllers\MarcheController@destroy')->name('marche.destroy');
 
 
 //attributaire

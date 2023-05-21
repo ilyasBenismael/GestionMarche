@@ -17,9 +17,6 @@ class appeloffre extends Model
         'date_douverture_des_plis',
     ];
 
-    public function concurrents()
-    {
-        return $this->hasMany(Concurrent::class, 'appeloffres_id');
-    }
+
 
 }

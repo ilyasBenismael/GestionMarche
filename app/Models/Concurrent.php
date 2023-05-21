@@ -18,8 +18,5 @@ class Concurrent extends Model
         'statut',
     ];
 
-    public function appelOffres()
-    {
-        return $this->belongsTo(AppelOffre::class, 'appeloffres_id', 'id');
-    }
+
 }
