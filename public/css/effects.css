@@ -4,6 +4,9 @@
     --switchWidth: 110px;
     --switchHeight: 30px;
     --padding: 7px;
+
+    --green: #ffb56b;
+    --red: #60005f;
 }
 /*-- Text Header -start- --*/
 .header{
@@ -204,7 +207,7 @@
     padding: 15px;
     background: white;
     border-radius: 20px 20px 10px 10px;
-    box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);/* box shadow 001*/
 }
 
 
@@ -218,12 +221,17 @@
 
 /*-- Mouse Effect 1 -start- */
 .mouseEffect1{
-background: white;
-    height: 350px;
-    width: 240px;
+    display: flex;
+    justify-content: center;
 }
-
+.mouseEffect1 .mouseEffectContainer{
+    width: 60%;
+    background: white;
+    border-radius: 20px 20px 10px 10px;
+   box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);
+}
 .circle1 {
+    display: none;
     height: 24px;
     width: 24px;
     border-radius: 24px;
@@ -234,5 +242,239 @@ background: white;
     pointer-events: none;
     z-index: 99999999; /* so that it stays on top of all other elements */
 }
+
+.circleContainer{
+    display: flex;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    background: transparent;
+    margin: 3% 10% 0;
+    border-radius: 25px;
+    height: 60%;
+    justify-content: center;
+    align-items: center;
+}
+
+.circleContainer .circle2{
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin: 0 -7.5px;/* distance */
+}
+
+.circleContainer .circle2 span{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(calc(18deg * var(--i)));
+}
+
+.circleContainer .circle2 span::before {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: calc(50% - 7.5px);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    /*box-shadow: 0 0 10px var(--color-light);*/
+    transform: scale(0.1);
+    animation: animate 4s linear infinite;
+    animation-delay: calc(0.1s * var(--i));
+}
+.circleContainer .circle2 span:nth-child(1)::before {
+    background-color: #ffb56b;
+}
+
+.circleContainer .circle2 span:nth-child(2)::before {
+    background-color: #fdaf69;
+}
+
+.circleContainer .circle2 span:nth-child(3)::before {
+    background-color: #f89d63;
+}
+
+.circleContainer .circle2 span:nth-child(4)::before {
+    background-color: #f59761;
+}
+
+.circleContainer .circle2 span:nth-child(5)::before {
+    background-color: #ef865e;
+}
+
+.circleContainer .circle2 span:nth-child(6)::before {
+    background-color: #ec805d;
+}
+
+.circleContainer .circle2 span:nth-child(7)::before {
+    background-color: #e36e5c;
+}
+
+.circleContainer .circle2 span:nth-child(8)::before {
+    background-color: #df685c;
+}
+
+.circleContainer .circle2 span:nth-child(9)::before {
+    background-color: #d5585c;
+}
+
+.circleContainer .circle2 span:nth-child(10)::before {
+    background-color: #d1525c;
+}
+
+.circleContainer .circle2 span:nth-child(11)::before {
+    background-color: #c5415d;
+}
+
+.circleContainer .circle2 span:nth-child(12)::before {
+    background-color: #c03b5d;
+}
+
+.circleContainer .circle2 span:nth-child(13)::before {
+    background-color: #b22c5e;
+}
+
+.circleContainer .circle2 span:nth-child(14)::before {
+    background-color: #ac265e;
+}
+
+.circleContainer .circle2 span:nth-child(15)::before {
+    background-color: #9c155f;
+}
+
+.circleContainer .circle2 span:nth-child(16)::before {
+    background-color: #950f5f;
+}
+
+.circleContainer .circle2 span:nth-child(17)::before {
+    background-color: #830060;
+}
+
+.circleContainer .circle2 span:nth-child(18)::before {
+    background-color: #7c0060;
+}
+
+.circleContainer .circle2 span:nth-child(19)::before {
+    background-color: #680060;
+}
+
+.circleContainer .circle2 span:nth-child(20)::before {
+    background-color: #60005f;
+}
+
+.circleContainer .circle2 span:nth-child(21)::before {
+    background-color: #48005f;
+}
+
+.circleContainer .circle2 span:nth-child(22)::before {
+    background-color: #3d005e;
+}
+
+@keyframes animate {
+    0%
+    {
+        transform: scale(1);
+    }
+    50%,100%
+    {
+        transform: scale(0.1);
+    }
+}
+
+.circleContainer .circle2:nth-child(2) {
+    transform: rotate(-180deg);
+}
+
+.circleContainer .circle2:nth-child(2) span::before {
+    animation-delay: calc(-0.1s * var(--i));
+
+}
+.radioContainer{
+    height: 40%;
+    text-align: center;
+}
+
+.radioContainer form{
+    color: black;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.switch002 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 150px;
+    height: 50px;
+    text-align: center;
+    background: var(--green);
+    transition: all 0.2s ease;
+    border-radius: 25px;
+}
+
+.switch002 span {
+    width: 20px;
+    height: 4px;
+    background: white;
+    display: block;
+    transform: rotate(-45deg);
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+.switch002 span::after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 4px;
+    height: 12px;
+    margin-top: -8px;
+    background: white;
+    transition: all 0.2s ease;
+    border-radius: 2px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.switch002 label {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.2);
+    width: 60px;
+    transition: all 0.2s ease;
+}
+
+
+#no:checked ~ .switch002 {
+    background: var(--red);
+}
+
+#no:checked ~ .switch002 span {
+    background: white;
+    margin-left: -8px;
+}
+
+#no:checked ~ .switch002 span::after {
+    background: white;
+    height: 20px;
+    margin-top: -8px;
+    margin-left: 8px;
+}
+
+#yes:checked ~ .switch002 label[for="yes"] {
+    color: white;
+}
+
+#no:checked ~ .switch002 label[for="no"] {
+    color: white;
+}
 /*-- Mouse Effect 1 -end- */
+
+
 

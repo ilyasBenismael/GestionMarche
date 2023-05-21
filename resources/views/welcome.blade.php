@@ -99,6 +99,7 @@
     </div>
 </div>
 
+
 <script src="{{ asset('/css/bootstrap.min.css') }}"></script>
 <script src="{{ asset('/js/welcome.js') }}"></script>
 </body>

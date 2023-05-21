@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="text-container" style="text-align: center">
-                <p style="color: black;padding: 5px 0">switch from here</p>
+                <p style="color: black;padding: 5px 0;font-weight: 600">Light/Night Mode Switch</p>
                 <input type="checkbox" id="codepen"  name="checkbox" class="checkbox switchh">
                 <label for="codepen" style="overflow: hidden"></label>
             </div>
@@ -50,16 +50,69 @@
 
 
     <div class="mouseEffect1 col-4" id="mouseEffect1">
-        <div class="circleContainer">
-            <form>
-                <input type="radio" id="option1" name="radioGroup" value="option1" onclick="checkActivation(true)">
-                <label for="option1">Option 1</label><br>
+        <div class="mouseEffectContainer">
+            <div class="circleContainer">
+                <div class="circle2">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    <span style="--i:4;"></span>
+                    <span style="--i:5;"></span>
+                    <span style="--i:6;"></span>
+                    <span style="--i:7;"></span>
+                    <span style="--i:8;"></span>
+                    <span style="--i:9;"></span>
+                    <span style="--i:10;"></span>
+                    <span style="--i:11;"></span>
+                    <span style="--i:12;"></span>
+                    <span style="--i:13;"></span>
+                    <span style="--i:14;"></span>
+                    <span style="--i:15;"></span>
+                    <span style="--i:16;"></span>
+                    <span style="--i:17;"></span>
+                    <span style="--i:18;"></span>
+                    <span style="--i:19;"></span>
+                    <span style="--i:20;"></span>
+                </div>
+                <div class="circle2">
+                    <span style="--i:0;"></span>
+                    <span style="--i:1;"></span>
+                    <span style="--i:2;"></span>
+                    <span style="--i:3;"></span>
+                    <span style="--i:4;"></span>
+                    <span style="--i:5;"></span>
+                    <span style="--i:6;"></span>
+                    <span style="--i:7;"></span>
+                    <span style="--i:8;"></span>
+                    <span style="--i:9;"></span>
+                    <span style="--i:10;"></span>
+                    <span style="--i:11;"></span>
+                    <span style="--i:12;"></span>
+                    <span style="--i:13;"></span>
+                    <span style="--i:14;"></span>
+                    <span style="--i:15;"></span>
+                    <span style="--i:16;"></span>
+                    <span style="--i:17;"></span>
+                    <span style="--i:18;"></span>
+                    <span style="--i:19;"></span>
+                    <span style="--i:20;"></span>
+                </div>
+            </div>
+            <div class="radioContainer">
+                <p style="color: black;padding: 25px 0 0;font-weight: 600;text-align: center">Activate/Desactivate Cursor Animation</p>
+                <form action="">
+                    <input type="radio" name="rdo" id="yes"  onclick="checkActivation(true)"/>
+                    <input type="radio" name="rdo" id="no" checked onclick="checkActivation(false)"/>
+                    <div class="switch002">
+                        <label for="yes">Yes</label>
+                        <span></span>
+                        <label for="no">No</label>
 
-                <input type="radio" id="option2" name="radioGroup" value="option2" onclick="checkActivation(false)">
-                <label for="option2">Option 2</label><br>
+                    </div>
+                </form>
 
-            </form>
-
+            </div>
         </div>
     </div>
 

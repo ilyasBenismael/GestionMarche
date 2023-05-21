@@ -74,6 +74,9 @@ function animateCircless() {
 
     requestAnimationFrame(animateCircless);
     }
+    else if(!isActivated1){
+        circles.style.display = 'none';
+    }
 }
 
 
@@ -81,22 +84,20 @@ function animateCircless() {
 function checkActivation(isActivated) {
     if (isActivated === true) {
         isActivated1 = true;
+        circles.forEach(function (circle) {
+            circle.style.display = 'block';
+        });
         animateCircless();
-
     } else if (isActivated === false) {
         isActivated1 = false;
-
+        circles.forEach(function (circle) {
+            circle.style.display = 'none';
+        });
     }
 }
 
 
-if(isActivated1){
-    animateCircless();
-}
-else if(!isActivated1){
-    circles.style.width = '0px';
-    circles.style.height = '0px';
-}
+
 
 
 /*-- Mouse Effect 1 -end- */
