@@ -166,8 +166,11 @@
     </div>
 </nav>
 
-<main class="content">
+<main class="content" id="app">
+    <div id="content-container">
+
     @yield('content')
+    </div>
 
 
 

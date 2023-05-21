@@ -4,29 +4,39 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
 
+    <div class="addmarketcontainer" style="margin-bottom: 30px;">
+        <div class="addmarket">
+            <a href="/addMarche" style="text-decoration: none;font-size: 20px;margin-left: 25px;">
+                <i class="fa-solid fa-shop"></i>
+                <span>Ajouter Un Marché</span>
+            </a>
+        </div>
+    </div>
 
 
     <div class="container">
         <table class="table night-mode" id="dataTable">
             <thead>
                 <tr>
-                    <th>numero</th>
                     <th>statut</th>
-                    <th>action</th>
-                    <th>attachement</th>
-                    <th>prix</th>
-                    <th><a href="/addMarche">Add Marche</a></th>
+                    <th>Numero Marche</th>
+                    <th>Exercice</th>
+                    <th>Montant</th>
+                    <th>Show Marche</th>
+                    <th>Attachement</th>
+                    <th>Prix</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($marches as $marche)
                 <tr>
-                    <td>{{$marche->numero_marche}}</td>
                     <td>{{$marche->statut}}</td>
+                    <td>{{$marche->numero_marche}}</td>
+                    <td>{{$marche->exercice}}</td>
+                    <td>{{$marche->montant}}</td>
                     <td><a href="/marche/{{$marche->id}}">show marche</a></td>
                     <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
                     <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
-                    <td></td>
                 </tr>
             @endforeach
             </tbody>
