@@ -2,6 +2,20 @@
 
 @section('content')
 
+    <h1>Dashboard</h1>
+
+    <div class="row">
+        <div class="concurrentAnalytics col-5">
+            <div class="concurrent" style="background-color: white">
+                <span id="regionName"></span>
+            </div>
+        </div>
+        <div class="myMap col-5">
+            <div id="morocco"></div>
+        </div>
+    </div>
+
+
     <h1>nombre de consultation : $element</h1>
 
 
@@ -9,7 +23,8 @@
 
 
     <h1>your graph :</h1>
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+    <div class="row" style="width: 100%">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="lineChart"></canvas>
         </div>
@@ -18,7 +33,7 @@
         </div>
     </div>
 
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="pieChart"></canvas>
         </div>
@@ -27,7 +42,7 @@
         </div>
     </div>
 
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="doughnutChart"></canvas>
         </div>
@@ -36,9 +51,11 @@
         </div>
     </div>
 
+    </div>
 
 
 
+    <script src=" {{ asset('js/MA_jvm.js') }}" ></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Assuming you have the user array and post count data available

@@ -1,5 +1,13 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="{{ asset('/css/effects.css') }}">
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jVectorMap library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.css"></script>
+
+<!-- jVectorMap map file for Morocco -->
 
 
 <div class="circle1"></div>

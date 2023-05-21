@@ -207,7 +207,9 @@
     padding: 15px;
     background: white;
     border-radius: 20px 20px 10px 10px;
-    box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);/* box shadow 001*/
+    /*box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);*//* box shadow 001*/
+
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
 }
 
 
@@ -220,6 +222,7 @@
 /*-- Night/Light Mode -end- */
 
 /*-- Mouse Effect 1 -start- */
+
 .mouseEffect1{
     display: flex;
     justify-content: center;
@@ -228,7 +231,9 @@
     width: 60%;
     background: white;
     border-radius: 20px 20px 10px 10px;
-   box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);
+
+    box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
+   /*box-shadow: 0 0 20px 0 rgba(255,255,255,0.5);*/
 }
 .circle1 {
     display: none;
