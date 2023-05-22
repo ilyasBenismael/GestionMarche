@@ -22,7 +22,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!--Google Fonts-->
 </head>
-<body>
+<body class="body" id="body">
 <!-- Cercle Effect -Start- -->
 <div class="circle"></div>
 <div class="circle"></div>
@@ -115,6 +115,7 @@
 
 
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 <script src="{{ asset('/css/bootstrap.min.css') }}"></script>
 <script src="{{ asset('/js/login.js') }}"></script>
 </body>

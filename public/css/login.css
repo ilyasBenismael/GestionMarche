@@ -30,6 +30,9 @@ body {
     margin:4em;
     color: white;
     background: var(--color-night);
+   /* background: transparent;
+    backdrop-filter: blur(5px);
+    */
     width: var(--card-width);
     height: var(--card-height);
     padding: 3px;
@@ -41,6 +44,7 @@ body {
     display: flex;
     font-size: 20px;
     font-family: 'Changa', sans-serif;
+
 }
 
 
@@ -78,9 +82,13 @@ body {
     transition: opacity .5s;
     animation: spin 2.5s linear infinite;
 }
+
 .card-header{
     margin-top: 25px;
     font-size: 40px;
+    font-weight: 600;
+    background-color: transparent;
+    border: none;
 }
 .card-body{
     line-height: 3;

@@ -15,12 +15,6 @@ return new class extends Migration
     {
 
 
-//        Marché : appel d’offre, numéro marché, exercice (année), type marché (depuis la table des types),
-//date approbation, date notification approbation, date ordre service, délai d’exécution,
-//responsable de suivi (depuis la base des utilisateurs),  montant (depuis le concurrent attributaire),
-//prix révisable (booléen), délai garantie, date réception provisoire,  date réception définitive,
-//date résiliation, motif résiliation, pièces jointes (l’import de multiple pièce jointes),
-//attributaire, statut
 
         Schema::create('marches', function (Blueprint $table) {
             $table->id();

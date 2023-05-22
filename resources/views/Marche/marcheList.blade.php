@@ -25,6 +25,7 @@
                     <th>Show Marche</th>
                     <th>Attachement</th>
                     <th>Prix</th>
+                    <th>Date</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,6 +38,20 @@
                     <td><a href="/marche/{{$marche->id}}">show marche</a></td>
                     <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
                     <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
+                    <td>
+                            @if(!isset($marche->date_ordre_service))
+                            <a href="">Add date ordre service</a>
+                            @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
+                                {{$marche->date_ordre_service}}
+                            <a href="">Add date reception provisoire</a>
+                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire))
+                            {{$marche->date_ordre_service}}
+                            {{$marche->date_reception_provisoire}}
+                            <a href="">Add Date réception définitive</a>
+                            @else
+                                Error
+                            @endif
+                        </td>
                 </tr>
             @endforeach
             </tbody>

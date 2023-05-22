@@ -1,5 +1,5 @@
 
-/*-- == Cercle Effect -Start- == --*/
+/*-- == Cercle Effect -Start- == --
 const coords = { x: 0, y: 0 };
 const circles = document.querySelectorAll(".circle");
 let isActive = true;
@@ -65,4 +65,14 @@ function animateCircles() {
 
 if(isActive === true){
     animateCircles();}
+
+ */
 /*-- == Cercle Effect -End- == --*/
+
+$(document).ready(function() {
+    $('body').ripples({
+        resolution: 512,
+        dropRadius: 20,
+        perturbance: 0.04,
+    });
+});
