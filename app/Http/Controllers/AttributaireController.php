@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+    use App\Models\appeloffre;
     use App\Models\attributaire;
+    use App\Models\marche;
     use Illuminate\Http\Request;
 
 class AttributaireController extends Controller
@@ -13,7 +15,7 @@ class AttributaireController extends Controller
         return view('attributaires.show', compact('attributaire'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request, $marche_id)
     {
         $validatedData = $request->validate([
             'raison_sociale' => 'required',
@@ -39,14 +41,18 @@ class AttributaireController extends Controller
         $attributaire->patente = $validatedData['patente'];
         $attributaire->save();
 
+        $marche = marche::find($marche_id);
+        $marche->attributaire = $attributaire->id;
+        $marche->save();
 
-        return redirect()->back()->with('success', 'Attributaire created successfully!');
+        return redirect('/marche/'.$marche_id)->with('success', 'Attributaire created successfully!');
+
     }
 
 
-    public function create()
+    public function create($marche_id)
     {
-        return view('attributaires.create');
+        return view('attributaires.create',compact('marche_id'));
     }
 
 
@@ -67,8 +73,9 @@ class AttributaireController extends Controller
         ]);
 
         $attributaire->update($validatedData);
+        $marche = marche::where('attributaire', '=', $id)->first();
 
-        return redirect()->back()->with('success', 'Attributaire updated successfully!');
+        return redirect('/marche/'.$marche->id)->with('success', 'Attributaire created successfully!');
     }
 
 

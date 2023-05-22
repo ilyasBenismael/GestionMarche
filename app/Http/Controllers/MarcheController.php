@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\appeloffre;
+use App\Models\attributaire;
 use App\Models\Concurrent;
 use App\Models\marche;
 use App\Models\typemarche;
@@ -20,21 +21,20 @@ class MarcheController extends Controller
 
     public function goMarcheList()
     {
-        $marches=marche::all();
-        return response()->view('Marche/marcheList', ['marches'=>$marches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $marches = marche::all();
+        return response()->view('Marche/marcheList', ['marches' => $marches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
-
-
 
 
     public function goMarche($id)
     {
-        $marche=marche::find($id);
-        $appel=appeloffre::where('numero', '=', $marche->appel_doffre)->first();
-
+        $marche = marche::find($id);
+        $appel = appeloffre::where('numero', '=', $marche->appel_doffre)->first();
+        $attributaire = Attributaire::find($marche->attributaire)?->first();
         $data = [
-            'marche'=>$marche,
-            'appel' => $appel
+            'marche' => $marche,
+            'appel' => $appel,
+            'attributaire' => $attributaire
         ];
 
         return response()->view('Marche/marche', $data)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -46,13 +46,13 @@ class MarcheController extends Controller
         $appelOffres = appeloffre::find($id);
         $concurrents = Concurrent::where('appeloffres_id', 'LIKE', $id)->get();
         $appel_id = $id;
-    return view('appeloffres.show', compact('appelOffres', 'concurrents', 'appel_id'));
+        return view('appeloffres.show', compact('appelOffres', 'concurrents', 'appel_id'));
     }
 
 
     public function destroy($id)
     {
-        $marche = Marche::find($id);
+        $marche = marche::find($id);
 
         if (!$marche) {
             // Marche not found
@@ -65,10 +65,9 @@ class MarcheController extends Controller
 
     public function goAddMarche()
     {
-        $typemarches=typemarche::all();
-        return response()->view('Marche/addMarche', ['typemarches'=>$typemarches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $typemarches = typemarche::all();
+        return response()->view('Marche/addMarche', ['typemarches' => $typemarches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
-
 
 
     public function addMarche(Request $request)
@@ -85,6 +84,7 @@ class MarcheController extends Controller
             'type_de_marche' => 'required',
             'responsable_de_suivi' => 'required',
             'montant' => 'required',
+            'prix_revisable' => 'required',
         ]);
 
 
@@ -98,7 +98,7 @@ class MarcheController extends Controller
         appeloffre::create([
             'numero' => $request['numero'],
             'estimation_globale' => $request['estimation_globale'],
-            'estimation_detaillee' =>$esti_det_file_name,
+            'estimation_detaillee' => $esti_det_file_name,
             'objet' => $request['objet'],
             'date_douverture_des_plis' => $request['date_douverture_des_plis'],
         ]);
@@ -110,49 +110,69 @@ class MarcheController extends Controller
             'exercice' => $request['exercice'],
             'type_de_marche' => $request['type_de_marche'],
             'statut' => "en instance",
-            'responsable_de_suivi' =>$request['responsable_de_suivi'],
+            'responsable_de_suivi' => $request['responsable_de_suivi'],
             'montant' => $request['montant'],
+            'prix_revisable' => $request['prix_revisable'],
         ]);
 
         return redirect('/marchelist');
     }
 
 
-
-    public function update(Request $request, $id)
+    public function edit($id)
     {
         $marche = Marche::find($id);
+        $typemarches = TypeMarche::all();
 
         if (!$marche) {
             // Marche not found
             return redirect()->back()->withErrors('Marche not found.');
         }
+        return view('marche.edit', compact('marche', 'typemarches'));
 
-        $marche->exercice = $request->input('exercice');
-        $marche->type_de_marche = $request->input('type_de_marche');
-        $marche->date_approbation = $request->input('date_approbation');
-        $marche->date_notification_approbation = $request->input('date_notification_approbation');
-        $marche->date_ordre_service = $request->input('date_ordre_service');
-        $marche->delai_dexecution = $request->input('delai_dexecution');
-        $marche->responsable_de_suivi = $request->input('responsable_de_suivi');
-        $marche->montant = $request->input('montant');
-        $marche->prix_revisable = $request->input('prix_revisable');
-        $marche->delai_garantie = $request->input('delai_garantie');
-        $marche->date_reception_provisoire = $request->input('date_reception_provisoire');
-        $marche->date_reception_definitive = $request->input('date_reception_definitive');
-        $marche->date_resiliation = $request->input('date_resiliation');
-        $marche->motif_resiliation = $request->input('motif_resiliation');
-        $marche->attributaire = $request->input('attributaire');
-
-        $marche->save();
-
-        return redirect('/marchelist')->withSuccess('Marche updated successfully.');
     }
 
 
+    public function update(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'exercice' => 'required',
+            'type_de_marche' => 'required',
+            'date_approbation' => '',
+            'date_notification_approbation' => '',
+            'date_ordre_service' => '',
+            'delai_dexecution' => '',
+            'responsable_de_suivi' => 'required',
+            'montant' => 'required',
+            'prix_revisable' => 'required',
+            'delai_garantie' => '',
+            'date_reception_provisoire' => '',
+            'date_reception_definitive' => '',
+            'date_resiliation' => '',
+            'motif_resiliation' => '',
+            'attributaire' => '',
+        ]);
 
+        $marche = Marche::findOrFail($id);
+        $marche->exercice = $validatedData['exercice'];
+        $marche->type_de_marche = $validatedData['type_de_marche'];
+        $marche->date_approbation = $validatedData['date_approbation'];
+        $marche->date_notification_approbation = $validatedData['date_notification_approbation'];
+        $marche->date_ordre_service = $validatedData['date_ordre_service'];
+        $marche->delai_dexecution = $validatedData['delai_dexecution'];
+        $marche->responsable_de_suivi = $validatedData['responsable_de_suivi'];
+        $marche->montant = $validatedData['montant'];
+        $marche->prix_revisable = $validatedData['prix_revisable'];
+        $marche->delai_garantie = $validatedData['delai_garantie'];
+        $marche->date_reception_provisoire = $validatedData['date_reception_provisoire'];
+        $marche->date_reception_definitive = $validatedData['date_reception_definitive'];
+        $marche->date_resiliation = $validatedData['date_resiliation'];
+        $marche->motif_resiliation = $validatedData['motif_resiliation'];
+        $marche->attributaire = $validatedData['attributaire'];
+        $marche->save();
 
-
+        return redirect()->route('marcheList')->withSuccess('Marche updated successfully.');
+    }
 
 
 }

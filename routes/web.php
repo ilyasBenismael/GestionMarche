@@ -60,11 +60,13 @@ Route::get('/marche/{id}', 'App\Http\Controllers\MarcheController@goMarche');
 Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
 Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre');
 Route::delete('/marche/{id}', 'App\Http\Controllers\MarcheController@destroy')->name('marche.destroy');
+Route::get('/marche/{id}/edit', 'App\Http\Controllers\MarcheController@edit')->name('marche.edit');
+Route::put('/marche/{id}', 'App\Http\Controllers\MarcheController@update')->name('marche.update');
 
 
 //attributaire
-Route::get('/attributaires/create', 'App\Http\Controllers\AttributaireController@create')->name('attributaires.create');
-Route::post('/attributaires', 'App\Http\Controllers\AttributaireController@store')->name('attributaires.store');
+Route::get('/attributaires/create/{marche_id}', 'App\Http\Controllers\AttributaireController@create')->name('attributaires.create');
+Route::post('/attributaires/{marche_id}', 'App\Http\Controllers\AttributaireController@store')->name('attributaires.store');
 Route::get('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@show')->name('attributaires.show');
 Route::get('/attributaires/{attributaire}/edit', 'App\Http\Controllers\AttributaireController@edit')->name('attributaires.edit');
 Route::put('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@update')->name('attributaires.update');

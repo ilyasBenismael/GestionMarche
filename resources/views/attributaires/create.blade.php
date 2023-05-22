@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <form action="{{ route('attributaires.store') }}" method="POST">
+    <form action="{{ route('attributaires.store', ['marche_id' => $marche_id]) }}" method="POST">
         @csrf
         <div class="form-group">
             <label for="raison_sociale">Raison Sociale:</label>
