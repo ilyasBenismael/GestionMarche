@@ -6,11 +6,15 @@ use App\Models\appeloffre;
 use App\Models\Concurrent;
 use Illuminate\Http\Request;
 
+
 class ConcurrentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
+
     public function myListe()
     {
         $concurrent = Concurrent::all();

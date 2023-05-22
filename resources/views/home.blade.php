@@ -4,10 +4,27 @@
 
     <h1>Dashboard</h1>
 
-    <div class="row">
-        <div class="concurrentAnalytics col-5">
-            <div class="concurrent" style="background-color: white">
-                <span id="regionName"></span>
+
+
+
+
+    <div class="row justify-content-around">
+        <div class="concurrentAnalytics col-4">
+
+            <div class="concurrent row" >
+                <div class="regionName col-5">
+                    <p id="displayArea">Marrakech-Safi</p>
+                    <p id="count">0</p>
+                </div>
+                <div class="progressChart col-5">
+                    <div id="cont" data-pct="100">
+                        <svg id="svg" width="100" height="100" viewBox="-15 -15 115 115" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49" stroke-dashoffset="0"></circle>
+                            <circle id="bar" r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49" stroke-dashoffset="0"></circle>
+                        </svg>
+                    </div>
+                    <input id="percent" name="percent">
+                </div>
             </div>
         </div>
         <div class="myMap col-5">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AttachementController;
 use App\Http\Controllers\CategoriePrixController;
 use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
@@ -154,7 +155,6 @@ Route::delete('/attachement/{id}', [AttachementController::class, 'destroy'])->n
 /*-- == Attachement -End- == --*/
 
 /*-- == Prix -Start- == --*/
-
 Route::post('/prix', [PrixController::class, 'store'])->name('prix.store');
 
 
@@ -168,7 +168,7 @@ Route::put('/prix/{numero}', [PrixController::class, 'update'])->name('prix.upda
 
 Route::delete('/prix/{id}', [PrixController::class, 'destroy'])->name('prix.destroy');
 /*-- == Prix -End- == --*/
-
+Route::get('/get-ville-count/{ville}', [HomeController::class, 'getVilleCount']);
 
 
 

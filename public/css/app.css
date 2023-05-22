@@ -17,6 +17,11 @@
     --danger-color: #5F9CEC;
     --sunset-color:#D88A5D;
     /*-- Side Bar Colors -end- --*/
+
+    --bg-color: #34495e;
+    --default-size: 1em;
+    --label-font-size: calc(var(--default-size) / 4);
+    --label-font-size-redo: calc(var(--default-size) * 4);
 }
 *::selection{
     color: var(--color-light);
@@ -795,3 +800,69 @@ tbody tr td{
 #morocco svg{
     height: 430px;
 }
+
+.concurrentAnalytics{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.concurrentAnalytics .concurrent{
+    background: var(--color-night);
+    color: var(--color-light);
+    display: flex;
+    align-items: center;
+    width: 500px;
+    justify-content: space-between;
+    border-radius: 25px;
+    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
+}
+
+.concurrentAnalytics .concurrent .regionName{
+    margin-left: 20px;
+}
+.concurrentAnalytics .concurrent .progressChart{
+    margin-right: 20px;
+}
+
+
+/*========================================================================================*/
+
+#svg circle {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+    stroke: #666;
+    stroke-width: 1em;
+}
+#svg #bar {
+    stroke: #FF9F1E;
+}
+#cont {
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: 2em auto;
+    border-radius: 100%;
+    position: relative;
+}
+
+#cont:after {
+     position: absolute;
+     display: block;
+     left: 60%;
+     bottom: -42px; /* Adjust the value as needed */
+     transform: translateX(-50%);
+     content: attr(data-pct)"%";
+     border-radius: 100%;
+     line-height: 40px; /* Adjust the value as needed */
+     font-size: 20px;
+     text-shadow: 0 0 0.5em black;
+ }
+
+input {
+    color: #000;
+}
+
+
+/* Make things perty */
+input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: center;}
+/*========================================================================================*/
