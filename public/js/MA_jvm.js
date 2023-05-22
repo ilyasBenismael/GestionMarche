@@ -164,12 +164,9 @@ jQuery(document).ready(function () {
                     if (response.success) {
                         var selectedVilleCount = response.count;
                         var selectedVillePercentage = response.percentage;
-                        var strokeDashArrayValue = (283.49 * selectedVillePercentage) / 100;
-                        var percent = $('#percent');
-                        // Update the display with the selected "ville" name, count, and percentage
                         $('#displayArea').text(selectedVilleName);
                         $('#count').text(selectedVilleCount);
-                        percent.val(selectedVillePercentage);
+                        updateProgressChart(selectedVillePercentage);
                     } else {
                         console.error(response.message);
                     }
@@ -184,3 +181,19 @@ jQuery(document).ready(function () {
 
 
 });
+
+function updateProgressChart(percentage) {
+    var $circle = $('#svg #bar');
+    var r = $circle.attr('r');
+    var c = Math.PI * (r * 2);
+    if (percentage < 0) {
+        percentage = 0;
+    }
+    if (percentage > 100) {
+        percentage = 100;
+    }
+
+    var pct = ((100 - percentage) / 100) * c;
+    $circle.css({ strokeDashoffset: pct });
+    $('#cont').attr('data-pct', percentage);
+}

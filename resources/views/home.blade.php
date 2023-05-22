@@ -6,15 +6,13 @@
 
 
 
-
-
     <div class="row justify-content-around">
         <div class="concurrentAnalytics col-4">
 
             <div class="concurrent row" >
                 <div class="regionName col-5">
-                    <p id="displayArea">Marrakech-Safi</p>
-                    <p id="count">0</p>
+                    <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;" id="displayArea">Marrakech-Safi</p>
+                    <p ><span id="count">0</span><span> Concurrents</span></p>
                 </div>
                 <div class="progressChart col-5">
                     <div id="cont" data-pct="100">
@@ -23,7 +21,6 @@
                             <circle id="bar" r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49" stroke-dashoffset="0"></circle>
                         </svg>
                     </div>
-                    <input id="percent" name="percent">
                 </div>
             </div>
         </div>

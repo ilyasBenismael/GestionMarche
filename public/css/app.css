@@ -687,10 +687,11 @@ main {
     border-radius: 10px;
 
 }
+/*
 .dt-buttons{
     margin-bottom: 15px;
 }
-
+*/
 #dataTable_paginate .current:hover,
 .dt-buttons .dt-button:hover {
     background-color: var(--color-light) !important;
@@ -727,9 +728,10 @@ tbody tr td{
 
 
 
-#dataTable_filter label {
+#dataTable_filter>label {
     display: flex;
     align-items: center;
+    height: 37px;
 }
 
 
@@ -807,6 +809,7 @@ tbody tr td{
     align-items: center;
 }
 .concurrentAnalytics .concurrent{
+    padding: 0 0 25px;
     background: var(--color-night);
     color: var(--color-light);
     display: flex;
