@@ -61,6 +61,8 @@ body {
     top: -1%;
     left: -2%;
     animation: spin 2.5s linear infinite;
+
+    transition: all 0.4s ease-in-out;
 }
 
 .card::after {
@@ -79,8 +81,9 @@ body {
         var(--rotate)
         , var(--color-body), var(--color-body1) 43%, var(--color-body2));
     opacity: 1;
-    transition: opacity .5s;
+    /*transition: opacity .5s;*/
     animation: spin 2.5s linear infinite;
+    transition: all 0.4s ease-in-out;
 }
 
 .card-header{
@@ -182,17 +185,6 @@ input[type = 'email']:focus{
     color: #ffffff;
 }
 /*-- == Selection -end- == --*/
-/*-- == Cercle Effect -Start- == --*/
-.circle {
-    height: 24px;
-    width: 24px;
-    border-radius: 24px;
-    background-color: black;
-    position: fixed;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-    z-index: 99999999; /* so that it stays on top of all other elements */
-}
+
 /*-- == Cercle Effect -End- == --*/
 

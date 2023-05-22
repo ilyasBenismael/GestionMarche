@@ -47,14 +47,6 @@ $('#percent').on('change', function(){
 });
 
 
-$(document).ready(function() {
-    $('body').ripples({
-        resolution: 512,
-        dropRadius: 20,
-        perturbance: 0.04,
-    });
-});
-
 
 
 

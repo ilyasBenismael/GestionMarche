@@ -23,30 +23,11 @@
     <!--Google Fonts-->
 </head>
 <body class="body" id="body">
-<!-- Cercle Effect -Start- -->
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<div class="circle"></div>
-<!-- Cercle Effect -End- -->
 
 <div class="card">
+    <input type="checkbox" id="toggleCheckbox" checked />
+    <label for="toggleCheckbox">Toggle Ripple Effect</label>
+
     <div class="card-header">{{ __('Login') }}</div>
 
     <div class="card-body">
@@ -54,10 +35,10 @@
             @csrf
 
             <div >
-                <label for="email" class="email">{{ __('Email Address') }}</label>
+                <label  for="email" class="email">{{ __('Email Address') }}</label>
 
                 <div >
-                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    <input  id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                     @error('email')
                     <span class="invalid-feedback" role="alert">
@@ -71,7 +52,7 @@
                 <label for="password" class="password">{{ __('Password') }}</label>
 
                 <div class="">
-                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    <input  id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                     @error('password')
                     <span class="invalid-feedback" role="alert">
@@ -115,6 +96,11 @@
 
 
 
+
+<script type="text/javascript" charset="utf8" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 <script src="{{ asset('/css/bootstrap.min.css') }}"></script>
 <script src="{{ asset('/js/login.js') }}"></script>
