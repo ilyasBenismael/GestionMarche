@@ -22,7 +22,6 @@ body {
     padding-top: 2rem;
     padding-bottom: 2rem;
     box-sizing: border-box;
-    backdrop-filter: blur(4px);
 }
 
 
@@ -186,4 +185,7 @@ input[type = 'email']:focus{
 }
 /*-- == Selection -end- == --*/
 
+canvas{
+    z-index: -2 !important;
+}
 /*-- == Cercle Effect -End- == --*/
