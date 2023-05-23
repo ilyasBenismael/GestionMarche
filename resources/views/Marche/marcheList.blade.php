@@ -97,7 +97,6 @@
 
                     <form action="{{route('concurrent.store')}}" method="POST">
                         @csrf
-                        <input type="hidden" name="appeloffre_id" value="{{ $appel_id }}">
                         <div class="form-group">
                             <label for="date_ordre_service" class="date_ordre_service">date_ordre_service</label>
                             <input type="date" id="date_ordre_service" class="form-control" placeholder="nom"  name="date_ordre_service" value="{{old('nom')}}">

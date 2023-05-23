@@ -20,15 +20,15 @@ class AttachementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(marche $marche)
+    public function create($marches_id)
     {
-        return response()->view('attachements.add', compact('marche'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return response()->view('attachements.add', compact('marches_id'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, $marches_id)
     {
 
         // -----------------------------------
@@ -43,13 +43,17 @@ class AttachementController extends Controller
         // new added
         $attachement = new Attachement();
         $attachement->numero = $request->numero;
-       // $attachement->marche = $request->marche;
         $attachement->date = $request->date;
         $attachement->montant_de_revision = $request->montant_de_revision;
         $attachement->marche = $request->marche_id;
         $attachement->save();
 
-        //Attachement::create($request->except('_token'));
+
+        $marche = marche::find($marches_id);
+        $marche->attachement = $attachement->id;
+        $marche->save();
+
+
         return redirect()->route('marcheList')->with(['success'=>'Attachement added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         // -----------------------------------
 

@@ -11,6 +11,7 @@
     <div class="card-body">
         <form action="{{route('attachement.store')}}" method="POST">
             @csrf
+            <input type="hidden" name="marches_id" value="{{ $marches_id }}">
             <div class="form-group">
                 <label for="date" class="date">Date</label>
                 <input type="date" class="form-control" placeholder="date"  name="date" value="{{old('date')}}">
