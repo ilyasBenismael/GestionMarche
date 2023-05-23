@@ -10,6 +10,7 @@
             <tr>
                 <th>name</th>
                 <th>action</th>
+                <th><a href="/addRole">add Role</a></th>
             </tr>
             </thead>
             <tbody>

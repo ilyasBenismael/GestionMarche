@@ -8,6 +8,8 @@
     <title>Gestion du Marché</title>
 
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.css">
     <!------------------------------------------------------>
@@ -31,8 +33,61 @@
     <link href="https://fonts.googleapis.com/css2?family=Changa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!--Google Fonts-->
 
+    <style>
+        .profilPic{
+            width: 60px;
+            height: 60px;
+        }
+        .custom-bg-color {
+            background-color: #d7d7d7;
+        }
+
+        a.btn.custom-grey2 {
+            background-color: #4f4f4f;
+
+        }
+
+        a.btn.custom-grey2:hover {
+            background-color: #0a0a0a;
+
+        }
+
+         .custom-input {
+             border: 1px solid black;
+             padding: 8px;
+             border-radius: 4px;
+         }
+
+        .custom-file-input {
+            border: 1px solid black;
+            padding: 8px;
+            border-radius: 4px;
+            background-color: white;
+        }
+        .label-text-dark {
+            color: #333; /* Change the color to your desired darker label color */
+            font-size: 14px; /* Change the font size to your desired value */
+            font-weight: bold; /* Change the font weight to your desired value */
+        }
+
+        .value-text-light {
+            color: #555; /* Change the color to your desired lighter value color */
+            font-size: 18px; /* Change the font size to your desired value */
+            font-weight: normal; /* Change the font weight to your desired value */
+        }
+
+        .value-text-lighter {
+            color: #555; /* Change the color to your desired lighter value color */
+            font-size: 18px; /* Change the font size to your desired value */
+            font-weight: bold; /* Change the font weight to your desired value */
+        }
+
+
+    </style>
 
 </head>
+
+
 
 <body >
 <!-- Page Style -->
@@ -48,11 +103,10 @@
             @auth()
                 <div class="image">
                     <i class="fa-solid fa-bell notification"></i> <!-- fa-shake -->
-                    <img src="{{ asset('images/profile.jpg') }}" width="90" height="90" alt="User" />
+                    <img src={{ asset('files/profils/'.auth()->user()->image)}} alt="User" />
                 </div>
                 <div class="info-container">
                     <div  class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->role}}</div>
-
                     <div class="email" style="color: var(--color-light);">{{auth()->user()->email}}</div>
                     <!-- Custom Dropdown Menu -Start- -->
                     <div class="dropdown" onclick="toggleDropdown()" style="width: 100%">

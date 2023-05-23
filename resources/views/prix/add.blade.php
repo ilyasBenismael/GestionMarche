@@ -9,7 +9,7 @@
     @include('layouts.alert') <!-- error handling -->
 
     <div class="card-body">
-        <form action="{{route('typeMarche.store')}}" method="POST">
+        <form action="{{ route('prix.store', ['marche_id' => $marche]) }}" method="POST">
             @csrf
             <div class="form-group">
                 <label for="numero" class="numero">Numero</label>

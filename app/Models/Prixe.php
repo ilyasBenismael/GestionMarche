@@ -5,16 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Prix extends Model
+class Prixe extends Model
 {
     use HasFactory;
-
-
-    protected $table = 'prix';
 
     protected $fillable = [
         'numero',
         'designation',
+        'marche',
         'unite',
         'quantite',
         'prix_unitaire',

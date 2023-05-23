@@ -7,7 +7,7 @@
     </div>
     @include('layouts.alert') <!-- error handling -->
     <div class="card-body">
-        <form action="{{route('prix.update', $prix->id)}}" method="POST">
+        <form action="{{route('prix.update', $prix)}}" method="POST">
             @csrf
             @method('PUT')
             <div class="form-group">

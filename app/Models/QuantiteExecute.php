@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class QuantiteExecute extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'prix',
+        'quantite',
+    ];
 }

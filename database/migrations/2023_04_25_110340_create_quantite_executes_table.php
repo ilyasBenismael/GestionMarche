@@ -24,11 +24,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //---- Calling Table Prix ----
+        //---- Calling Table Prixe ----
         //Schema::table('quantite_executes', function (Blueprint $table) {
         //    $table->dropForeign(['prix_id']);
         //});
-        //---- Calling Table Prix ----
+        //---- Calling Table Prixe ----
         Schema::dropIfExists('quantite_executes');
     }
 };

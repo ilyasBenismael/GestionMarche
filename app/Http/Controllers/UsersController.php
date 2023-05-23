@@ -26,22 +26,22 @@ class UsersController extends Controller
 
     public function goUsers()
     {
-        $users = new User;
-        $words = request('words');
-        $criteria = request('criteria');
-
-        if ($words != null && trim($words) != "") {
-            if ($criteria == "name") {
-                $users = User::where('name', 'LIKE', '%' . $words . '%')->get();
-            } elseif ($criteria == "city") {
-                $users = User::where('city', 'LIKE', '%' . $words . '%')->get();
-            } elseif ($criteria == "role") {
-                $users = User::where('role', 'LIKE', '%' . $words . '%')->get();
-            }
-        } else {
-            $users = User::all();
-        }
-
+//        $users = new User;
+//        $words = request('words');
+//        $criteria = request('criteria');
+//
+//        if ($words != null && trim($words) != "") {
+//            if ($criteria == "name") {
+//                $users = User::where('name', 'LIKE', '%' . $words . '%')->get();
+//            } elseif ($criteria == "city") {
+//                $users = User::where('city', 'LIKE', '%' . $words . '%')->get();
+//            } elseif ($criteria == "role") {
+//                $users = User::where('role', 'LIKE', '%' . $words . '%')->get();
+//            }
+//        } else {
+//            $users = User::all();
+//        }
+        $users = User::all();
         return response()->view('users', ['users' => $users])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
