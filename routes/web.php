@@ -150,7 +150,7 @@ Route::get('/effects', [EffectController::class, 'effects'])->name('effects');
 
 /*-- == Attachement -Start- == --*/
 
-Route::post('/attachement', [AttachementController::class, 'store'])->name('attachement.store');
+Route::post('/attachement/{marche}', [AttachementController::class, 'store'])->name('attachement.store');
 
 
 Route::get('/attachement/create/{marche}', [AttachementController::class, 'create'])->name('attachement.create');

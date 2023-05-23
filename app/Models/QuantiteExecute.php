@@ -11,5 +11,6 @@ class QuantiteExecute extends Model
     protected $fillable = [
         'prix',
         'quantite',
+        'attachement',
     ];
 }

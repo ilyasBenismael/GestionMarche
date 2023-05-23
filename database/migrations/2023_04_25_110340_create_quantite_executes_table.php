@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer("prix");
             $table->integer("quantite");
+            $table->integer("attachement");
             $table->timestamps();
         });
     }
