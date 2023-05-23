@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('attachements', function (Blueprint $table) {
             $table->id();
             $table->date("date");
-            $table->string("marche");
+            $table->integer("marche");
             $table->integer("numero");
             $table->integer("montant_de_revision");
             $table->timestamps();

@@ -6,6 +6,7 @@ use App\Models\appeloffre;
 use App\Models\attributaire;
 use App\Models\Concurrent;
 use App\Models\marche;
+use App\Models\Prixe;
 use App\Models\typemarche;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -31,9 +32,11 @@ class MarcheController extends Controller
         $marche = marche::find($id);
         $appel = appeloffre::where('numero', '=', $marche->appel_doffre)->first();
         $attributaire = Attributaire::find($marche->attributaire)?->first();
+        $prixList = Prixe::where('marche', $id)->get();
         $data = [
             'marche' => $marche,
             'appel' => $appel,
+            'prixList' => $prixList,
             'attributaire' => $attributaire
         ];
 

@@ -37,7 +37,7 @@
             height: 60px;
         }
         .custom-bg-color {
-            background-color: #eaeaea;
+            background-color: #d7d7d7;
         }
 
         a.btn.custom-grey2 {

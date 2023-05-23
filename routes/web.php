@@ -92,7 +92,7 @@ Route::post('/addGraph', 'App\Http\Controllers\GraphController@addGraph');
 
 /*-------------------------------------------------------------------------------------------------*/
 
-/*-- == Categorie Prix -Start- == --*/
+/*-- == Categorie Prixe -Start- == --*/
 Route::get('/categoriesPrix', [CategoriePrixController::class, 'myListe'])->name('categoriePrix');
 Route::post('/categoriePrix', [CategoriePrixController::class, 'store'])->name('categoriePrix.store');
 
@@ -104,7 +104,7 @@ Route::get('/categoriePrix/{id}/edit', [CategoriePrixController::class, 'edit'])
 Route::put('/categoriePrix/{marche}', [CategoriePrixController::class, 'update'])->name('categoriePrix.update');
 
 Route::delete('/categoriePrix/{id}', [CategoriePrixController::class, 'destroy'])->name('categoriePrix.destroy');
-/*-- == Categorie Prix -End- == --*/
+/*-- == Categorie Prixe -End- == --*/
 
 
 /*-- == Type Marche -Start- == --*/
@@ -164,10 +164,9 @@ Route::put('/attachement/{numero}', [AttachementController::class, 'update'])->n
 Route::delete('/attachement/{id}', [AttachementController::class, 'destroy'])->name('attachement.destroy');
 /*-- == Attachement -End- == --*/
 
-/*-- == Prix -Start- == --*/
+/*-- == Prixe -Start- == --*/
 
-Route::post('/prix', [PrixController::class, 'store'])->name('prix.store');
-
+Route::post('/prix/{marche_id}', [PrixController::class, 'store'])->name('prix.store');
 
 Route::get('/prix/create/{marche}', [PrixController::class, 'create'])->name('prix.create');
 
@@ -178,7 +177,7 @@ Route::put('/prix/{numero}', [PrixController::class, 'update'])->name('prix.upda
 
 
 Route::delete('/prix/{id}', [PrixController::class, 'destroy'])->name('prix.destroy');
-/*-- == Prix -End- == --*/
+/*-- == Prixe -End- == --*/
 
 
 

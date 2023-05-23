@@ -16,11 +16,6 @@
                 <input type="date" class="form-control" placeholder="date"  name="date" value="{{old('date')}}">
             </div>
             <div class="form-group">
-                <label for="marche" class="marche">Marche</label>
-                <input type="text" class="form-control" placeholder="marche"  name="marche" value="{{old('marche')}}">
-                <input type="hidden" class="form-control" placeholder="marche_id"  name="marche_id" value="1">
-            </div>
-            <div class="form-group">
                 <label for="numero" class="numero">Numero</label>
                 <input type="number" class="form-control" placeholder="numero"  name="numero" value="{{old('date')}}">
             </div>

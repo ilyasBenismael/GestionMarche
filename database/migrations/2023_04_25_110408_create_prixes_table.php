@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('prixes', function (Blueprint $table) {
             $table->id();
             $table->integer("numero");
+            $table->integer("marche");
             $table->string("designation");
             $table->integer("unite");
             $table->integer("quantite");
