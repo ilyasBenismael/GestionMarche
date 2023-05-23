@@ -40,7 +40,9 @@
                     <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
                     <td>
                             @if(!isset($marche->date_ordre_service))
-                            <a href="">Add date ordre service</a>
+                            <div class="button">
+                                <button><span>Add date Ordre service</span></button>
+                            </div>
                             @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
                                 {{$marche->date_ordre_service}}
                             <a href="">Add date reception provisoire</a>
@@ -56,6 +58,36 @@
             @endforeach
             </tbody>
         </table>
+    </div>
+
+
+
+    <div class="pop-up">
+        <div class="content">
+            <div class="container">
+
+                <span class="close">close</span>
+
+                <div class="title">
+                    <h1>subscribe</h1>
+                </div>
+
+
+                <div class="subscribe">
+
+
+                    <form action="{{route('concurrent.store')}}" method="POST">
+                        @csrf
+                        <input type="hidden" name="appeloffre_id" value="{{ $appel_id }}">
+                        <div class="form-group">
+                            <label for="date_ordre_service" class="date_ordre_service">date_ordre_service</label>
+                            <input type="date" id="date_ordre_service" class="form-control" placeholder="nom"  name="date_ordre_service" value="{{old('nom')}}">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 

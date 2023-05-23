@@ -45,8 +45,15 @@ $('#percent').on('change', function(){
         $('#cont').attr('data-pct',val);
     }
 });
+$(document).ready(function() {
+    $('.button button').click(function() {
+        $('.pop-up').addClass('show');
+    });
 
-
+    $('.pop-up .content .close').click(function() {
+        $('.pop-up').removeClass('show');
+    });
+});
 
 
 
