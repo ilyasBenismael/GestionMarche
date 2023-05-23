@@ -28,6 +28,8 @@
     <input type="checkbox" id="toggleCheckbox" checked />
     <label for="toggleCheckbox">Toggle Ripple Effect</label>
 
+
+
     <div class="card-header">{{ __('Login') }}</div>
 
     <div class="card-body">

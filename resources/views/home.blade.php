@@ -5,13 +5,12 @@
     <h1>Dashboard</h1>
 
 
-
     <div class="row justify-content-around">
         <div class="concurrentAnalytics col-4">
 
             <div class="concurrent row" >
                 <div class="regionName col-5">
-                    <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;" id="displayArea">Marrakech-Safi</p>
+                    <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;height: 76px" id="displayArea">Marrakech-Safi</p>
                     <p ><span id="count">0</span><span> Concurrents</span></p>
                 </div>
                 <div class="progressChart col-5">
