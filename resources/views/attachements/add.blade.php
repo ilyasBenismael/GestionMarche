@@ -76,7 +76,7 @@
                 option.textContent = options[i].designation;
                 select.appendChild(option);
             }
-        
+
 
             var quantityLabel = document.createElement('label');
             quantityLabel.textContent = 'Quantité';

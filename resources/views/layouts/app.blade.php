@@ -10,6 +10,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1"></script>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.css">
     <!------------------------------------------------------>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
@@ -89,6 +91,9 @@
 
 <body >
 <!-- Page Style -->
+
+
+
 
 <nav class="menu" tabindex="0">
     <div class="smartphone-menu-trigger"></div>
@@ -223,6 +228,10 @@
     @yield('content')
     </div>
 
+
+
+
+
 </main>
 
 
@@ -236,6 +245,15 @@
 <script type="text/javascript" charset="utf8" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+
+<!-- Include Chart.js library -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="{{ asset('js/jquery-jvectormap-2.0.5.min.js') }}"></script>
+<script src=" {{ asset('js/MA_jvm.js') }}" ></script>
+
 <script src="{{ asset('/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>

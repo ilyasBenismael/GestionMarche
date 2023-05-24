@@ -1,5 +1,13 @@
 @extends('layouts.app')
 <link rel="stylesheet" href="{{ asset('/css/effects.css') }}">
+<!-- jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- jVectorMap library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jvectormap/2.0.5/jquery-jvectormap.min.css"></script>
+
+<!-- jVectorMap map file for Morocco -->
 
 
 <div class="circle1"></div>
@@ -27,7 +35,7 @@
 
 @section('content')
 
-<div class="header"><h2>Tous Les Effets Utilisés Sur Le Site Web</h2></div>
+<div class="header" style="margin-top: 20px;"><h2>Tous Les Effets Utilisés Sur Le Site Web</h2></div>
 
 <div class="allEffects d-flex">
 
@@ -118,6 +126,20 @@
 
 
 
+    <div class="mouseEffect2 col-4" id="mouseEffect2">
+        <div class="mouseEffectContainer2">
+            <div class="wavecontainer">
+                <div class="water"></div>
+            </div>
+
+            <div class="radioContainer">
+                <p style="color: black;padding: 25px 0 0;font-weight: 600;text-align: center">Activate/Desactivate Water Ripple</p>
+
+                <input type="checkbox" id="toggleCheckbox"  />
+
+            </div>
+        </div>
+    </div>
 
 
 </div>

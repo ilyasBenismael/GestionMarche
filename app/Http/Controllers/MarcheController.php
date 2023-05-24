@@ -94,6 +94,7 @@ class MarcheController extends Controller
         ]);
 
 
+
         if ($request['estimation_detaillee'] !== null) {
             $esti_det_file_name = time() . '_' . $request['estimation_detaillee']->getClientOriginalName();
             $request['estimation_detaillee']->move(public_path('files') . '/estimation_detaillees', $esti_det_file_name);
@@ -121,6 +122,18 @@ class MarcheController extends Controller
             'prix_revisable' => $request['prix_revisable'],
         ]);
 
+
+        if (isset($request->date_ordre_service)) {
+            $marcheData['date_ordre_service'] = $request['date_ordre_service'];
+        }
+
+        if (isset($request->date_reception_provisoire)) {
+            $marcheData['date_reception_provisoire'] = $request['date_reception_provisoire'];
+        }
+
+        if (isset($request->date_reception_definitive)) {
+            $marcheData['date_reception_definitive'] = $request['date_reception_definitive'];
+        }
         return redirect('/marchelist');
     }
 

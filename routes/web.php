@@ -4,6 +4,7 @@ use App\Http\Controllers\AttachementController;
 use App\Http\Controllers\CategoriePrixController;
 use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
@@ -92,7 +93,7 @@ Route::post('/addGraph', 'App\Http\Controllers\GraphController@addGraph');
 
 /*-------------------------------------------------------------------------------------------------*/
 
-/*-- == Categorie Prixe -Start- == --*/
+/*-- == Categorie Prix -Start- == --*/
 Route::get('/categoriesPrix', [CategoriePrixController::class, 'myListe'])->name('categoriePrix');
 Route::post('/categoriePrix', [CategoriePrixController::class, 'store'])->name('categoriePrix.store');
 
@@ -104,7 +105,7 @@ Route::get('/categoriePrix/{id}/edit', [CategoriePrixController::class, 'edit'])
 Route::put('/categoriePrix/{marche}', [CategoriePrixController::class, 'update'])->name('categoriePrix.update');
 
 Route::delete('/categoriePrix/{id}', [CategoriePrixController::class, 'destroy'])->name('categoriePrix.destroy');
-/*-- == Categorie Prixe -End- == --*/
+/*-- == Categorie Prix -End- == --*/
 
 
 /*-- == Type Marche -Start- == --*/
@@ -177,8 +178,8 @@ Route::put('/prix/{numero}', [PrixController::class, 'update'])->name('prix.upda
 
 
 Route::delete('/prix/{id}', [PrixController::class, 'destroy'])->name('prix.destroy');
-/*-- == Prixe -End- == --*/
-
+/*-- == Prix -End- == --*/
+Route::get('/get-ville-count/{ville}', [HomeController::class, 'getVilleCount']);
 
 
 

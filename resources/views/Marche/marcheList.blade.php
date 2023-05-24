@@ -27,6 +27,7 @@
                 <th> update marche</th>
                 <th>Attachement</th>
                 <th>Prix</th>
+                <th>Date</th>
             </tr>
             </thead>
             <tbody>
@@ -56,10 +57,55 @@
 
                     <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
                     <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
+                    <td>
+                            @if(!isset($marche->date_ordre_service))
+                            <div class="button">
+                                <button><span>Add date Ordre service</span></button>
+                            </div>
+                            @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
+                                {{$marche->date_ordre_service}}
+                            <a href="">Add date reception provisoire</a>
+                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire))
+                            {{$marche->date_ordre_service}}
+                            {{$marche->date_reception_provisoire}}
+                            <a href="">Add Date réception définitive</a>
+                            @else
+                                Error
+                            @endif
+                        </td>
                 </tr>
             @endforeach
             </tbody>
         </table>
+    </div>
+
+
+
+    <div class="pop-up">
+        <div class="content">
+            <div class="container">
+
+                <span class="close">close</span>
+
+                <div class="title">
+                    <h1>subscribe</h1>
+                </div>
+
+
+                <div class="subscribe">
+
+
+                    <form action="{{route('concurrent.store')}}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="date_ordre_service" class="date_ordre_service">date_ordre_service</label>
+                            <input type="date" id="date_ordre_service" class="form-control" placeholder="nom"  name="date_ordre_service" value="{{old('nom')}}">
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -80,7 +126,7 @@
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#dataTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: ['copy', 'excel', 'pdf', 'print']

@@ -2,6 +2,33 @@
 
 @section('content')
 
+    <h1>Dashboard</h1>
+
+
+    <div class="row justify-content-around">
+        <div class="concurrentAnalytics col-4">
+
+            <div class="concurrent row" >
+                <div class="regionName col-5">
+                    <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;height: 76px" id="displayArea">Marrakech-Safi</p>
+                    <p ><span id="count">0</span><span> Concurrents</span></p>
+                </div>
+                <div class="progressChart col-5">
+                    <div id="cont" data-pct="100">
+                        <svg id="svg" width="100" height="100" viewBox="-15 -15 115 115" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                            <circle r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49" stroke-dashoffset="0"></circle>
+                            <circle id="bar" r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49" stroke-dashoffset="0"></circle>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="myMap col-5">
+            <div id="morocco"></div>
+        </div>
+    </div>
+
+
     <h1>nombre de consultation : $element</h1>
 
 
@@ -9,7 +36,8 @@
 
 
     <h1>your graph :</h1>
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+    <div class="row" style="width: 100%">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="lineChart" style="z-index: 1;"></canvas>
         </div>
@@ -18,7 +46,7 @@
         </div>
     </div>
 
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="pieChart" style="z-index: 1;"></canvas>
         </div>
@@ -27,7 +55,7 @@
         </div>
     </div>
 
-    <div style="display: flex; align-items: flex-end; margin-bottom: 100px;">
+        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
         <div style="width: 50%;">
             <canvas id="doughnutChart" style="z-index: 1;"></canvas>
         </div>
@@ -36,10 +64,12 @@
         </div>
     </div>
 
+    </div>
 
 
 
 
+    <script src=" {{ asset('js/MA_jvm.js') }}" ></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Assuming you have the user array and post count data available
@@ -213,6 +243,11 @@
                     }
                 }
             });
+
+
+
+
+
         });
     </script>
 

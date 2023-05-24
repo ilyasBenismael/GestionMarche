@@ -17,6 +17,11 @@
     --danger-color: #5F9CEC;
     --sunset-color:#D88A5D;
     /*-- Side Bar Colors -end- --*/
+
+    --bg-color: #34495e;
+    --default-size: 1em;
+    --label-font-size: calc(var(--default-size) / 4);
+    --label-font-size-redo: calc(var(--default-size) * 4);
 }
 *::selection{
     color: var(--color-light);
@@ -575,7 +580,7 @@ main {
 
 /*-- Content Section -start- --*/
 .content{
-    margin: 50px 0 0;
+    margin: 5px 0 0;
 }
 /*-- Content Section -end- --*/
 
@@ -682,10 +687,11 @@ main {
     border-radius: 10px;
 
 }
+/*
 .dt-buttons{
     margin-bottom: 15px;
 }
-
+*/
 #dataTable_paginate .current:hover,
 .dt-buttons .dt-button:hover {
     background-color: var(--color-light) !important;
@@ -722,9 +728,10 @@ tbody tr td{
 
 
 
-#dataTable_filter label {
+#dataTable_filter>label {
     display: flex;
     align-items: center;
+    height: 37px;
 }
 
 
@@ -792,4 +799,176 @@ tbody tr td{
 
 
 /*-- Data Tables Night Mode Modifications -end- --*/
+#morocco svg{
+    height: 430px;
+}
 
+.concurrentAnalytics{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.concurrentAnalytics .concurrent{
+    padding: 0 0 25px;
+    background: var(--color-night);
+    color: var(--color-light);
+    display: flex;
+    align-items: center;
+    width: 500px;
+    justify-content: space-between;
+    border-radius: 25px;
+    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
+}
+
+.concurrentAnalytics .concurrent .regionName{
+    margin-left: 20px;
+}
+.concurrentAnalytics .concurrent .progressChart{
+    margin-right: 20px;
+}
+
+
+/*========================================================================================*/
+
+#svg circle {
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 1s linear;
+    stroke: #666;
+    stroke-width: 1em;
+}
+#svg #bar {
+    stroke: #FF9F1E;
+}
+#cont {
+    display: block;
+    height: 90px;
+    width: 90px;
+    margin: 2em auto;
+    border-radius: 100%;
+    position: relative;
+}
+
+#cont:after {
+     position: absolute;
+     display: block;
+     left: 60%;
+     bottom: -42px; /* Adjust the value as needed */
+     transform: translateX(-50%);
+     content: attr(data-pct)"%";
+     border-radius: 100%;
+     line-height: 40px; /* Adjust the value as needed */
+     font-size: 20px;
+     text-shadow: 0 0 0.5em black;
+ }
+
+input {
+    color: #000;
+}
+
+
+/* Make things perty */
+input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: center;}
+/*========================================================================================*/
+
+
+/*------------ Pop Up -----------------*/
+/* Styling for the pop-up button */
+.button {
+    text-align: center;
+}
+
+.button button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styling for the pop-up */
+.pop-up {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.pop-up .content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px;
+}
+
+.pop-up .content .container {
+    text-align: center;
+}
+
+.pop-up .content .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.pop-up .content .close:hover,
+.pop-up .content .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+.pop-up .content .subscribe {
+    margin-top: 20px;
+}
+
+.pop-up .content .subscribe h1 {
+    font-size: 18px;
+}
+
+.pop-up .content .subscribe span {
+    font-weight: bold;
+}
+
+.pop-up .content .subscribe form {
+    margin-top: 10px;
+}
+
+.pop-up .content .subscribe input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.pop-up .content .subscribe input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styling to show the pop-up when button is clicked */
+.pop-up.show {
+    display: block;
+}
+
+/*------------ Pop Up -----------------*/

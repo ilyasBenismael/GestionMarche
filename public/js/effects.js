@@ -101,4 +101,33 @@ function checkActivation(isActivated) {
 
 
 /*-- Mouse Effect 1 -end- */
+/*-- Mouse Effect 2 -start- */
+
+
+$(document).ready(function() {
+    var $body = $('body');
+
+    // Function to initialize the ripple effect
+    function initRipples() {
+        $body.ripples({
+            resolution: 512,
+            dropRadius: 12,
+            perturbance: 0.01,
+        });
+    }
+
+
+    $('#toggleCheckbox').change(function() {
+        if (this.checked) {
+            initRipples();
+        } else {
+            $body.ripples('destroy');
+        }
+    });
+});
+
+
+/*-- Mouse Effect 2 -end- */
+
+
 
