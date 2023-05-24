@@ -25,10 +25,29 @@
 <body class="body" id="body">
 
 <div class="card">
-    <input type="checkbox" id="toggleCheckbox" checked />
-    <label for="toggleCheckbox">Toggle Ripple Effect</label>
+
+    <div class="checkboxess">
+
+        <div class="checkboxes">
+            <input type="checkbox" id="toggleCheckbox" checked>
+
+            <label for="toggleCheckbox" class="checkbox">
+                <div class="checkbox__inner">
+                    <div class="green__ball"></div>
+                </div>
+            </label>
+            <div class="checkbox__text">
+                <span>Water Ripple </span>
+                <div class="checkbox__text--options">
+                    <span class="off">off</span>
+                    <span class="on">on</span>
+                </div>
+            </div>
+        </div>
 
 
+
+    </div>
 
     <div class="card-header">{{ __('Login') }}</div>
 
