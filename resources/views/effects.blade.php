@@ -132,12 +132,15 @@
                 <div class="water"></div>
             </div>
 
-            <div class="radioContainer">
-                <p style="color: black;padding: 25px 0 0;font-weight: 600;text-align: center">Activate/Desactivate Water Ripple</p>
-
-                <input type="checkbox" id="toggleCheckbox"  />
-
+            <div class="cbx">
+                <p style="position: absolute;color: black;top: 50%;left: 30%;font-weight: 600">Ripple Activate/Desavtivate</p>
+                <input id="toggleCheckbox" type="checkbox">
+                <label for="toggleCheckbox"></label>
+                <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
+                    <path d="M2 8.36364L6.23077 12L13 2"></path>
+                </svg>
             </div>
+
         </div>
     </div>
 
