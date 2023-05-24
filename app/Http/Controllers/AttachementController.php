@@ -90,7 +90,8 @@ class AttachementController extends Controller
     public function show(string $id)
     {
         $attachement = Attachement::findOrFail($id);
-        return response()->view('attachements.show', ['attachement' => $attachement])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $quantite_execute=QuantiteExecute::where('attachement', $id)->get();
+        return response()->view('attachements.show', ['attachement' => $attachement,'quantite_execute' => $quantite_execute ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
