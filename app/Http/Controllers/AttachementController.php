@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Attachement;
 use App\Models\marche;
+use App\Models\Prixe;
+use App\Models\QuantiteExecute;
 use Illuminate\Http\Request;
 
 class AttachementController extends Controller
@@ -20,41 +22,64 @@ class AttachementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($marches_id)
+    public function create($marche)
     {
-        return response()->view('attachements.add', compact('marches_id'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $index =0;
+        $prixList = Prixe::where('marche', $marche)->get();
+        return response()->view('attachements.add', compact('marche', 'index', 'prixList'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, $marches_id)
+    public function store(Request $request, $marche)
     {
-
         // -----------------------------------
-        $this->validate($request,[
-            'numero' => 'required|numeric|max:50|unique:attachements,numero',
-            'marche' => 'required|string|max:50',
-            'date' => 'required|date|max:50',
-            'montant_de_revision' => 'required|numeric|max:50',
-            'marche_id' => 'required|exists:marches,id',
+//        $this->validate($request,[
+//            'numero' => 'required|numeric|max:50|unique:attachements,numero',
+//            'date' => 'required|date|max:50',
+//            'montant_de_revision' => 'required|numeric|max:50',
+//        ]);
+//
+//        // new added
+//        $attachement = new Attachement();
+//        $attachement->numero = $request->numero;
+//        $attachement->date = $request->date;
+//        $attachement->montant_de_revision = $request->montant_de_revision;
+//        $attachement->marche = $marche;
+//        $attachement->save();
+//
+
+        $request->validate([
+            'date' => 'required|date',
+            'numero' => 'required|numeric',
+            'montant_de_revision' => 'required|numeric',
+            'quantities' => 'required|array',
+            'quantities.*.prix' => 'required',
+            'quantities.*.quantite' => 'required|numeric',
         ]);
 
-        // new added
-        $attachement = new Attachement();
-        $attachement->numero = $request->numero;
-        $attachement->date = $request->date;
-        $attachement->montant_de_revision = $request->montant_de_revision;
-        $attachement->marche = $request->marche_id;
-        $attachement->save();
+        // Store the attachment
+        $attachement = Attachement::create([
+            'date' => $request->input('date'),
+            'numero' => $request->input('numero'),
+            'montant_de_revision' => $request->input('montant_de_revision'),
+            'marche' => $marche
+        ]);
+
+        // Store the quantities executed
+        $quantities = $request->input('quantities');
+        foreach ($quantities as $quantity) {
+            QuantiteExecute::create([
+                'attachement' => $attachement->id,
+                'prix' => $quantity['prix'],
+                'quantite' => $quantity['quantite'],
+            ]);
+        }
 
 
-        $marche = marche::find($marches_id);
-        $marche->attachement = $attachement->id;
-        $marche->save();
-
-
-        return redirect()->route('marcheList')->with(['success'=>'Attachement added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        //Attachement::create($request->except('_token'));
+        return redirect('marche/'.$marche)->with(['success'=>'Attachement added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         // -----------------------------------
 
     }
@@ -65,8 +90,8 @@ class AttachementController extends Controller
     public function show(string $id)
     {
         $attachement = Attachement::findOrFail($id);
-
-        return response()->view('attachements.show', ['attachement' => $attachement])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $quantite_execute=QuantiteExecute::where('attachement', $id)->get();
+        return response()->view('attachements.show', ['attachement' => $attachement,'quantite_execute' => $quantite_execute ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
     /**

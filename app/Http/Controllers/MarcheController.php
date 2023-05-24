@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\appeloffre;
+use App\Models\Attachement;
 use App\Models\attributaire;
 use App\Models\Concurrent;
 use App\Models\marche;
@@ -33,11 +34,13 @@ class MarcheController extends Controller
         $appel = appeloffre::where('numero', '=', $marche->appel_doffre)->first();
         $attributaire = Attributaire::find($marche->attributaire)?->first();
         $prixList = Prixe::where('marche', $id)->get();
+        $attachements = Attachement::where('marche', $id)->get();
         $data = [
             'marche' => $marche,
             'appel' => $appel,
             'prixList' => $prixList,
-            'attributaire' => $attributaire
+            'attributaire' => $attributaire,
+            'attachements' => $attachements
         ];
 
         return response()->view('Marche/marche', $data)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
