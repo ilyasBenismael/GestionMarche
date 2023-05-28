@@ -45,16 +45,25 @@ $('#percent').on('change', function(){
         $('#cont').attr('data-pct',val);
     }
 });
+
+
 $(document).ready(function() {
-    $('.button button').click(function() {
-        $('.pop-up').addClass('show');
+    $('.marche-details').click(function() {
+        // Get the marche ID from the data attribute
+        var marcheId = $(this).data('marche-id');
+
+        // Construct the selector for the corresponding pop-up
+        var popUpSelector = '#pop-up-' + marcheId;
+
+        // Show the pop-up corresponding to the clicked marche ID
+        $(popUpSelector).addClass('show');
     });
 
     $('.pop-up .content .close').click(function() {
-        $('.pop-up').removeClass('show');
+        // Hide the pop-up when the close button is clicked
+        $(this).closest('.pop-up').removeClass('show');
     });
 });
-
 
 
 

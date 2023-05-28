@@ -5,6 +5,7 @@ use App\Http\Controllers\CategoriePrixController;
 use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\MarcheController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
@@ -182,6 +183,9 @@ Route::delete('/prix/{id}', [PrixController::class, 'destroy'])->name('prix.dest
 Route::get('/get-ville-count/{ville}', [HomeController::class, 'getVilleCount']);
 
 
+Route::put('/marche/{id}/add-date-ordre-service', [MarcheController::class ,'addDateOrdreService'])->name('marche.addDateOrdreService');
+Route::put('/marche/{id}/add-date-reception-provisoire', [MarcheController::class ,'addDateReceptionProvisoire'])->name('marche.addDateReceptionProvisoire');
+Route::put('/marche/{id}/add-date-reception-definitive', [MarcheController::class ,'addDateReceptionDefinitive'])->name('marche.addDateReceptionDefinitive');
 
 /*-------------------------------------------------------------------------------------------------*/
 

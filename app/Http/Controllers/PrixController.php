@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CategoriePrix;
 use App\Models\marche;
 use App\Models\Prixe;
 use Illuminate\Http\Request;
@@ -17,13 +18,16 @@ class PrixController extends Controller
 
     }
 
+
     /**
      * Show the form for creating a new resource.
      */
     public function create($marche)
     {
-        return response()->view('prix.add', compact('marche'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $categoriePrix = CategoriePrix::all();
+        return response()->view('prix.add', compact('categoriePrix', 'marche'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -52,7 +56,9 @@ class PrixController extends Controller
         $prix->marche = $marche_id;
         $prix->save();
 
-        return redirect('marche/'.$marche_id)->with(['success'=>'prix added successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $categoriePrix = CategoriePrix::all();
+
+        return redirect('marche/'.$marche_id)->with(['success'=>'prix added successfully.', 'categoriePrix' => $categoriePrix])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
         // -----------------------------------
 
     }

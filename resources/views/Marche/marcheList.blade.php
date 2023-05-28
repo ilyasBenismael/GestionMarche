@@ -23,8 +23,8 @@
                 <th>Exercice</th>
                 <th>Montant</th>
                 <th>Show Marche</th>
-                <th> delete</th>
-                <th> update marche</th>
+                <th>Delete</th>
+                <th>Update marche</th>
                 <th>Attachement</th>
                 <th>Prix</th>
                 <th>Date</th>
@@ -33,7 +33,20 @@
             <tbody>
             @foreach($marches as $marche)
                 <tr>
-                    <td>{{$marche->statut}}</td>
+                    <td>
+                        @if(!isset($marche->date_ordre_service))
+                            En Instance
+                        @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
+                            En Cours
+                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and !isset($marche->date_reception_definitive))
+                            Réceptionné
+                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and isset($marche->date_reception_definitive))
+                            Clôturé
+                        @else
+                            Error
+                        @endif
+
+                    </td>
                     <td>{{$marche->numero_marche}}</td>
                     <td>{{$marche->exercice}}</td>
                     <td>{{$marche->montant}}</td>
@@ -58,22 +71,135 @@
                     <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
                     <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
                     <td>
-                            @if(!isset($marche->date_ordre_service))
-                            <div class="button">
-                                <button><span>Add date Ordre service</span></button>
-                            </div>
-                            @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
-                                {{$marche->date_ordre_service}}
-                            <a href="">Add date reception provisoire</a>
-                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire))
-                            {{$marche->date_ordre_service}}
-                            {{$marche->date_reception_provisoire}}
-                            <a href="">Add Date réception définitive</a>
-                            @else
-                                Error
-                            @endif
-                        </td>
+                        @if(!isset($marche->date_ordre_service))
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-info marche-details" data-marche-id="{{ $marche->id }}" style="color: #FFC107; cursor: pointer"></i>
+                        @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-info marche-details" data-marche-id="{{ $marche->id }}" style="color: #FFC107; cursor: pointer"></i>
+                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and !isset($marche->date_reception_definitive))
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
+                            <i class="fa-solid fa-circle-info marche-details" data-marche-id="{{ $marche->id }}" style="color: #FFC107; cursor: pointer"></i>
+                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and isset($marche->date_reception_definitive))
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
+                            <i class="fa-solid fa-circle-info marche-details" data-marche-id="{{ $marche->id }}" style="color: #FFC107; cursor: pointer"></i>
+                        @else
+                            Error
+                        @endif
+                    </td>
                 </tr>
+
+
+                <div class="pop-up" id="pop-up-{{ $marche->id }}">
+                    <div class="content">
+                        <div class="container-pop-up">
+
+                            <span class="close"><i class="fa-regular fa-circle-xmark"></i></span>
+
+                            <div class="subscribe">
+                                <div class="row subscribe-row">
+                                    <h3>Marche Numero : {{$marche->id}}</h3>
+                                    <div class="col-4">
+                                        <form action="{{ route('marche.addDateOrdreService', ['id' => $marche->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+
+                                            @if(!isset($marche->date_ordre_service))
+                                                <div class="border-grp" style="border: 2px solid #c9371d;">
+                                                    <div class="form-group" style="line-height: 4.1">
+                                                        <label for="date_ordre_service_input" style="width: 100%">
+                                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                                <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Ordre service:</h6>
+                                                        </label>
+                                                        <input type="date" id="date_ordre_service_input" name="date_ordre_service_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                                    </div>
+                                                    <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add date Ordre service</button>
+                                                </div>
+                                            @else
+                                                <div class="done" style="border: 2px solid #2bb659; line-height: 4.1">
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Ordre service:</h6>
+                                                    <p style="font-weight: 600">{{$marche->date_ordre_service}}</p>
+                                                </div>
+                                            @endif
+                                        </form>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <form action="{{ route('marche.addDateReceptionProvisoire', ['id' => $marche->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+
+                                            @if(!isset($marche->date_reception_provisoire))
+                                                <div class="border-grp" style="border: 2px solid #c9371d;">
+
+                                                    <div class="form-group" style="line-height: 4.1">
+                                                        <label for="date_reception_provisoire_input" style="width: 100%">
+                                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                                <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Reception Provisoire:</h6>
+                                                        </label>
+                                                        <input type="date" id="date_reception_provisoire_input" name="date_reception_provisoire_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                                    </div>
+                                                    @if(!isset($marche->date_ordre_service))
+
+                                                        <button type="submit" class="btn add-date" disabled style="margin-bottom: 15px;">Add Date Reception Provisoire</button>
+                                                    @else
+                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Date Reception Provisoire</button>
+                                                    @endif
+
+                                                </div>
+                                            @else
+                                                <div class="done" style="border: 2px solid #2bb659;line-height: 4.1">
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659; font-size: 25px;margin-right: 5px;"></i> Date Reception Provisoire:</h6>
+                                                    <p style="color: var(--color-night);font-weight: 600">{{$marche->date_reception_provisoire}}</p>
+                                                </div>
+                                            @endif
+                                        </form>
+                                    </div>
+
+                                    <div class="col-4">
+                                        <form action="{{ route('marche.addDateReceptionDefinitive', ['id' => $marche->id]) }}" method="POST">
+                                            @csrf
+                                            @method('PUT')
+
+                                            @if(!isset($marche->date_reception_definitive))
+                                                <div class="border-grp" style="border: 2px solid #c9371d;">
+                                                    <div class="form-group" style="line-height: 4.1">
+                                                        <label for="date_reception_definitive_input" style="width: 100%">
+                                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                                <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Reception Definitive:</h6>
+                                                        </label>
+                                                        <input type="date" id="date_reception_definitive_input" name="date_reception_definitive_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                                    </div>
+
+                                                    @if(!isset($marche->date_reception_provisoire))
+                                                        <button disabled type="submit" class="btn add-date disabled-btn" style="margin-bottom: 15px;">Add Date Reception Definitive</button>
+                                                    @else
+                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Date Reception Definitive</button>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <div class="done" style="border: 2px solid #2bb659;  line-height: 4.1">
+
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Reception Definitive:</h6>
+                                                    <p style="font-weight: 600">{{$marche->date_reception_definitive}}</p>
+                                                </div>
+                                            @endif
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             @endforeach
             </tbody>
         </table>
@@ -81,32 +207,6 @@
 
 
 
-    <div class="pop-up">
-        <div class="content">
-            <div class="container">
-
-                <span class="close">close</span>
-
-                <div class="title">
-                    <h1>subscribe</h1>
-                </div>
-
-
-                <div class="subscribe">
-
-
-                    <form action="{{route('concurrent.store')}}" method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="date_ordre_service" class="date_ordre_service">date_ordre_service</label>
-                            <input type="date" id="date_ordre_service" class="form-control" placeholder="nom"  name="date_ordre_service" value="{{old('nom')}}">
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 @endsection
 
 @section('scripts')

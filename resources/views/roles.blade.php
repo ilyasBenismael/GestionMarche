@@ -15,9 +15,9 @@
             </thead>
             <tbody>
             @foreach($roles as $role)
-                <tr>
-                    <td>{{$role->name}}</td>
-                    <td>
+<tr>
+                <td>{{$role->name}}</td>
+                <td>
                         <form action="/role/{{$role->id}}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -27,7 +27,8 @@
                             </button>
                         </form>
                     </td>
-                </tr>
+                <td></td>
+</tr>
             @endforeach
             </tbody>
         </table>
