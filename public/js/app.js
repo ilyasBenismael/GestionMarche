@@ -1,12 +1,7 @@
 
 
 
-/*
 
-document.querySelector('.tumbler-wrapper').addEventListener('click', _ => document.body.classList.toggle('night-mode'));
-document.querySelector('.tumbler-wrapper').addEventListener('click', _ => document.getElementById("dataTable").classList.toggle('night-mode'));
-
-*/
 const tumblerWrapper = document.querySelector('.tumbler-wrapper');
 const checkbox = document.querySelector('.switch');
 const dataTable = document.getElementById('dataTable');
@@ -47,24 +42,6 @@ if (initialMode === 'night-mode') {
 } else {
     dataTable.classList.add('night-mode');
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -123,13 +100,6 @@ $(document).ready(function() {
         $(this).closest('.pop-up').removeClass('show');
     });
 });
-
-
-
-
-
-
-
 
 
 

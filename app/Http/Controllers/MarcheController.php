@@ -68,7 +68,6 @@ class MarcheController extends Controller
         return redirect('/marchelist')->withSuccess('Marche deleted successfully.');
     }
 
-
     public function goAddMarche()
     {
         $typemarches = typemarche::all();

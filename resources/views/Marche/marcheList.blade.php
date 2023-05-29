@@ -3,6 +3,8 @@
 @section('content')
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
 
     <div class="addmarketcontainer" style="margin-bottom: 30px;">
         <div class="addmarket">
@@ -22,12 +24,12 @@
                 <th>Numero Marche</th>
                 <th>Exercice</th>
                 <th>Montant</th>
-                <th>Show Marche</th>
-                <th>Delete</th>
-                <th>Update marche</th>
+                <th>Date</th>
                 <th>Attachement</th>
                 <th>Prix</th>
-                <th>Date</th>
+                <th>Show Marche</th>
+                <th>Update marche</th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -50,26 +52,6 @@
                     <td>{{$marche->numero_marche}}</td>
                     <td>{{$marche->exercice}}</td>
                     <td>{{$marche->montant}}</td>
-                    <td><a href="/marche/{{$marche->id}}" class="btn btn-sm btn-primary">show marche<i
-                                class="fas fa-eye"></i> </a></td>
-                    <td>
-                        <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </td>
-
-                    <td>
-                        <a href="{{ route('marche.edit', ['id' => $marche->id]) }}"
-                           class="btn btn-sm btn-warning middle">
-                            Edit Marche
-                            <i class="fas fa-edit"></i>
-                        </a>
-                    </td>
-
-                    <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
-                    <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
                     <td>
                         @if(!isset($marche->date_ordre_service))
                             <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
@@ -94,6 +76,26 @@
                         @else
                             Error
                         @endif
+                    </td>
+                    <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
+                    <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
+                    <td style="text-align: center">
+                        <a href="/marche/{{$marche->id}}" class="btn btn-sm btn-primary"><i
+                                class="fas fa-eye"></i> </a></td>
+                    <td style="text-align: center">
+                        <a href="{{ route('marche.edit', ['id' => $marche->id]) }}"
+                           class="btn btn-sm btn-warning middle" >
+                            <i class="fas fa-edit" style="color: white"></i>
+                        </a>
+                    </td>
+                    <td style="text-align: center">
+                        <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-danger" onclick="confirmDelete(event, {{ $marche->id }})">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
 
@@ -225,12 +227,56 @@
             src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
+
     <script>
+
         $(document).ready(function() {
             $('#dataTable').DataTable({
                 dom: 'Bfrtip',
                 buttons: ['copy', 'excel', 'pdf', 'print']
             });
         });
+
+        function confirmDelete(event, id) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'Cancel'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                    // Send the AJAX request to delete the marche
+                    axios.delete('/marche/' + id)
+                        .then(function(response) {
+                            // Handle the success response
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'The marche has been deleted.',
+                                icon: 'success'
+                            }).then(() => {
+                                // Reload the page to reflect the updated list
+                                location.reload();
+                            });
+                        })
+                        .catch(function(error) {
+                            // Handle the error response
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'An error occurred while deleting the marche.',
+                                icon: 'error'
+                            });
+                        });
+                }
+            });
+        }
+
+
     </script>
 @endsection
