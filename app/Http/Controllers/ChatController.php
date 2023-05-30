@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Models\Notification;
 use App\Models\User;
+use App\Notifications\MessageReceived;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -46,6 +48,8 @@ class ChatController extends Controller
             'msg' => $request['context'],
             'chat' => $chatid,
         ]);
+
+
 
         return response()->json(['success' => true, 'timestamp' => $message->created_at->format('Y-m-d H:i')]);
     }

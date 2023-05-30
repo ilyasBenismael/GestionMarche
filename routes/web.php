@@ -6,6 +6,7 @@ use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MarcheController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
@@ -188,6 +189,11 @@ Route::put('/marche/{id}/add-date-reception-provisoire', [MarcheController::clas
 Route::put('/marche/{id}/add-date-resiliation', [MarcheController::class ,'addDateResiliation'])->name('marche.addDateResiliation');
 Route::put('/marche/{id}/add-motif-resiliation', [MarcheController::class ,'addMotifResiliation'])->name('marche.addMotifResiliation');
 
+
+
+
+Route::post('/notifications/send', [NotificationController::class, 'sendNotification']);
+Route::get('/notifications/{userId}', [NotificationController::class, 'getNotifications']);
 /*-------------------------------------------------------------------------------------------------*/
 
 Auth::routes();
