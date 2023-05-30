@@ -52,7 +52,13 @@
                                         <td>{{ $concurrent->ville }}</td>
                                         <td>{{ $concurrent->montant }}</td>
                                         <td>{{ $concurrent->statut }}</td>
-                                        <td><a href="/concurrent/{{ $concurrent->id }}" class="btn btn-danger btn-sm">Delete</a></td>
+                                        <td>
+                                            <form action="/concurrent/{{ $concurrent->id }}" method="POST">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+                                            </form>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 </tbody>

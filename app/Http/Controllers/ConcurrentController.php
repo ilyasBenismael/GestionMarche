@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\appeloffre;
 use App\Models\Concurrent;
+use App\Models\marche;
 use Illuminate\Http\Request;
 
 
@@ -55,6 +56,12 @@ class ConcurrentController extends Controller
         $concurrent->statut = $request->statut;
         $concurrent->appeloffres_id = $request->appeloffre_id;
         $concurrent->save();
+
+        if($request->statut=="attributaire"){
+            $marche=marche::where('appel_doffre', $request->appeloffre_id)->first();
+            $marche->montant = $request->montant;
+            $marche->save();
+        }
 
         //Concurrent::create($request->except('_token'));
         return redirect('/appeloffre/'.$request->appeloffre_id)->with(['success'=>'Concurrent added successfully.']);
