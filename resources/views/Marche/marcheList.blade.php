@@ -29,6 +29,7 @@
                 <th>Prix</th>
                 <th>Show Marche</th>
                 <th>Update marche</th>
+                <th>Resillier</th>
                 <th>Delete</th>
             </tr>
             </thead>
@@ -87,6 +88,9 @@
                            class="btn btn-sm btn-warning middle" >
                             <i class="fas fa-edit" style="color: white"></i>
                         </a>
+                    </td>
+                    <td>
+                        Resillier le Marche
                     </td>
                     <td style="text-align: center">
                         <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
@@ -167,7 +171,7 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <form action="{{ route('marche.addDateReceptionDefinitive', ['id' => $marche->id]) }}" method="POST">
+                                        <form method="POST">
                                             @csrf
                                             @method('PUT')
 
@@ -182,9 +186,9 @@
                                                     </div>
 
                                                     @if(!isset($marche->date_reception_provisoire))
-                                                        <button disabled type="submit" class="btn add-date disabled-btn" style="margin-bottom: 15px;">Add Date Reception Definitive</button>
+                                                        <button disabled type="submit" class="btn add-date disabled-btn" style="margin-bottom: 15px;">Date Reception Definitive</button>
                                                     @else
-                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Date Reception Definitive</button>
+                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Date Reception Definitive</button>
                                                     @endif
                                                 </div>
                                             @else

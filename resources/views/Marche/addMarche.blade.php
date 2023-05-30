@@ -53,6 +53,11 @@
                                                class="form-control border-dark custom-input">
                                     </div>
                                     <div class="form-group">
+                                        <label for="delai_garantie">Delai Garantie </label>
+                                        <input type="number" id="delai_garantie" name="delai_garantie"
+                                              placeholder="Days" class="form-control border-dark custom-input">
+                                    </div>
+                                    <div class="form-group">
                                         <label for="exercice">Exercice</label>
                                         <input type="number" id="exercice" name="exercice"
                                                class="form-control border-dark custom-input">

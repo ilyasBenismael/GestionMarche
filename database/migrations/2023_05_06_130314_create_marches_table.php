@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('responsable_de_suivi');
             $table->string('montant');
             $table->string('prix_revisable')->nullable();
-            $table->string('delai_garantie')->nullable();
+            $table->integer('delai_garantie')->nullable();
             $table->date('date_reception_provisoire')->nullable();
             $table->date('date_reception_definitive')->nullable();
             $table->date('date_resiliation')->nullable();

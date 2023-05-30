@@ -9,6 +9,7 @@ use App\Models\Concurrent;
 use App\Models\marche;
 use App\Models\Prixe;
 use App\Models\typemarche;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -90,6 +91,7 @@ class MarcheController extends Controller
             'responsable_de_suivi' => 'required',
             'montant' => 'required',
             'prix_revisable' => 'required',
+            'delai_garantie' => 'required',
         ]);
 
 
@@ -119,6 +121,7 @@ class MarcheController extends Controller
             'responsable_de_suivi' => $request['responsable_de_suivi'],
             'montant' => $request['montant'],
             'prix_revisable' => $request['prix_revisable'],
+            'delai_garantie' => $request['delai_garantie'],
         ]);
 
 
@@ -163,7 +166,7 @@ class MarcheController extends Controller
             'responsable_de_suivi' => 'required',
             'montant' => 'required',
             'prix_revisable' => 'required',
-            'delai_garantie' => '',
+            'delai_garantie' => 'required',
             'date_reception_provisoire' => '',
             'date_reception_definitive' => '',
             'date_resiliation' => '',
@@ -207,18 +210,36 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
+
+
+        $delaiDeGarantie = $marche->delai_garantie;
+        $dateReceptionProvisoire = Carbon::parse($dateReceptionProvisoire);
+        $endDate = $dateReceptionProvisoire->copy()->addDays($delaiDeGarantie);
+
+        if (Carbon::now()->lt($endDate)) {
+            $marche->date_reception_definitive = NULL;
+        } else {
+            $marche->date_reception_definitive = $endDate->toDateString();
+        }
+
         $marche->save();
+
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
 
-    public function addDateReceptionDefinitive(Request $request, $id)
-    {
-        $marche = Marche::findOrFail($id);
-        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
-        $marche->date_reception_definitive = $dateReceptionDefinitive;
-        $marche->save();
-        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
-    }
 
+
+
+
+    /*
+        public function addDateReceptionDefinitive(Request $request, $id)
+        {
+            $marche = Marche::findOrFail($id);
+            $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
+            $marche->date_reception_definitive = $dateReceptionDefinitive;
+            $marche->save();
+            return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
+        }
+    */
 
 }
