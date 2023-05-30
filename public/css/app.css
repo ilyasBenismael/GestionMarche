@@ -891,6 +891,7 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 
 /* Styling for the pop-up */
 .pop-up {
+    color: var(--color-night);
     display: none;
     position: fixed;
     z-index: 9999;
@@ -904,23 +905,28 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 
 .pop-up .content {
     background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
+    margin: 10% auto;
     border: 1px solid #888;
     width: 80%;
-    max-width: 600px;
+    max-width: 45%;
+    height: 55%;
 }
 
-.pop-up .content .container {
+.pop-up .content .container-pop-up {
     text-align: center;
+    position: relative;
+    margin: 5px 20px;
+    height: 100%;
 }
 
 .pop-up .content .close {
     color: #aaa;
-    float: right;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .pop-up .content .close:hover,
@@ -932,11 +938,11 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 
 
 .pop-up .content .subscribe {
-    margin-top: 20px;
+    padding-top: 50px;
 }
 
-.pop-up .content .subscribe h1 {
-    font-size: 18px;
+.pop-up .content .subscribe .subscribe-row {
+    justify-content: space-between;
 }
 
 .pop-up .content .subscribe span {
@@ -965,7 +971,17 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
     font-size: 16px;
     cursor: pointer;
 }
+.pop-up .content .subscribe .add-date{
 
+    border: 2px solid var(--color-night-body);
+    color: white;
+    background: var(--color-night-body);
+}
+.pop-up .content .subscribe .add-date:hover{
+
+    color: var(--color-night-body);
+    background: white;
+}
 /* Styling to show the pop-up when button is clicked */
 .pop-up.show {
     display: block;

@@ -70,7 +70,6 @@ class MarcheController extends Controller
         return redirect('/marchelist')->withSuccess('Marche deleted successfully.');
     }
 
-
     public function goAddMarche()
     {
         $typemarches = typemarche::all();
@@ -200,6 +199,34 @@ class MarcheController extends Controller
         $marche->save();
 
         return redirect()->route('marcheList')->withSuccess('Marche updated successfully.');
+    }
+
+
+    public function addDateOrdreService(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+        $dateOrdreService = $request->input('date_ordre_service_input');
+        $marche->date_ordre_service = $dateOrdreService;
+        $marche->save();
+        return redirect()->route('marcheList')->withSuccess('Date Ordre Service Added Successfully.');
+    }
+
+    public function addDateReceptionProvisoire(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+        $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
+        $marche->date_reception_provisoire = $dateReceptionProvisoire;
+        $marche->save();
+        return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
+    }
+
+    public function addDateReceptionDefinitive(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
+        $marche->date_reception_definitive = $dateReceptionDefinitive;
+        $marche->save();
+        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
     }
 
 

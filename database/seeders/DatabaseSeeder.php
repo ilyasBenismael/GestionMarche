@@ -67,7 +67,7 @@ class DatabaseSeeder extends Seeder
                 'city' => 'Unknown',
                 'role' => 'admin',
                 'cv'=>'Unknown',
-                'image' => 'Unknown',
+                'image' => 'profile.jpg',
             ],
             [
             'name' => 'amin raghib',

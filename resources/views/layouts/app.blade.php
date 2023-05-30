@@ -246,6 +246,8 @@
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.html5.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/buttons/2.3.4/js/buttons.print.min.js"></script>
 
+
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
 
 <!-- Include Chart.js library -->
@@ -258,6 +260,7 @@
 <script src="{{ asset('/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/js/app.js') }}"></script>
 <script src="{{ asset('/js/effects.js') }}"></script>
+@include('sweetalert::alert')
 
 @yield("scripts")
 </body>

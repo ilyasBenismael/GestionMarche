@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\CategoriePrix;
+use App\Models\marche;
 use Illuminate\Http\Request;
 
 class CategoriePrixController extends Controller
@@ -25,7 +26,9 @@ class CategoriePrixController extends Controller
     public function create()
     {
         //
-        return view('categoriePrix.add');
+
+        $marches = Marche::all();
+        return view('categoriePrix.add', compact('marches'));
     }
 
     /**
@@ -33,16 +36,17 @@ class CategoriePrixController extends Controller
      */
     public function store(Request $request)
     {
-
-        // -----------------------------------
-        $this->validate($request,[
+        $this->validate($request, [
             'marche' => 'required|string|max:50|unique:categoriePrix,marche',
-            'designation'=>'required|string',
+            'designation' => 'required|string',
         ]);
-        CategoriePrix::create($request->except('_token'));
-        return redirect()->route('categoriePrix')->with(['success'=>'categoriePrix added successfully.']);
-        // -----------------------------------
 
+        CategoriePrix::create($request->except('_token'));
+
+
+        return redirect()->route('categoriePrix')->with([
+            'success' => 'categoriePrix added successfully.'
+        ]);
     }
 
     /**
@@ -63,7 +67,7 @@ class CategoriePrixController extends Controller
         //
         $categoriePrix = CategoriePrix::findOrFail($id);
         return view('categoriePrix.edit')->with([
-            'categoriePrix' => $categoriePrix,
+            'categoriePrix' => $categoriePrix
         ]);
     }
 
