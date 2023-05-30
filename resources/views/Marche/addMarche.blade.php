@@ -83,9 +83,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="prix_revisable">Prix Revisable</label>
-                                        <select name="prix_revisable" id="prix_revisable"
-                                                class="form-control arrow-select border-dark custom-input">
-                                            <option value="true">True</option>
+                                        <select name="prix_revisable" id="prix_revisable" class="form-control arrow-select border-dark custom-input">
                                             <option value="false">False</option>
                                         </select>
                                     </div>
@@ -104,4 +102,39 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        const typeDeMarcheSelect = document.getElementById('type_de_marche');
+        const prixRevisableSelect = document.getElementById('prix_revisable');
+
+        typeDeMarcheSelect.addEventListener('change', function () {
+            const selectedValue = typeDeMarcheSelect.value;
+
+            prixRevisableSelect.innerHTML = '';
+
+            if (selectedValue === 'travaux') {
+                const option1 = document.createElement('option');
+                option1.value = 'true';
+                option1.textContent = 'True';
+                prixRevisableSelect.appendChild(option1);
+
+                const option2 = document.createElement('option');
+                option2.value = 'false';
+                option2.textContent = 'False';
+                prixRevisableSelect.appendChild(option2);
+
+                prixRevisableSelect.disabled = false;
+            } else {
+                const option = document.createElement('option');
+                option.value = 'false';
+                option.textContent = 'False';
+                prixRevisableSelect.appendChild(option);
+
+                prixRevisableSelect.value = 'false';
+                prixRevisableSelect.disabled = false;
+            }
+        });
+    </script>
 @endsection

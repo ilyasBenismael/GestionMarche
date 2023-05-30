@@ -102,6 +102,23 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function() {
+    $('.marche-details1').click(function() {
+        // Get the marche ID from the data attribute
+        var marcheId = $(this).data('marche-id');
+
+        // Construct the selector for the corresponding pop-up
+        var popUpSelector = '#pop-up1-' + marcheId;
+
+        // Show the pop-up corresponding to the clicked marche ID
+        $(popUpSelector).addClass('show');
+    });
+
+    $('.pop-up1 .content1 .close1').click(function() {
+        // Hide the pop-up when the close button is clicked
+        $(this).closest('.pop-up1').removeClass('show');
+    });
+});
 
 
 

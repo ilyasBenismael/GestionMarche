@@ -22,13 +22,16 @@ class AttachementController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create($marche)
+    public function create($marcheId)
     {
-        $index =0;
-        $prixList = Prixe::where('marche', $marche)->get();
-        return response()->view('attachements.add', compact('marche', 'index', 'prixList'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
-    }
+        $marche = Marche::findOrFail($marcheId);
+        $index = 0;
+        $prixList = Prixe::where('marche', $marcheId)->get();
 
+        return response()
+            ->view('attachements.add', compact('marche', 'index', 'prixList'))
+            ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -53,7 +56,7 @@ class AttachementController extends Controller
         $request->validate([
             'date' => 'required|date',
             'numero' => 'required|numeric',
-            'montant_de_revision' => 'required|numeric',
+            'montant_de_revision' => 'numeric',
             'quantities' => 'required|array',
             'quantities.*.prix' => 'required',
             'quantities.*.quantite' => 'required|numeric',
@@ -118,7 +121,7 @@ class AttachementController extends Controller
             'numero' => 'required|numeric|max:50|unique:attachements,id,'.$attachement->numero,//check it again
             'marche' => 'required|string|max:50',
             'date' => 'required|date|max:50',
-            'montant_de_revision' => 'required|numeric|max:50',
+            'montant_de_revision' => 'numeric|max:50',
         ]);
 
         //Flexible Way

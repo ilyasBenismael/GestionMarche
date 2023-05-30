@@ -90,7 +90,7 @@
                         </a>
                     </td>
                     <td>
-                        Resillier le Marche
+                        <button class="marche-details1 btn btn-danger" data-marche-id="{{ $marche->id }}">Resillier</button>
                     </td>
                     <td style="text-align: center">
                         <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
@@ -206,7 +206,72 @@
                     </div>
                 </div>
 
+
+                <div class="pop-up1" id="pop-up1-{{ $marche->id }}">
+                    <div class="content1">
+                        <div class="container-pop-up1">
+
+                            <span class="close1"><i class="fa-regular fa-circle-xmark"></i></span>
+
+                            <h3>Marche Numero : {{$marche->id}}</h3>
+                            <div class="col-4">
+                                <form action="{{ route('marche.addDateResiliation', ['id' => $marche->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    @if(!isset($marche->date_resiliation))
+                                        <div class="border-grp" style="border: 2px solid #c9371d;">
+                                            <div class="form-group" style="line-height: 4.1">
+                                                <label for="date_resiliation_input" style="width: 100%">
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                        <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Resiliation :</h6>
+                                                </label>
+                                                <input type="date" id="date_resiliation_input" name="date_resiliation_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                            </div>
+                                            <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add date Resiliation</button>
+                                        </div>
+                                    @else
+                                        <div class="done" style="border: 2px solid #2bb659; line-height: 4.1">
+                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Resiliation:</h6>
+                                            <p style="font-weight: 600">{{$marche->date_resiliation}}</p>
+                                        </div>
+                                    @endif
+                                </form>
+
+                            </div>
+
+                            <div class="col-4">
+                                <form action="{{ route('marche.addMotifResiliation', ['id' => $marche->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    @if(!isset($marche->motif_resiliation))
+                                        <div class="border-grp" style="border: 2px solid #c9371d;">
+                                            <div class="form-group" style="line-height: 4.1">
+                                                <label for="motif_resiliation_input" style="width: 100%">
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                        <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Motif Resiliation :</h6>
+                                                </label>
+                                                <input type="text" id="motif_resiliation_input" name="motif_resiliation_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                            </div>
+                                            <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Motif Resiliation</button>
+                                        </div>
+                                    @else
+                                        <div class="done" style="border: 2px solid #2bb659; line-height: 4.1">
+                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Motif Resiliation:</h6>
+                                            <p style="font-weight: 600">{{$marche->motif_resiliation}}</p>
+                                        </div>
+                                    @endif
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             @endforeach
+
+
+
+
+
             </tbody>
         </table>
     </div>

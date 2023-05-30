@@ -211,7 +211,7 @@ class MarcheController extends Controller
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
 
-
+        // Calculate the new date using Carbon
         $delaiDeGarantie = $marche->delai_garantie;
         $dateReceptionProvisoire = Carbon::parse($dateReceptionProvisoire);
         $endDate = $dateReceptionProvisoire->copy()->addDays($delaiDeGarantie);
@@ -231,15 +231,22 @@ class MarcheController extends Controller
 
 
 
-    /*
-        public function addDateReceptionDefinitive(Request $request, $id)
+        public function addDateResiliation(Request $request, $id)
         {
             $marche = Marche::findOrFail($id);
-            $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
-            $marche->date_reception_definitive = $dateReceptionDefinitive;
+            $dateResiliation = $request->input('date_resiliation_input');
+            $marche->date_resiliation = $dateResiliation;
             $marche->save();
-            return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
+            return redirect()->route('marcheList')->withSuccess('Date Reseliation  Added Successfully.');
         }
-    */
+        public function addMotifResiliation(Request $request, $id)
+        {
+            $marche = Marche::findOrFail($id);
+            $motifResiliation = $request->input('motif_resiliation_input');
+            $marche->motif_resiliation = $motifResiliation;
+            $marche->save();
+            return redirect()->route('marcheList')->withSuccess('Date Motif Resiliation Added Successfully.');
+        }
+
 
 }

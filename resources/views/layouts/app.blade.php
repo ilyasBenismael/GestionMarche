@@ -102,11 +102,14 @@
         <div class="user-info">
             @auth()
                 <div class="image">
-                    <i class="fa-solid fa-bell notification"></i> <!-- fa-shake -->
                     <img src={{ asset('files/profils/'.auth()->user()->image)}} alt="User" />
                 </div>
                 <div class="info-container">
-                    <div  class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->role}}</div>
+                    <div style="display: flex;justify-content: center;align-items: center;" class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                       <span> {{auth()->user()->role}}</span>
+                        <i class="fa-solid fa-bell notification"></i> <!-- fa-shake -->
+
+                    </div>
                     <div class="email" style="color: var(--color-light);">{{auth()->user()->email}}</div>
                     <!-- Custom Dropdown Menu -Start- -->
                     <div class="dropdown" onclick="toggleDropdown()" style="width: 100%">

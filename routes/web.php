@@ -185,7 +185,8 @@ Route::get('/get-ville-count/{ville}', [HomeController::class, 'getVilleCount'])
 
 Route::put('/marche/{id}/add-date-ordre-service', [MarcheController::class ,'addDateOrdreService'])->name('marche.addDateOrdreService');
 Route::put('/marche/{id}/add-date-reception-provisoire', [MarcheController::class ,'addDateReceptionProvisoire'])->name('marche.addDateReceptionProvisoire');
-//Route::put('/marche/{id}/add-date-reception-definitive', [MarcheController::class ,'addDateReceptionDefinitive'])->name('marche.addDateReceptionDefinitive');
+Route::put('/marche/{id}/add-date-resiliation', [MarcheController::class ,'addDateResiliation'])->name('marche.addDateResiliation');
+Route::put('/marche/{id}/add-motif-resiliation', [MarcheController::class ,'addMotifResiliation'])->name('marche.addMotifResiliation');
 
 /*-------------------------------------------------------------------------------------------------*/
 
