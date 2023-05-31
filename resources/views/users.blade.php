@@ -17,6 +17,7 @@
                 <th>Actions</th>
                 <th>Send Message</th>
                 <th><a href="/register">add User</a></th>
+                <th>Delete</th>
             </tr>
             </thead>
             <tbody>
@@ -53,15 +54,15 @@
                             Change password
                             <i class="fas fa-edit"></i>
                         </a>
-                        <form action="/user/{{ $user->id }}" method="POST">
+
+                    </td>
+                    <td><form action="/user/{{ $user->id }}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger">
-                                Delete
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </form>
-                    </td>
+                        </form></td>
 
                 </tr>
             @endforeach
