@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+/////////profil//////////////
 Route::get('/profil', 'App\Http\Controllers\ProfilController@goProfil');
 
 Route::get('/', 'App\Http\Controllers\WelcomeController@goWelcome')->name('welcome');

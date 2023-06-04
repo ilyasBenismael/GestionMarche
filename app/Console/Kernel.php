@@ -13,9 +13,21 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+
+    protected $commands = [Commands\UpdateMarcheDefinitive::class,];
+
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->call(function () {
+            // Your code to update the marche goes here
+        })->after(function ($schedule) {
+            $schedule->command('marche:update_definitive {marcheId}')
+                ->withoutOverlapping()
+                ->runInBackground()
+                ->after(function () {
+                    sleep(120); // Wait for 300 seconds (5 minutes) before executing the command
+                });
+        });
     }
 
     /**

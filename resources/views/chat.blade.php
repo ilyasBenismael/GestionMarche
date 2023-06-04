@@ -7,12 +7,22 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+
     <style>
         .profilPic {
             border-radius: 5px;
             width: 70px;
             height: 70px;
             object-fit: cover;
+        }
+
+        .seen-indicator {
+            font-size: 13px;
+            font-weight: bold;
+            color: #676767;
+            margin-top: 2px;
+            margin-left: 28px;
         }
 
         body {
@@ -27,13 +37,17 @@
             background-color: #f2f2f2;
             display: flex;
             flex-direction: column;
-            padding: 20px;
+            /*padding: 20px;*/
+            margin-top: 70px;
+            margin-bottom: 80px;
+            overflow-y: auto;
         }
 
         .conversation-header {
             display: flex;
             align-items: center;
             margin-bottom: 20px;
+            padding-left: 20px;
             position: fixed;
             top: 0;
             width: 100%;
@@ -59,6 +73,7 @@
             padding: 10px 20px;
             border-radius: 20px;
             max-width: 70%;
+            margin-left: 20px;
         }
 
 
@@ -84,9 +99,13 @@
         .input-area {
             display: flex;
             align-items: center;
-            margin-top: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
             height: 80px;
-            margin-bottom: 5px;
+            background-color: #fff;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
         .input-area input[type="text"] {
@@ -111,8 +130,6 @@
 <body>
 
 
-
-
     <section class="content">
         <div class="conversation">
             <div class="conversation-header">
@@ -127,8 +144,12 @@
                             {{ $message->created_at->format('Y-m-d H:i') }}
                         </div>
                     </div>
+                    @if ($message->seen == 'true' && $message->sender == auth()->id())
+                        <div class="seen-indicator">Seen</div>
+                    @endif
                 </div>
             @endforeach
+
         </div>
 
         <form id="messageForm" method="POST"

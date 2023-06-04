@@ -62,7 +62,8 @@
                             <button class="btn btn-danger">
                                 <i class="fas fa-trash"></i>
                             </button>
-                        </form></td>
+                        </form>
+                    </td>
 
                 </tr>
             @endforeach

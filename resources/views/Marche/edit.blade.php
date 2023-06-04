@@ -25,6 +25,10 @@
                 </select>
             </div>
 
+            <div class="form-group">
+                <label for="statut">Statut:</label>
+                <input type="text" class="form-control" id="statut" name="statut" value="{{ $marche->statut }}">
+            </div>
 
             <div class="form-group">
                 <label for="date_approbation">Date d'approbation:</label>

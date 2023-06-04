@@ -25,13 +25,30 @@ class AttachementController extends Controller
     public function create($marcheId)
     {
         $marche = Marche::findOrFail($marcheId);
-        $index = 0;
-        $prixList = Prixe::where('marche', $marcheId)->get();
 
-        return response()
-            ->view('attachements.add', compact('marche', 'index', 'prixList'))
-            ->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $index =0;
+        $prixList = Prixe::where('marche', $marche)->get();
+
+        $prixQuantiteList = [];
+        foreach ($prixList as $prix) {
+            $quantiteExecutes = QuantiteExecute::where('prix', $prix->id)->latest()->first();
+
+            if($quantiteExecutes==null){
+                $quantite = '0';
+            }else{
+                $quantite = $quantiteExecutes->quantite;
+            }
+            error_log('b'.$prix.'a'.$quantiteExecutes);
+            $prixQuantiteList[] = [
+                'prix' => $prix,
+                'quantite_executes' => $quantite,
+            ];
+        }
+
+        return response()->view('attachements.add', compact('marche', 'index', 'prixQuantiteList', 'prixList'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+
     }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -53,6 +70,8 @@ class AttachementController extends Controller
 //        $attachement->save();
 //
 
+
+
         $request->validate([
             'date' => 'required|date',
             'numero' => 'required|numeric',
@@ -67,7 +86,7 @@ class AttachementController extends Controller
             'date' => $request->input('date'),
             'numero' => $request->input('numero'),
             'montant_de_revision' => $request->input('montant_de_revision'),
-            'marche' => $marche
+            'marche' => $marche,
         ]);
 
         // Store the quantities executed

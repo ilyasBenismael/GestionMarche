@@ -26,7 +26,10 @@
             </div>
             <div class="form-group">
                 <label for="statut" class="statut">Statut</label>
-                <input type="text" class="form-control" placeholder="statut"  name="statut" value="{{old('statut')}}">
+                <select name="statut" class="form-control">
+                    <option value="attributaire" {{ old('statut') == 'attributaire' ? 'selected' : '' }}>Attributaire</option>
+                    <option value="non-attributaire" {{ old('statut') == 'non-attributaire' ? 'selected' : '' }}>Non-attributaire</option>
+                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Submit</button>

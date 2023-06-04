@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('attachements', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('marches_id');; // Foreign key
             $table->date("date");
             $table->integer("marche");
             $table->integer("numero");

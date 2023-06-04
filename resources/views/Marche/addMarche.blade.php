@@ -18,22 +18,22 @@
                                     <div class="form-group">
                                         <label for="numero">Numero</label>
                                         <input type="text" id="numero" name="numero"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('numero') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="date_douverture_des_plis">Date d'ouverture des plis</label>
                                         <input type="date" id="date_douverture_des_plis" name="date_douverture_des_plis"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('date_douverture_des_plis') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="estimation_globale">Estimation globale</label>
                                         <input type="number" id="estimation_globale" name="estimation_globale"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('estimation_globale') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="objet">Objet</label>
                                         <input type="text" id="objet" name="objet"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('objet') }}">
                                     </div>
                                     <div class="form-group my-2">
                                         <label for="estimation_detaillee">Estimation détaillée</label>
@@ -50,7 +50,7 @@
                                     <div class="form-group">
                                         <label for="numero_marche">Numero Marche</label>
                                         <input type="number" id="numero_marche" name="numero_marche"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('numero_marche') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="delai_garantie">Delai Garantie </label>
@@ -60,7 +60,7 @@
                                     <div class="form-group">
                                         <label for="exercice">Exercice</label>
                                         <input type="number" id="exercice" name="exercice"
-                                               class="form-control border-dark custom-input">
+                                               class="form-control border-dark custom-input" value="{{ old('exercice') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="type_de_marche">Type Marche</label>
@@ -73,13 +73,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="responsable_de_suivi">Responsable de Suivi</label>
-                                        <input type="text" id="responsable_de_suivi" name="responsable_de_suivi"
-                                               class="form-control border-dark custom-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="montant">Montant</label>
-                                        <input type="text" id="montant" name="montant"
-                                               class="form-control border-dark custom-input">
+                                        <select name="responsable_de_suivi" id="responsable_de_suivi" class="form-control border-dark custom-input">
+                                            @foreach ($users as $user)
+                                                <option value="{{ $user->id }}" {{ old('responsable_de_suivi') == $user->id ? 'selected' : '' }}>
+                                                    {{ $user->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <label for="prix_revisable">Prix Revisable</label>
@@ -89,6 +89,16 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             <div class="row mt-4">
                                 <div class="col-md-12 text-center">

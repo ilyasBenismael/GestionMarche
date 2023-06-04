@@ -11,7 +11,9 @@ use App\Models\Prixe;
 use App\Models\typemarche;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
+use Illuminate\Validation\Rule;
 
 class MarcheController extends Controller
 {
@@ -72,24 +74,30 @@ class MarcheController extends Controller
     public function goAddMarche()
     {
         $typemarches = typemarche::all();
-        return response()->view('Marche/addMarche', ['typemarches' => $typemarches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $users = User::all();
+        return response()->view('Marche/addMarche', ['typemarches' => $typemarches, 'users' => $users])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
 
     public function addMarche(Request $request)
     {
         $request = $request->validate([
-            'numero' => 'required',
+            'numero' => [
+                'required',
+                Rule::unique('appeloffres', 'numero'),
+            ],
             'estimation_globale' => 'required',
             'objet' => 'required',
             'estimation_detaillee' => 'required',
             'date_douverture_des_plis' => 'required',
             //////////////////////////////////
-            'numero_marche' => 'required',
+            'numero_marche' => [
+                'required',
+                Rule::unique('marches', 'numero_marche'),
+            ],
             'exercice' => 'required',
             'type_de_marche' => 'required',
             'responsable_de_suivi' => 'required',
-            'montant' => 'required',
             'prix_revisable' => 'required',
             'delai_garantie' => 'required',
         ]);
@@ -119,7 +127,6 @@ class MarcheController extends Controller
             'type_de_marche' => $request['type_de_marche'],
             'statut' => "en instance",
             'responsable_de_suivi' => $request['responsable_de_suivi'],
-            'montant' => $request['montant'],
             'prix_revisable' => $request['prix_revisable'],
             'delai_garantie' => $request['delai_garantie'],
         ]);
@@ -159,6 +166,7 @@ class MarcheController extends Controller
         $validatedData = $request->validate([
             'exercice' => 'required',
             'type_de_marche' => 'required',
+            'statut' => 'required',
             'date_approbation' => '',
             'date_notification_approbation' => '',
             'date_ordre_service' => '',
@@ -176,6 +184,7 @@ class MarcheController extends Controller
 
         $marche = Marche::findOrFail($id);
         $marche->exercice = $validatedData['exercice'];
+        $marche->statut = $validatedData['statut'];
         $marche->type_de_marche = $validatedData['type_de_marche'];
         $marche->date_approbation = $validatedData['date_approbation'];
         $marche->date_notification_approbation = $validatedData['date_notification_approbation'];
@@ -223,7 +232,6 @@ class MarcheController extends Controller
         }
 
         $marche->save();
-
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
 
