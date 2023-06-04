@@ -38,7 +38,7 @@
                                     <div class="form-group my-2">
                                         <label for="estimation_detaillee">Estimation détaillée</label>
                                         <div>
-                                            <input type="file" id="estimation_detaillee" name="estimation_detaillee"
+                                            <input style="color: black" type="file" id="estimation_detaillee" name="estimation_detaillee"
                                                    class="form-control-file border-dark custom-file-input">
                                         </div>
                                     </div>

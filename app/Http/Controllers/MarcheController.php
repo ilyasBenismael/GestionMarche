@@ -9,9 +9,11 @@ use App\Models\Concurrent;
 use App\Models\marche;
 use App\Models\Prixe;
 use App\Models\typemarche;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
@@ -38,12 +40,19 @@ class MarcheController extends Controller
         $attributaire = Attributaire::find($marche->attributaire)?->first();
         $prixList = Prixe::where('marche', $id)->get();
         $attachements = Attachement::where('marche', $id)->get();
+
+
+
+
+
+
         $data = [
             'marche' => $marche,
             'appel' => $appel,
             'prixList' => $prixList,
             'attributaire' => $attributaire,
-            'attachements' => $attachements
+            'attachements' => $attachements,
+
         ];
 
         return response()->view('Marche/marche', $data)->header('Cache-Control', 'no-cache, no-store, must-revalidate');
@@ -75,7 +84,7 @@ class MarcheController extends Controller
     {
         $typemarches = typemarche::all();
         $users = User::all();
-        return response()->view('Marche/addMarche', ['typemarches' => $typemarches, 'users' => $users])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return response()->view('Marche/addMarche', ['typemarches' => $typemarches,'users' => $users])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
 
@@ -90,7 +99,6 @@ class MarcheController extends Controller
             'objet' => 'required',
             'estimation_detaillee' => 'required',
             'date_douverture_des_plis' => 'required',
-            //////////////////////////////////
             'numero_marche' => [
                 'required',
                 Rule::unique('marches', 'numero_marche'),
@@ -120,7 +128,7 @@ class MarcheController extends Controller
         ]);
 
 
-        marche::create([
+        $marcheData=[
             'appel_doffre' => $request['numero'],
             'numero_marche' => $request['numero_marche'],
             'exercice' => $request['exercice'],
@@ -129,7 +137,8 @@ class MarcheController extends Controller
             'responsable_de_suivi' => $request['responsable_de_suivi'],
             'prix_revisable' => $request['prix_revisable'],
             'delai_garantie' => $request['delai_garantie'],
-        ]);
+            'montant'=>0,
+        ];
 
 
         if (isset($request->date_ordre_service)) {
@@ -140,9 +149,8 @@ class MarcheController extends Controller
             $marcheData['date_reception_provisoire'] = $request['date_reception_provisoire'];
         }
 
-        if (isset($request->date_reception_definitive)) {
-            $marcheData['date_reception_definitive'] = $request['date_reception_definitive'];
-        }
+
+        marche::create($marcheData);
         return redirect('/marchelist');
     }
 
@@ -153,7 +161,6 @@ class MarcheController extends Controller
         $typemarches = TypeMarche::all();
 
         if (!$marche) {
-            // Marche not found
             return redirect()->back()->withErrors('Marche not found.');
         }
         return view('marche.edit', compact('marche', 'typemarches'));
@@ -166,13 +173,12 @@ class MarcheController extends Controller
         $validatedData = $request->validate([
             'exercice' => 'required',
             'type_de_marche' => 'required',
-            'statut' => 'required',
             'date_approbation' => '',
             'date_notification_approbation' => '',
             'date_ordre_service' => '',
             'delai_dexecution' => '',
             'responsable_de_suivi' => 'required',
-            'montant' => 'required',
+            'montant' => '',
             'prix_revisable' => 'required',
             'delai_garantie' => 'required',
             'date_reception_provisoire' => '',
@@ -220,26 +226,46 @@ class MarcheController extends Controller
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
 
-        // Calculate the new date using Carbon
-        $delaiDeGarantie = $marche->delai_garantie;
-        $dateReceptionProvisoire = Carbon::parse($dateReceptionProvisoire);
-        $endDate = $dateReceptionProvisoire->copy()->addDays($delaiDeGarantie);
 
-        if (Carbon::now()->lt($endDate)) {
-            $marche->date_reception_definitive = NULL;
-        } else {
-            $marche->date_reception_definitive = $endDate->toDateString();
-        }
+        $delaiGarantie = $marche->delai_garantie;
+        $marche->date_reception_definitive_suggestion = Carbon::parse($dateReceptionProvisoire)->addDays($delaiGarantie)->toDateString();
+
 
         $marche->save();
+
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
 
 
 
 
+    public function addDateReceptionDefinitive(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
+        $marche->date_reception_definitive = $dateReceptionDefinitive;
 
-        public function addDateResiliation(Request $request, $id)
+
+
+        $marche->save();
+
+        return redirect()->route('marcheList')
+            ->withSuccess('Date Reception Provisoire Added Successfully.');
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    public function addDateResiliation(Request $request, $id)
         {
             $marche = Marche::findOrFail($id);
             $dateResiliation = $request->input('date_resiliation_input');

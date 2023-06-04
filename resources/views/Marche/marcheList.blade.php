@@ -16,6 +16,7 @@
     </div>
 
 
+
     <div class="container">
         <table class="table night-mode" id="dataTable">
             <thead>
@@ -139,6 +140,8 @@
                             <div class="subscribe">
                                 <div class="row subscribe-row">
                                     <h3>Marche Numero : {{$marche->id}}</h3>
+
+
                                     <div class="col-4">
                                         <form action="{{ route('marche.addDateOrdreService', ['id' => $marche->id]) }}" method="POST">
                                             @csrf
@@ -171,7 +174,6 @@
 
                                             @if(!isset($marche->date_reception_provisoire))
                                                 <div class="border-grp" style="border: 2px solid #c9371d;">
-
                                                     <div class="form-group" style="line-height: 4.1">
                                                         <label for="date_reception_provisoire_input" style="width: 100%">
                                                             <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
@@ -197,31 +199,40 @@
                                     </div>
 
                                     <div class="col-4">
-                                        <form method="POST">
+                                        <form action="{{ route('marche.addDateReceptionDefinitive', ['id' => $marche->id]) }}" method="POST">
                                             @csrf
                                             @method('PUT')
 
                                             @if(!isset($marche->date_reception_definitive))
+
                                                 <div class="border-grp" style="border: 2px solid #c9371d;">
                                                     <div class="form-group" style="line-height: 4.1">
                                                         <label for="date_reception_definitive_input" style="width: 100%">
                                                             <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
                                                                 <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Reception Definitive:</h6>
+
+
                                                         </label>
+
+                                                        @if(isset($marche->date_reception_provisoire))
+                                                            <p style="font-weight: 600">Suggéré : {{$marche->date_reception_definitive_suggestion}}</p>
+                                                        @endif
                                                         <input type="date" id="date_reception_definitive_input" name="date_reception_definitive_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
                                                     </div>
-
                                                     @if(!isset($marche->date_reception_provisoire))
-                                                        <button disabled type="submit" class="btn add-date disabled-btn" style="margin-bottom: 15px;">Date Reception Definitive</button>
+
+                                                        <button type="submit" class="btn add-date" disabled style="margin-bottom: 15px;">Add Date Reception Definitive</button>
                                                     @else
-                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Date Reception Definitive</button>
+                                                        <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Date Reception Definitive</button>
                                                     @endif
+
                                                 </div>
                                             @else
-                                                <div class="done" style="border: 2px solid #2bb659;  line-height: 4.1">
+                                                <p id="dateReceptionDefinitiveSuggest"></p>
 
-                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Reception Definitive:</h6>
-                                                    <p style="font-weight: 600">{{$marche->date_reception_definitive}}</p>
+                                                <div class="done" style="border: 2px solid #2bb659;line-height: 4.1">
+                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659; font-size: 25px;margin-right: 5px;"></i> Date Reception Provisoire:</h6>
+                                                    <p style="color: var(--color-night);font-weight: 600">{{$marche->date_reception_definitive}}</p>
                                                 </div>
                                             @endif
                                         </form>

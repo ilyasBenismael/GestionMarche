@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -20,7 +21,7 @@ return new class extends Migration
             $table->integer('numero_marche');
             $table->integer('exercice');
             $table->string('type_de_marche');
-            $table->date('date_approbation')->nullable();;
+            $table->date('date_approbation')->nullable();
             $table->date('date_notification_approbation')->nullable();;
             $table->date('date_ordre_service')->nullable();
             $table->string('delai_dexecution')->nullable();
@@ -34,8 +35,10 @@ return new class extends Migration
             $table->string('motif_resiliation')->nullable();
             $table->string('attributaire')->nullable();
             $table->string('statut');
+            $table->string('date_reception_definitive_suggestion')->nullable();
 
         });
+
     }
 
     /**

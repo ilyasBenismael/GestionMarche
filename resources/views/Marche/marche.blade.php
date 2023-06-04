@@ -1,11 +1,14 @@
 @extends('layouts.app')
-////
+
 @section('content')
     <div class="container">
         <div class="card mb-4">
             <div class="card-header bg-dark text-light">
                 <h4 class="label-text-lighter">Marche Details</h4>
             </div>
+
+
+
             <div class="card-body">
                 <div class="row mb-3 border-bottom border-grey">
                     <div class="col-4 font-weight-bold label-text-dark">Numero Marche:</div>
