@@ -18,6 +18,7 @@ return new class extends Migration
             $table->timestamps();
             $table->string('user1');
             $table->string('user2');
+            $table->date('date');
         });
     }
 

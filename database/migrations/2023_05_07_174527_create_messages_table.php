@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('sender');
             $table->string('receiver');
             $table->string('chat');
+            $table->string('seen');
         });
     }
 

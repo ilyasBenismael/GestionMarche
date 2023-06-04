@@ -11,6 +11,7 @@ class Chat extends Model
     protected $fillable = [
         'user1',
         'user2',
+        'date',
 
     ];
 

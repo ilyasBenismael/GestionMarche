@@ -11,6 +11,7 @@ use App\Models\Prixe;
 use App\Models\typemarche;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
@@ -217,17 +218,22 @@ class MarcheController extends Controller
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
         $marche->save();
+
+        Artisan::call('marche:update_definitive', [
+            'marcheId' => $marche->id ]);
+
+
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
 
-    public function addDateReceptionDefinitive(Request $request, $id)
-    {
-        $marche = Marche::findOrFail($id);
-        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
-        $marche->date_reception_definitive = $dateReceptionDefinitive;
-        $marche->save();
-        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
-    }
+//    public function addDateReceptionDefinitive(Request $request, $id)
+//    {
+//        $marche = Marche::findOrFail($id);
+//        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
+//        $marche->date_reception_definitive = $dateReceptionDefinitive;
+//        $marche->save();
+//        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
+//    }
 
 
 }

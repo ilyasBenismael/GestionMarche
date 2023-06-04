@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Chat;
 use App\Models\Message;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -30,10 +31,20 @@ class ChatController extends Controller
                 $chat = Chat::create([
                     'user1'=>auth()->id(),
                     'user2'=>$hisid,
+                    'date' => now()
                 ]); }
 
         $messages=Message::where('chat', $chat->id)->orderBy('created_at', 'asc')
             ->get();
+
+        foreach ($messages as $message) {
+            // Check if the message is not seen
+            if ($message->seen == 'false' && $message->sender != auth()->id()) {
+                // Update the seen attribute to true
+                $message->seen = 'true';
+                $message->save();
+            }
+            }
 
         return view('chat', ['messages'=>$messages, 'chatid'=>$chat->id, 'user'=>$user]);
     }
@@ -45,7 +56,15 @@ class ChatController extends Controller
             'receiver' => $hisid,
             'msg' => $request['context'],
             'chat' => $chatid,
+             'seen' => 'false'
         ]);
+
+        $chat = Chat::find($chatid);
+
+        if ($chat) {
+            $chat->date = Carbon::now();
+            $chat->save();
+        }
 
         return response()->json(['success' => true, 'timestamp' => $message->created_at->format('Y-m-d H:i')]);
     }

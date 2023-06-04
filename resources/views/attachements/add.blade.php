@@ -69,11 +69,12 @@
             select.classList.add('form-control');
             select.name = 'quantities[' + quantityCount + '][prix]';
 
-            var options = {!! $prixList->toJson() !!};
+            var options = {!! json_encode($prixQuantiteList) !!};
+
             for (var i = 0; i < options.length; i++) {
                 var option = document.createElement('option');
-                option.value = options[i].id;
-                option.textContent = options[i].designation;
+                option.value = options[i].prix.id;
+                option.textContent = options[i].prix.designation + ' - dernière quantité executé : (' + options[i].quantite_executes +')';
                 select.appendChild(option);
             }
 

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -27,7 +28,23 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        parent::boot();
+
+        // Subscribe to the CustomEvent and define the scheduled task
+        event(CustomEvent::class, function (CustomEvent $event) {
+            $id = $event->id;
+
+            // Find and update the record in `tablex`
+            $marche = Marche::find($id);
+            if ($marche) {
+                $dateReceptionProvisoire = Carbon::parse($marche->date_reception_provisoire);
+                $delaiGarantie = $marche->delai_garantie;
+
+                $dateReceptionDefinitive = $dateReceptionProvisoire->addDays($delaiGarantie);
+                $marche->date_reception_definitive = $dateReceptionDefinitive;
+                $marche->save();
+            }
+        });
     }
 
     /**

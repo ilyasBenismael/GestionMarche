@@ -17,6 +17,14 @@
             object-fit: cover;
         }
 
+        .seen-indicator {
+            font-size: 13px;
+            font-weight: bold;
+            color: #676767;
+            margin-top: 2px;
+            margin-left: 28px;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
@@ -136,8 +144,12 @@
                             {{ $message->created_at->format('Y-m-d H:i') }}
                         </div>
                     </div>
+                    @if ($message->seen == 'true' && $message->sender == auth()->id())
+                        <div class="seen-indicator">Seen</div>
+                    @endif
                 </div>
             @endforeach
+
         </div>
 
         <form id="messageForm" method="POST"

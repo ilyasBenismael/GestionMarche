@@ -113,7 +113,7 @@
                         <i class="fa-solid fa-chevron-up dropdown-btn rotate"  id="dropdownArrow" style="color: var(--color-light);"></i>
                         <ul class="dropdown-content" id="dropdownContent">
                             <li class="dropdown-elmt">
-                                <a href="#">
+                                <a href="profil">
                                     <i class="fa-solid fa-user"></i>
                                     <span>Voir mon profil</span>
                                 </a>
