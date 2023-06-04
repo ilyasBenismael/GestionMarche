@@ -30,6 +30,7 @@
                     <td>{{$user->city}}</td>
                     <td>{{$user->role}}</td>
                     <td>
+                        //
                         <a href="{{ asset('files/cvs/'.$user->cv) }}">{{$user->cv}}</a>
                     </td>
                     <td>
