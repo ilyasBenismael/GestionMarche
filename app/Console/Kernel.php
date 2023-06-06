@@ -14,20 +14,15 @@ class Kernel extends ConsoleKernel
      * @return void
      */
 
-    protected $commands = [Commands\UpdateMarcheDefinitive::class,];
+
+    protected $commands = [
+        Commands\CheckMarches::class,
+    ];
 
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-            // Your code to update the marche goes here
-        })->after(function ($schedule) {
-            $schedule->command('marche:update_definitive {marcheId}')
-                ->withoutOverlapping()
-                ->runInBackground()
-                ->after(function () {
-                    sleep(120); // Wait for 300 seconds (5 minutes) before executing the command
-                });
-        });
+        $schedule->command('check_marche');
+
     }
 
     /**

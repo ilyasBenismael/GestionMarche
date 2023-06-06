@@ -23,11 +23,11 @@ return new class extends Migration
             $table->date('date_approbation')->nullable();;
             $table->date('date_notification_approbation')->nullable();;
             $table->date('date_ordre_service')->nullable();
-            $table->string('delai_dexecution')->nullable();
+            $table->integer('delai_dexecution')->nullable();
             $table->string('responsable_de_suivi');
             $table->string('montant')->nullable();
             $table->string('prix_revisable')->nullable();
-            $table->string('delai_garantie')->nullable();
+            $table->integer('delai_garantie')->nullable();
             $table->date('date_reception_provisoire')->nullable();
             $table->date('date_reception_definitive')->nullable();
             $table->date('date_resiliation')->nullable();

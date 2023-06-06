@@ -32,19 +32,28 @@
 
             <div class="form-group">
                 <label for="date_approbation">Date d'approbation:</label>
-                <input type="text" class="form-control" id="date_approbation" name="date_approbation"
+                <input type="date" class="form-control" id="date_approbation" name="date_approbation"
                        value="{{ $marche->date_approbation }}">
             </div>
 
+
+
+            <div class="form-group">
+                <label for="date_reception_provisoire">Date de réception provisoire:</label>
+                <input type="date" class="form-control" id="date_reception_provisoire" name="date_reception_provisoire"
+                       value="{{ $marche->date_reception_provisoire }}">
+            </div>
+
+
             <div class="form-group">
                 <label for="date_notification_approbation">Date de notification d'approbation:</label>
-                <input type="text" class="form-control" id="date_notification_approbation"
+                <input type="date" class="form-control" id="date_notification_approbation"
                        name="date_notification_approbation" value="{{ $marche->date_notification_approbation }}">
             </div>
 
             <div class="form-group">
                 <label for="date_ordre_service">Date d'ordre de service:</label>
-                <input type="text" class="form-control" id="date_ordre_service" name="date_ordre_service"
+                <input type="date" class="form-control" id="date_ordre_service" name="date_ordre_service"
                        value="{{ $marche->date_ordre_service }}">
             </div>
 
@@ -81,19 +90,19 @@
 
             <div class="form-group">
                 <label for="date_reception_provisoire">Date de réception provisoire:</label>
-                <input type="text" class="form-control" id="date_reception_provisoire" name="date_reception_provisoire"
+                <input type="date" class="form-control" id="date_reception_provisoire" name="date_reception_provisoire"
                        value="{{ $marche->date_reception_provisoire }}">
             </div>
 
             <div class="form-group">
                 <label for="date_reception_definitive">Date de réception définitive:</label>
-                <input type="text" class="form-control" id="date_reception_definitive" name="date_reception_definitive"
+                <input type="date" class="form-control" id="date_reception_definitive" name="date_reception_definitive"
                        value="{{ $marche->date_reception_definitive }}">
             </div>
 
             <div class="form-group">
                 <label for="date_resiliation">Date de résiliation:</label>
-                <input type="text" class="form-control" id="date_resiliation" name="date_resiliation"
+                <input type="date" class="form-control" id="date_resiliation" name="date_resiliation"
                        value="{{ $marche->date_resiliation }}">
             </div>
 

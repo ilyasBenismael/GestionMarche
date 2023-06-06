@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Chat;
 use App\Models\Message;
+use App\Models\notification;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -43,7 +44,6 @@ class ProfilController extends Controller
                 ->count();
 
             $latestUnseenMessageObjct = Message::where('chat', $chat->id)
-                ->where('seen', 'false')
                 ->latest('created_at')
                 ->first();
 
@@ -65,9 +65,9 @@ class ProfilController extends Controller
                 $chatList[] = $chatInfo;
             }
         }
-
-        // Pass the user and chat list to the profile view
-        return response()->view('profil/show', compact('user', 'chatList'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $notifications = Notification::where('target', auth()->id())->get();
+        $nbr_notif = $notifications->count();
+        return response()->view('profil/show', compact('user', 'chatList', 'notifications', 'nbr_notif'))->header('Cache-Control', 'no-cache, no-store, must-revalidate');
 
     }
 

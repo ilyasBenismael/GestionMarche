@@ -88,5 +88,13 @@ class AttributaireController extends Controller
 
 
 
+    public function destroy($id)
+    {
+        $attributaire = Attributaire::findOrFail($id);
+        $attributaire->delete();
+
+        return redirect()->back()->with('success', 'Attributaire deleted successfully.');
+    }
+
 
 }

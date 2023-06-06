@@ -1,5 +1,5 @@
 @extends('layouts.app')
-////
+
 @section('content')
     <div class="container">
         <div class="card mb-4">
@@ -96,10 +96,22 @@
                         <div class="col-4 font-weight-bold label-text-dark">Patente:</div>
                         <div class="col-8 value-text-light">{{$attributaire->patente}}</div>
                     </div>
-                    <div class="row">
-                        <a href="{{ route('attributaires.edit', $attributaire->id) }}"
-                           class="btn btn-sm btn-primary w-25">Modifier</a>
+                    <div class="d-inline-block">
+                        <div>
+                            <a href="{{ route('attributaires.edit', $attributaire->id) }}" class="btn btn-sm btn-primary w-100">Modifier</a>
+                        </div>
                     </div>
+                    <div class="d-inline-block">
+                        <div>
+                            <form action="{{ route('attributaires.destroy', $attributaire->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger w-100">Supprimer</button>
+                            </form>
+                        </div>
+                    </div>
+
+
                 @else
                     <div class="text-center">
                         <h6 class="text-dark">Aucun attributaire pour le moment</h6>

@@ -60,10 +60,19 @@ Route::get('/marchelist', 'App\Http\Controllers\MarcheController@goMarcheList')-
 Route::get('/addMarche', 'App\Http\Controllers\MarcheController@goAddMarche');
 Route::get('/marche/{id}', 'App\Http\Controllers\MarcheController@goMarche');
 Route::post('/addMarche', 'App\Http\Controllers\MarcheController@addMarche');
-Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre');
 Route::delete('/marche/{id}', 'App\Http\Controllers\MarcheController@destroy')->name('marche.destroy');
 Route::get('/marche/{id}/edit', 'App\Http\Controllers\MarcheController@edit')->name('marche.edit');
 Route::put('/marche/{id}', 'App\Http\Controllers\MarcheController@update')->name('marche.update');
+
+
+
+
+//appel offre
+Route::get('/appeloffre/{id}', 'App\Http\Controllers\MarcheController@goappelOffre')->name('appelOffres.show');
+Route::get('/appelOffres/{id}/edit', 'App\Http\Controllers\AppelOffreController@edit')->name('appelOffres.edit');
+Route::put('/appelOffres/{id}', 'App\Http\Controllers\AppelOffreController@update')->name('appelOffres.update');
+
+
 
 
 //attributaire
@@ -72,6 +81,7 @@ Route::post('/attributaires/{marche_id}', 'App\Http\Controllers\AttributaireCont
 Route::get('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@show')->name('attributaires.show');
 Route::get('/attributaires/{attributaire}/edit', 'App\Http\Controllers\AttributaireController@edit')->name('attributaires.edit');
 Route::put('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@update')->name('attributaires.update');
+Route::delete('/attributaires/{id}', 'App\Http\Controllers\AttributaireController@destroy')->name('attributaires.destroy');
 
 
 

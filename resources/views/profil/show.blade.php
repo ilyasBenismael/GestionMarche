@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -125,7 +126,7 @@
 
         .message-count {
             background-color: blue;
-            color: white;
+            color: #505050;
             border-radius: 50%;
             width: 20px;
             height: 20px;
@@ -140,10 +141,37 @@
             font-size: 19px;
         }
 
+        .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #454546;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
 
-        /* Additional Styles */
-        /* Add any additional styles you need for your specific layout and design */
+        .circle-number {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .notification-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .notification-list li {
+            background-color: #505152;
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
     </style>
+
+
+
 
     <div class="user-profile">
         <div class="profile-picture">
@@ -220,4 +248,22 @@
             </div>
         </div>
     </div>
+
+    <div class="container">
+        <div class="circle">
+            <span class="circle-number">{{ $nbr_notif }}</span>
+        </div>
+        <ul class="notification-list mt-4">
+            @foreach ($notifications as $notification)
+                <li>
+                    <h4 class="notification-title">{{ $notification->title }}</h4>
+                    <p class="notification-content">{{ $notification->content }}</p>
+                    <a href="{{ $notification->link }}" class="btn btn-primary" target="_blank">Check Marche</a>
+                </li>
+            @endforeach
+        </ul>
+    </div>
+
+
+
 @endsection

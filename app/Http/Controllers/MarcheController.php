@@ -12,6 +12,7 @@ use App\Models\typemarche;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rule;
 
@@ -24,17 +25,31 @@ class MarcheController extends Controller
     }
 
 
-    public function goMarcheList()
+    public function goMarcheList(Request $request)
     {
-        $marches = marche::all();
-        return response()->view('Marche/marcheList', ['marches' => $marches])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        $status = $request->input('status');
+        $marches = Marche::query();
+
+        if ($status && $status != 'all') {
+            $marches->where('statut', $status);
+        }
+
+        $marches = $marches->get();
+
+        return response()->view('Marche.marcheList', [
+            'marches' => $marches,
+            'selectedStatus' => $status
+        ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
+
+
+
 
 
     public function goMarche($id)
     {
         $marche = marche::find($id);
-        $appel = appeloffre::where('numero', '=', $marche->appel_doffre)->first();
+        $appel = appeloffre::where('id', '=', $marche->appel_doffre)->first();
         $attributaire = Attributaire::find($marche->attributaire)?->first();
         $prixList = Prixe::where('marche', $id)->get();
         $attachements = Attachement::where('marche', $id)->get();
@@ -110,24 +125,33 @@ class MarcheController extends Controller
             $esti_det_file_name = '';
         }
 
-        appeloffre::create([
-            'numero' => $request['numero'],
-            'estimation_globale' => $request['estimation_globale'],
-            'estimation_detaillee' => $esti_det_file_name,
-            'objet' => $request['objet'],
-            'date_douverture_des_plis' => $request['date_douverture_des_plis'],
-        ]);
+        DB::beginTransaction(); // Start a database transaction
 
+        try {
+            $appeloffre = appeloffre::create([
+                'numero' => $request['numero'],
+                'estimation_globale' => $request['estimation_globale'],
+                'estimation_detaillee' => $esti_det_file_name,
+                'objet' => $request['objet'],
+                'date_douverture_des_plis' => $request['date_douverture_des_plis'],
+            ]);
 
-        marche::create([
-            'appel_doffre' => $request['numero'],
-            'numero_marche' => $request['numero_marche'],
-            'exercice' => $request['exercice'],
-            'type_de_marche' => $request['type_de_marche'],
-            'statut' => "en instance",
-            'responsable_de_suivi' => $request['responsable_de_suivi'],
-            'prix_revisable' => $request['prix_revisable'],
-        ]);
+            $marche = marche::create([
+                'appel_doffre' => $appeloffre->id,
+                'numero_marche' => $request['numero_marche'],
+                'exercice' => $request['exercice'],
+                'type_de_marche' => $request['type_de_marche'],
+                'statut' => "en instance",
+                'responsable_de_suivi' => $request['responsable_de_suivi'],
+                'prix_revisable' => $request['prix_revisable'],
+            ]);
+
+            DB::commit(); // Both records saved successfully, commit the transaction
+
+        } catch (\Exception $e) {
+            DB::rollback(); // Something went wrong, rollback the transaction
+        }
+
 
 
         if (isset($request->date_ordre_service)) {
@@ -208,6 +232,7 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateOrdreService = $request->input('date_ordre_service_input');
         $marche->date_ordre_service = $dateOrdreService;
+        $marche->statut="En Cours";
         $marche->save();
         return redirect()->route('marcheList')->withSuccess('Date Ordre Service Added Successfully.');
     }
@@ -217,23 +242,26 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
+        $marche->statut="Réceptionné";
         $marche->save();
-
-        Artisan::call('marche:update_definitive', [
-            'marcheId' => $marche->id ]);
-
-
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
 
-//    public function addDateReceptionDefinitive(Request $request, $id)
-//    {
-//        $marche = Marche::findOrFail($id);
-//        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
-//        $marche->date_reception_definitive = $dateReceptionDefinitive;
-//        $marche->save();
-//        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
-//    }
+    public function addDateReceptionDefinitive(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+        $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
+        $marche->date_reception_definitive = $dateReceptionDefinitive;
+        $marche->statut="Clôturé";
+        $marche->save();
+        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
+    }
+
+
+
+
+
+
 
 
 }
