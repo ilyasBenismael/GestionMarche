@@ -5,19 +5,68 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/2.3.4/css/buttons.dataTables.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.24.0/dist/axios.min.js"></script>
+    <style>
+        .svg-wrapperr {
+            height: 60px;
+            margin: 0 auto;
+            position: relative;
+            top: 50%;
+            width: 320px;
+            text-align: center;
+        }
 
-    <div class="addmarketcontainer" style="margin-bottom: 30px;">
+        .shapee {
+            fill: transparent;
+            stroke-dasharray: 140 540;
+            stroke-dashoffset: -474;
+            stroke-width: 8px;
+            stroke: var(--sunset-color);
+        }
+
+        .textt {
+            color: var(--sunset-color);
+            font-size: 22px;
+            letter-spacing: 6px;
+            line-height: 32px;
+            position: relative;
+            top: -48px;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        @keyframes draw {
+            0% {
+                stroke-dasharray: 140 540;
+                stroke-dashoffset: -474;
+                stroke-width: 8px;
+            }
+            100% {
+                stroke-dasharray: 760;
+                stroke-dashoffset: 0;
+                stroke-width: 2px;
+            }
+        }
+
+        .svg-wrapperr:hover .shapee {
+            -webkit-animation: 0.5s draw linear forwards;
+            animation: 0.5s draw linear forwards;
+        }
+    </style>
+
+    <div class="addmarketcontainer" style="margin: 30px 0 40px;">
         <div class="addmarket">
-            <a href="/addMarche" style="text-decoration: none;font-size: 20px;margin-left: 25px;">
-                <i class="fa-solid fa-shop"></i>
-                <span>Ajouter Un Marché</span>
-            </a>
+                <div class="svg-wrapperr">
+                    <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+                        <rect class="shapee" height="60" width="320" />
+                    </svg>
+                    <a href="/addMarche" class="textt">Ajouter Un Marche</a>
+                </div>
         </div>
     </div>
 
 
 
-    <div class="container">
+    <div class="containerr" style="margin: 0 22px">
         <table class="table night-mode" id="dataTable">
             <thead>
             <tr>
@@ -36,45 +85,23 @@
             </thead>
             <tbody>
             @foreach($marches as $marche)
-                @if(isset($marche->date_resiliation))
-                    <tr>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td>{{$marche->numero_marche}}</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td style="text-align:center;font-weight: 600;color:var(--sunset-color);">Resilie</td>
-                        <td>
-                            <button class="marche-details1 btn btn-danger" data-marche-id="{{ $marche->id }}">Details</button>
-                        </td>
-                        <td style="text-align: center">
-                            <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="button" class="btn btn-danger" onclick="confirmDelete(event, {{ $marche->id }})">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                        </td>
-                    </tr>
-                @else
                 <tr>
                     <td>
-                        @if(!isset($marche->date_ordre_service))
-                            En Instance
-                        @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
-                            En Cours
-                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and !isset($marche->date_reception_definitive))
-                            Réceptionné
-                        @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and isset($marche->date_reception_definitive))
-                            Clôturé
+                        @if(isset($marche->date_resiliation))
+                            Resilié
                         @else
-                            Error
+                            @if(!isset($marche->date_ordre_service))
+                                En Instance
+                            @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
+                                En Cours
+                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and !isset($marche->date_reception_definitive))
+                                Réceptionné
+                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and isset($marche->date_reception_definitive))
+                                Clôturé
+                            @else
+                                Error
+                            @endif
                         @endif
-
                     </td>
                     <td>{{$marche->numero_marche}}</td>
                     <td>{{$marche->exercice}}</td>
@@ -129,7 +156,6 @@
                     </td>
                 </tr>
 
-                @endif
 
                 <div class="pop-up" id="pop-up-{{ $marche->id }}">
                     <div class="content">
@@ -202,18 +228,13 @@
                                         <form action="{{ route('marche.addDateReceptionDefinitive', ['id' => $marche->id]) }}" method="POST">
                                             @csrf
                                             @method('PUT')
-
                                             @if(!isset($marche->date_reception_definitive))
-
                                                 <div class="border-grp" style="border: 2px solid #c9371d;">
                                                     <div class="form-group" style="line-height: 4.1">
                                                         <label for="date_reception_definitive_input" style="width: 100%">
                                                             <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
                                                                 <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Reception Definitive:</h6>
-
-
                                                         </label>
-
                                                         @if(isset($marche->date_reception_provisoire))
                                                             <p style="font-weight: 600">Suggéré : {{$marche->date_reception_definitive_suggestion}}</p>
                                                         @endif
@@ -251,57 +272,49 @@
                             <span class="close1"><i class="fa-regular fa-circle-xmark"></i></span>
 
                             <div class="subscribe1">
-                                <div class="row subscribe-row d-flex justify-content-around">
+                                <div class=" subscribe-row ">
                                     <h3>Marche Numero : {{$marche->id}}</h3>
-                                    <div class="col-4">
-                                        <form action="{{ route('marche.addDateResiliation', ['id' => $marche->id]) }}" method="POST">
+                                    <div class="">
+                                        <form action="{{ route('marche.addDateResiliation', ['id' => $marche->id]) }}" method="POST" style="margin-top: 20px">
                                             @csrf
                                             @method('PUT')
-                                            @if(!isset($marche->date_resiliation))
+                                            @if(!isset($marche->date_resiliation) && !isset($marche->motif_resiliation))
                                                 <div class="border-grp" style="border: 2px solid #c9371d;">
-                                                    <div class="form-group" style="line-height: 4.1">
-                                                        <label for="date_resiliation_input" style="width: 100%">
-                                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
-                                                                <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Date Resiliation :</h6>
-                                                        </label>
-                                                        <input type="date" id="date_resiliation_input" name="date_resiliation_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                                    <div class="form-group row d-flex justify-content-around" style="line-height: 4.1">
+                                                        <div class="">
+                                                            <div class="d-flex" style="position: relative">
+                                                                <label for="date_resiliation_input" style="width: 100%">
+                                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
+                                                                        <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 40px;margin-right: 5px;position: absolute;left: 50%;top: -21px"></i> Date Resiliation </h6>
+                                                                </label>
+                                                                <label for="motif_resiliation_input" style="width: 100%">
+                                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;"> Motif Resiliation </h6>
+                                                                </label>
+                                                            </div>
+                                                            <input type="date" id="date_resiliation_input" name="date_resiliation_input" style="background: white;color: black;line-height: 2.5;border-radius: 8px;width: 65%;padding: 0">
+                                                            <textarea id="motif_resiliation_input" name="motif_resiliation_input" style="background: white;color: black;line-height: 1.5;border-radius: 8px;width: 90%;padding: 0 10px 0" rows="5" cols="50"></textarea>
+
+                                                        </div>
                                                     </div>
-                                                    <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add date Resiliation</button>
+                                                    <button type="submit" class="btn add-date" style="margin-bottom: 15px;width: 90%">Submit</button>
                                                 </div>
                                             @else
-                                                <div class="done" style="border: 2px solid #2bb659; line-height: 4.1">
-                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Resiliation:</h6>
-                                                    <p style="font-weight: 600">{{$marche->date_resiliation}}</p>
+                                                <div class="row d-flex justify-content-around">
+                                                    <div class="done col-4" style="border: 2px solid #2bb659; line-height: 4.1;padding: 0">
+                                                        <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Date Resiliation:</h6>
+                                                        <p style="font-weight: 600">{{$marche->date_resiliation}}</p>
+                                                    </div>
+
+                                                    <div class="done col-4" style="border: 2px solid #2bb659; line-height: 4.1;padding: 0">
+                                                        <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Motif Resiliation:</h6>
+                                                        <p style="font-weight: 600">{{$marche->motif_resiliation}}</p>
+                                                    </div>
                                                 </div>
                                             @endif
                                         </form>
 
                                     </div>
 
-                                    <div class="col-5">
-                                        <form action="{{ route('marche.addMotifResiliation', ['id' => $marche->id]) }}" method="POST">
-                                            @csrf
-                                            @method('PUT')
-                                            @if(!isset($marche->motif_resiliation))
-                                                <div class="border-grp" style="border: 2px solid #c9371d;">
-                                                    <div class="form-group" style="line-height: 4.1">
-                                                        <label for="motif_resiliation_input" style="width: 100%">
-                                                            <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #c9371d3d;">
-                                                                <i class="fa-solid fa-circle-xmark" style="color: #c9371d; font-size: 25px;margin-right: 5px;"></i> Motif Resiliation :</h6>
-                                                        </label>
-                                                        <textarea id="motif_resiliation_input" name="motif_resiliation_input" style="background: white;color: black;line-height: 1.5;border-radius: 8px;width: 65%;padding: 0" rows="5" cols="50"></textarea>
-
-                                                    </div>
-                                                    <button type="submit" class="btn add-date" style="margin-bottom: 15px;">Add Motif Resiliation</button>
-                                                </div>
-                                            @else
-                                                <div class="done" style="border: 2px solid #2bb659; line-height: 4.1">
-                                                    <h6 class="d-flex justify-content-center align-items-center" style="padding: 25px 0;background-color: #2bb6592b;"><i class="fa-solid fa-circle-check" style="color: #2bb659;font-size: 25px;margin-right: 5px;"></i> Motif Resiliation:</h6>
-                                                    <p style="font-weight: 600">{{$marche->motif_resiliation}}</p>
-                                                </div>
-                                            @endif
-                                        </form>
-                                    </div>
                                 </div>
                             </div>
                         </div>

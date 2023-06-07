@@ -18,11 +18,6 @@
             <div class="form-group">
                 <label for="designation"  class="designation ">Designation</label>
                 <input type="number" class="form-control" placeholder="designation"  name="designation" value="{{old('designation')}}">
-                {{--                <select name="designation" id="designation" class="form-control arrow-select border-dark custom-input">--}}
-{{--                    @foreach ($categoriePrix as $cprix)--}}
-{{--                        <option value="{{$cprix->designation}}">{{$cprix->designation}}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
             </div>
             <div class="form-group">
                 <label for="unite" class="unite">unite</label>
@@ -38,13 +33,11 @@
             </div>
             <div class="form-group">
                 <label for="categorie_prix"  class="categorie_prix ">catégorie prix</label>
-                <input type="number" class="form-control" placeholder="categorie_prix"  name="categorie_prix" value="{{old('categorie_prix')}}">
-
-                {{--                <select name="categorie_prix" id="categorie_prix" class="form-control arrow-select border-dark custom-input">--}}
-{{--                    @foreach ($categoriePrix as $cprix)--}}
-{{--                        <option value="{{$cprix->marche}}">{{$cprix->marche}}</option>--}}
-{{--                    @endforeach--}}
-{{--                </select>--}}
+                <select name="categorie_prix" id="categorie_prix" class="form-control arrow-select border-dark custom-input">
+                    @foreach ($categoriePrix as $cprix)
+                        <option value="{{$cprix->marche}}">{{$cprix->marche}}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <button class="btn btn-primary">Submit</button>

@@ -23,7 +23,7 @@
                     @if($marche->prix_revisable === 'true')
                     <input type="number" class="form-control" placeholder="Montant de révision" name="montant_de_revision" value="{{ old('montant_de_revision') }}">
                     @else
-                        <input type="number" disabled class="form-control" placeholder="Montant de révision" name="montant_de_revision" value="{{ old('montant_de_revision') }}">
+                        <input type="number" disabled class="form-control" placeholder="Montant de révision" name="montant_de_revision" value="0">
                     @endif
                 </div>
 

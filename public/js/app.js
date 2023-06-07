@@ -1,10 +1,16 @@
 
 
 
+/*-------- Night Mode -Start- --------*/
 
 const tumblerWrapper = document.querySelector('.tumbler-wrapper');
 const checkbox = document.querySelector('.switch');
 const dataTable = document.getElementById('dataTable');
+const menu= document.getElementById('menu');
+const avatar= document.getElementById('avatar');
+const liElements = document.querySelectorAll('.myLi');
+const menuHeader = document.querySelectorAll('.menu-header');
+const navbar = document.getElementById('navbar');
 
 // Check if the mode is stored in localStorage
 const storedMode = localStorage.getItem('mode');
@@ -12,17 +18,41 @@ const storedMode = localStorage.getItem('mode');
 // Set the initial mode based on the stored value or default to 'light-mode'
 const initialMode = storedMode || 'light-mode';
 document.body.classList.add(initialMode);
-
 // Function to toggle the mode
+
 function toggleMode() {
     // Toggle the mode class on the body
     document.body.classList.toggle('night-mode');
 
+
     // Toggle the mode class on the dataTable element
     if (document.body.classList.contains('night-mode')) {
         dataTable.classList.remove('night-mode');
+        menu.classList.add('night-mode');
+        avatar.classList.add('night-mode');
+        navbar.classList.add('night-mode');
+        liElements.forEach((element) => {
+
+            element.classList.add('night-mode');
+        });
+        menuHeader.forEach((element) => {
+
+            element.classList.add('night-mode');
+        });
+
     } else {
+
         dataTable.classList.add('night-mode');
+        menu.classList.remove('night-mode');
+        avatar.classList.remove('night-mode');
+        navbar.classList.remove('night-mode');
+        liElements.forEach((element) => {
+            element.classList.remove('night-mode');
+        });
+        menuHeader.forEach((element) => {
+
+            element.classList.remove('night-mode');
+        });
     }
 
     // Store the current mode in localStorage
@@ -39,11 +69,34 @@ checkbox.checked = initialMode === 'night-mode';
 // Apply the initial mode class to the dataTable element
 if (initialMode === 'night-mode') {
     dataTable.classList.remove('night-mode');
-} else {
+    menu.classList.add('night-mode');
+    avatar.classList.add('night-mode');
+    navbar.classList.add('night-mode');
+    liElements.forEach((element) => {
+        element.classList.add('night-mode');
+    });
+    menuHeader.forEach((element) => {
+
+        element.classList.add('night-mode');
+    });
+
+}
+else {
     dataTable.classList.add('night-mode');
+    menu.classList.remove('night-mode');
+    avatar.classList.remove('night-mode');
+    navbar.classList.remove('night-mode');
+    liElements.forEach((element) => {
+        element.classList.remove('night-mode');
+    });
+    menuHeader.forEach((element) => {
+
+        element.classList.remove('night-mode');
+    });
+
 }
 
-
+/*-------- Night Mode -End- --------*/
 
 function toggleDropdown() {
         var dropdownContent = document.getElementById("dropdownContent");

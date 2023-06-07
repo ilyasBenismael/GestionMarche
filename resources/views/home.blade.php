@@ -29,44 +29,37 @@
     </div>
 
 
-    <h1>nombre de consultation : $element</h1>
 
 
     <a href="/addGraph" style="margin-top: 100px;">make a graph</a>
 
 
     <h1>your graph :</h1>
-    <div class="row" style="width: 100%">
-        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
-        <div style="width: 50%;">
+    <div class="row d-flex justify-content-around" style="margin-bottom: 35px">
+        <div class="col-3 chartss" style="width: 30%;">
             <canvas id="lineChart" style="z-index: 1;"></canvas>
         </div>
-        <div style="width: 50%; ">
+        <div class="col-3 chartss" style="width: 30%; ">
             <canvas id="barChart" style="z-index: 1;"></canvas>
         </div>
-    </div>
 
-        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
-        <div style="width: 50%;">
+        <div class="col-3 chartss" style="width: 30%;">
             <canvas id="pieChart" style="z-index: 1;"></canvas>
         </div>
-        <div style="width: 50%; ">
+    </div>
+    <div class="row d-flex justify-content-around" style="margin-bottom: 35px">
+
+        <div class="col-3 chartss" style="width: 30%; ">
             <canvas id="radarChart" style="z-index: 1;"></canvas>
         </div>
-    </div>
 
-        <div style="display: flex; align-items: flex-end; margin-bottom: 100px;" class="col-5">
-        <div style="width: 50%;">
+        <div class="col-3 chartss" style="width: 30%;">
             <canvas id="doughnutChart" style="z-index: 1;"></canvas>
         </div>
-        <div style="width: 50%; ">
+        <div class="col-3 chartss" style="width: 30%; ">
             <canvas id="polarAreaChart" style="z-index: 1;"></canvas>
         </div>
     </div>
-
-    </div>
-
-
 
 
     <script src=" {{ asset('js/MA_jvm.js') }}" ></script>
@@ -85,7 +78,7 @@
                     datasets: [{
                         label: 'Labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -112,7 +105,7 @@
                     datasets: [{
                         label: 'your labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -143,7 +136,7 @@
                     datasets: [{
                         label: 'your labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -169,7 +162,7 @@
                     datasets: [{
                         label: 'your labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -200,7 +193,7 @@
                     datasets: [{
                         label: 'your labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -226,7 +219,7 @@
                     datasets: [{
                         label: 'your labels',
                         data: values,
-                        backgroundColor: ['rgb(114,16,16)',
+                        backgroundColor: ['rgb(216,138,71)',
                             'rgb(67,171,67)',
                             'rgb(189,133,133)',
                             'rgb(23,45,23)',
@@ -249,6 +242,7 @@
 
 
         });
+
     </script>
 
 

@@ -95,9 +95,8 @@
 
 
 
-<nav class="menu" tabindex="0">
-    <div class="smartphone-menu-trigger"></div>
-    <header class="avatar">
+<nav class="menu " tabindex="0" id="menu">
+    <header class="avatar" id="avatar">
         <!-- User Info -->
         <div class="user-info">
             @auth()
@@ -110,14 +109,14 @@
                         <i class="fa-solid fa-bell notification" id="notificationIcon"></i>
                     </div>
 
-                    <div class="email" style="color: var(--color-light);">{{auth()->user()->email}}</div>
+                    <div class="email" >{{auth()->user()->email}}</div>
                     <!-- Custom Dropdown Menu -Start- -->
                     <div class="dropdown" onclick="toggleDropdown()" style="width: 100%">
-                        <i class="fa-solid fa-chevron-up dropdown-btn rotate"  id="dropdownArrow" style="color: var(--color-light);"></i>
+                        <i class="fa-solid fa-chevron-up dropdown-btn rotate"  id="dropdownArrow" ></i>
                         <ul class="dropdown-content" id="dropdownContent">
-                            <li class="dropdown-elmt">
+                            <li class="dropdown-elmt" >
                                 <a href="profil">
-                                    <i class="fa-solid fa-user"></i>
+                                    <i class="fa-solid fa-user" id=""></i>
                                     <span>Voir mon profil</span>
                                 </a>
                             </li>
@@ -152,15 +151,15 @@
         <!-- #User Info -->
     </header>
     <ul class="activities menu-hover-fill flex flex-col items-start leading-none text-2xl uppercase space-y-4">
-        <li class="header" style="color: var(--color-light);">Activities</li>
+        <li class="header menu-header" >Activities</li>
         <li class="active">
-            <a href="/home">
+            <a href="/home" class="myLi">
                 <i class="fa-solid fa-house"></i>
                 <span>Home</span>
             </a>
         </li>
         <li>
-            <a href="/marchelist">
+            <a href="/marchelist" class="myLi">
                 <i class="fa-solid fa-shop"></i>
                 <span>Marchés</span>
             </a>
@@ -168,27 +167,27 @@
 
 
         @if(auth()->check() && auth()->user()->role=='admin')
-            <li class="header" style="color: var(--color-light);">Admin Activities </li>
+            <li class="header menu-header" >Admin Activities </li>
             <li>
-                <a href="/users">
+                <a href="/users" class="myLi">
                     <i class="fa-solid fa-users"></i>
                     <span>Users</span>
                 </a>
             </li>
             <li>
-                <a href="/roles">
+                <a href="/roles" class="myLi">
                     <i class="fa-solid fa-unlock"></i>
                     <span>Roles</span>
                 </a>
             </li>
             <li>
-                <a href="/typeMarche" >
+                <a href="/typeMarche"  class="myLi">
                     <i class="fa-brands fa-font-awesome"></i>
                     <span>Type de Marchés</span>
                 </a>
             </li>
             <li>
-                <a href="/categoriesPrix">
+                <a href="/categoriesPrix" class="myLi">
                     <i class="fa-solid fa-tag"></i>
                     <span>Categories prix</span>
                 </a>
@@ -200,7 +199,7 @@
     </div>
     <!-- Footer -->
     <div class="legal">
-        <div class="copyright" style="color: var(--color-light);">
+        <div class="copyright menu-header">
             Wilaya - Gestion de marché. <br> &copy; 2023 - 2024
         </div>
         <div class="version" style="color: var(--sunset-color)">
@@ -210,15 +209,15 @@
     <!-- #Footer -->
 </nav>
 
-<nav class="navbar">
+<nav class="navbar" id="navbar">
     <div class="col-4">
         <div class="effectpage">
-            <a href="/effects"><i class="fa-solid fa-angles-right" style="color: var(--color-light);"></i></a> <!--fa-beat-fade-->
+            <a href="/effects"><i class="fa-solid fa-angles-right menu-header iconEffects" ></i></a> <!--fa-beat-fade-->
             <span class="effects">Effets</span>
         </div>
     </div>
     <div class="col-4">
-        <a class="header" style="color: var(--color-light);" href="/home">Alwilaya Marrakech - Marché</a>
+        <a class="headerAlwilaya menu-header"  href="/home">Alwilaya Marrakech - Marché</a>
     </div>
     <div class="nightmode tumbler-wrapper col-2" style="text-align: end">
         <div class="wrapper ">

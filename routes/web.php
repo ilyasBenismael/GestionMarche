@@ -6,7 +6,6 @@ use App\Http\Controllers\ConcurrentController;
 use App\Http\Controllers\EffectController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MarcheController;
-use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PrixController;
 use App\Http\Controllers\TypeMarcheController;
 use App\Models\appeloffre;
@@ -188,7 +187,6 @@ Route::put('/marche/{id}/add-date-ordre-service', [MarcheController::class ,'add
 Route::put('/marche/{id}/add-date-reception-provisoire', [MarcheController::class ,'addDateReceptionProvisoire'])->name('marche.addDateReceptionProvisoire');
 Route::put('/marche/{id}/add-date-reception-definitive', [MarcheController::class ,'addDateReceptionDefinitive'])->name('marche.addDateReceptionDefinitive');
 Route::put('/marche/{id}/add-date-resiliation', [MarcheController::class ,'addDateResiliation'])->name('marche.addDateResiliation');
-Route::put('/marche/{id}/add-motif-resiliation', [MarcheController::class ,'addMotifResiliation'])->name('marche.addMotifResiliation');
 
 
 

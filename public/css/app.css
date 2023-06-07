@@ -231,13 +231,37 @@ main {
     position: fixed;
 }
 
+.menu.night-mode{
+    background: var(--color-light);
+    height: 100vh;
+    width: var(--menu-width-desktop);
+    top: 0;
+    left: 0;
+    z-index: 5;
+    outline: none;
+    position: fixed;
+}
+#dropdownArrow{
+    color: var(--color-light);
+}
 .menu .avatar {
     background: var(--color-night);
     border-bottom: 2px solid var(--color-light);
     padding: 2em 0.5em;
     text-align: center;
 }
-
+.menu .avatar .email{
+    color: var(--color-light);
+}
+.menu .avatar.night-mode{
+    background-color: var(--color-light);
+    border-bottom: 2px solid var(--color-night);
+}
+.menu .avatar.night-mode #dropdownArrow,
+.menu .avatar.night-mode #notificationIcon,
+.menu .avatar.night-mode .email{
+    color: var(--color-night);
+}
 .menu .avatar img {
     width: 100px;
     border-radius: 50%;
@@ -291,10 +315,20 @@ main {
     margin: 0;
     padding: 0;
 }
+.activities .header{
+    color: var(--color-light);
+}
+.menu-header.night-mode{
+    color: var(--color-night);
+    font-weight: 800;
+}
+
 .menu .activities li a span{
     font-weight: 400;
 }
-
+.iconEffects{
+    color: var(--color-light);
+}
 /*-- Ul Color Effect -start- --*/
 .menu-hover-fill li:not(.header) {
     position: relative;
@@ -310,6 +344,14 @@ main {
     background: var(--menu-link-active-color);
     transition: 0.6s;
 }
+
+.menu-hover-fill li:not(.header) a.night-mode{
+    --menu-link-color: var(--color-night);
+}
+.menu-hover-fill li:not(.header) a.night-mode span{
+    font-weight: 600;
+}
+
 
 .menu-hover-fill li:not(.header) a {
     --menu-link-color: var(--color-light);
@@ -361,6 +403,10 @@ main {
     background-size: 100%;
 }
 
+
+.copyright{
+    color: var(--color-light);
+}
 /*-- Ul Color Effect -end- --*/
 
 /*-- side Bar Footer -start- --*/
@@ -381,9 +427,17 @@ main {
     justify-content: space-between;
     padding: 20px;
 }
+.navbar.night-mode{
+    background-color: var(--color-light);
+}/*
 .navbar .header{
     font-size: 20px;
     color: var(--color-light);
+}*/
+.headerAlwilaya{
+    color: var(--color-light);
+
+    font-size: 20px;
 }
 .navbar .icon{
     font-size: 30px;
@@ -649,15 +703,12 @@ main {
 
 /*-- Data Tables Night Mode Modifications -start- --*/
 #dataTable{
-    border-radius: 20px;
     background: var(--color-light);
     box-shadow: 0 0 12px 0 rgba(0,0,0,0.2);
 }
 #dataTable.night-mode{
     background-color : var(--color-night);
     color: var(--color-light);
-    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
-    border-radius: 20px;
 }
 
 .dataTablestyle {
@@ -1092,3 +1143,15 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 }
 
 /*------------ Pop Up -----------------*/
+/*------------ Charts -start- -----------------*/
+.chartss canvas{
+    padding: 0 0 25px;
+    background: var(--color-light);
+    display: flex;
+    align-items: center;
+    width: 500px;
+    justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
+}
+/*------------ Charts -end- -----------------*/
