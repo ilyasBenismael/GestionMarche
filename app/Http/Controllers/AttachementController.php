@@ -27,7 +27,7 @@ class AttachementController extends Controller
         $marche = Marche::findOrFail($marcheId);
 
         $index =0;
-        $prixList = Prixe::where('marche', $marche)->get();
+        $prixList = Prixe::where('marche', $marcheId)->get();
 
         $prixQuantiteList = [];
         foreach ($prixList as $prix) {

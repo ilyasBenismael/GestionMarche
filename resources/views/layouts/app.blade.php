@@ -115,7 +115,7 @@
                         <i class="fa-solid fa-chevron-up dropdown-btn rotate"  id="dropdownArrow" ></i>
                         <ul class="dropdown-content" id="dropdownContent">
                             <li class="dropdown-elmt" >
-                                <a href="profil">
+                                <a href="/profil">
                                     <i class="fa-solid fa-user" id=""></i>
                                     <span>Voir mon profil</span>
                                 </a>

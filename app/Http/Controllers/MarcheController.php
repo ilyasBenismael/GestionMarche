@@ -11,6 +11,7 @@ use App\Models\Prixe;
 use App\Models\QuantiteExecute;
 use App\Models\typemarche;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\DB;
@@ -261,12 +262,14 @@ class MarcheController extends Controller
     }
 
 
+
     public function addDateOrdreService(Request $request, $id)
     {
         $marche = Marche::findOrFail($id);
         $dateOrdreService = $request->input('date_ordre_service_input');
         $marche->date_ordre_service = $dateOrdreService;
-        $marche->statut = "En Cours";
+        $marche->statut = 'En Cours';
+
         $marche->save();
         return redirect()->route('marcheList')->withSuccess('Date Ordre Service Added Successfully.');
     }
@@ -276,20 +279,66 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
-        $marche->statut = "Réceptionné";
+
+
+        $delaiGarantie = $marche->delai_garantie;
+     //   $marche->date_reception_definitive_suggestion = Carbon::parse($dateReceptionProvisoire)->addDays($delaiGarantie)->toDateString();
+
+        $marche->statut = 'Réceptionné';
+
         $marche->save();
+
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
+
+
+
 
     public function addDateReceptionDefinitive(Request $request, $id)
     {
         $marche = Marche::findOrFail($id);
         $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
         $marche->date_reception_definitive = $dateReceptionDefinitive;
-        $marche->statut = "Clôturé";
+
+
+        $marche->statut = 'Clôturé';
+
         $marche->save();
-        return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
+
+        return redirect()->route('marcheList')
+            ->withSuccess('Date Reception Provisoire Added Successfully.');
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    public function addDateResiliation(Request $request, $id)
+    {
+        $marche = Marche::findOrFail($id);
+
+        $dateResiliation = $request->input('date_resiliation_input');
+        $motifResiliation = $request->input('motif_resiliation_input');
+
+
+        $marche->date_resiliation = $dateResiliation;
+        $marche->motif_resiliation = $motifResiliation;
+
+        $marche->statut = 'Resilié';
+
+
+        $marche->save();
+        return redirect()->route('marcheList')->withSuccess('Date Reseliation  Added Successfully.');
+    }
+
 
 
 }
