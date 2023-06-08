@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Concurrent;
+use App\Models\marche;
 use App\Models\role;
+use App\Models\TypeMarche;
 use App\Models\User;
 use Goutte\Client;
 
@@ -37,6 +39,16 @@ class HomeController extends Controller
 
 
 
+
+    /*
+        $client = new Client();
+        $crawler = $client->request('GET', 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AllCons&EnCours&searchAnnCons');
+        $element = $crawler->filter('#ctl0_CONTENU_PAGE_resultSearch_nombreElement')->first()->text();
+*/
+
+
+
+
     public function goHome()
     {
 
@@ -47,16 +59,68 @@ class HomeController extends Controller
             $count = User::where('role', $role)->count();
             $userscount[] = $count;
         }
-/*
-        $client = new Client();
-        $crawler = $client->request('GET', 'https://www.marchespublics.gov.ma/index.php?page=entreprise.EntrepriseAdvancedSearch&AllCons&EnCours&searchAnnCons');
-        $element = $crawler->filter('#ctl0_CONTENU_PAGE_resultSearch_nombreElement')->first()->text();
-*/
+
+
+
+
+        ////status blcount tmarchee
+        $statusArray = ['En Instance', 'En Cours', 'Réceptionné', 'Clôturé', 'Résilié'];
+        $marcheCountStatus = [];
+
+        foreach ($statusArray as $status) {
+            $marcheCount = Marche::where('statut', $status)->count();
+            $marcheCountStatus[$status] = $marcheCount;
+        }
+
+
+
+
+        $typemarches = Typemarche::pluck('type')->toArray();
+        $marcheCountsType = [];
+        foreach ($typemarches as $typemarche) {
+            $marcheCount = Marche::where('type_de_marche', $typemarche)->count();
+            $marcheCountsType[] = $marcheCount;
+        }
+
+
+
+        $marches = Marche::orderBy('created_at', 'desc')->limit(15)->get();
+        $MarcheArray15 = [];
+        $montantArray = [];
+
+        foreach ($marches as $marche) {
+            $MarcheArray15[] = $marche->numero_marche;
+            $montantArray[] = $marche->montant;
+        }
+
+
+
+
+
+        $marchesCountsEx = [];
+        $years = [];
+
+        for ($year = 2015; $year <= 2025; $year++) {
+            $marchesCount = Marche::where('exercice', $year)->count();
+            $marchesCountsEx[$year] = $marchesCount;
+            $years[] = $year;
+        }
+
+
+
 
 
         return response()->view('home', [
             'roles' => $roles,
             'userscount' => $userscount,
+            'statusArray' => $statusArray,
+            'marcheCountStatus' => $marcheCountStatus,
+            'typemarches' => $typemarches,
+            'marcheCountsType' => $marcheCountsType,
+            'MarcheArray15' => $MarcheArray15,
+            'montantArray' => $montantArray,
+            'marchesCountsEx' => $marchesCountsEx,
+            'years' => $years
             /*'element' => $element*/
         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
 

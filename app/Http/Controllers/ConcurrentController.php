@@ -113,7 +113,7 @@ class ConcurrentController extends Controller
         $concurrent->statut = $validatedData['statut'];
 
         $concurrent->save();
-        return redirect()->route('concurrent')->with(['success'=>'Concurrent updated successfully.']);
+        return redirect()->back()->with(['success' => 'Concurrent updated successfully.']);
         // -----------------------------------
     }
 

@@ -19,8 +19,11 @@
                         </p>
                         <p class="font-weight-bold mb-2">
                             <span class="text-uppercase label-text-dark">Estimation Detaillee:</span>
-                            <span class="font-weight-normal text-lg value-text-light"> {{ $appelOffres->estimation_detaillee }}</span>
+                            <a href="{{ asset('files/estimation_detaillees/' . $appelOffres->estimation_detaillee) }}" target="_blank" class="font-weight-normal text-lg value-text-light">
+                                {{ $appelOffres->estimation_detaillee }}
+                            </a>
                         </p>
+
                         <p class="font-weight-bold mb-2">
                             <span class="text-uppercase label-text-dark">Objet:</span>
                             <span class="font-weight-normal text-lg value-text-light"> {{ $appelOffres->objet }}</span>
@@ -29,6 +32,7 @@
                             <span class="text-uppercase label-text-dark">Date d'ouverture des plis:</span>
                             <span class="font-weight-normal text-lg value-text-light"> {{ $appelOffres->date_douverture_des_plis }}</span>
                         </p>
+                        <a href="{{ route('appelOffres.edit', $appelOffres->id) }}" class="btn btn-primary">Edit Appel Offre</a>
                     </div>
                 </div>
 
@@ -42,7 +46,7 @@
                                 <th scope="col">Ville</th>
                                 <th scope="col">Montant</th>
                                 <th scope="col">Statut</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Actions</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -53,11 +57,12 @@
                                     <td>{{ $concurrent->montant }}</td>
                                     <td>{{ $concurrent->statut }}</td>
                                     <td>
-                                        <form action="/concurrent/{{ $concurrent->id }}" method="POST">
+                                        <form class="d-inline" action="/concurrent/{{ $concurrent->id }}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
                                         </form>
+                                        <a href="/concurrent/{{ $concurrent->id }}/edit" class="btn btn-primary btn-sm">Edit</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -68,9 +73,10 @@
                     @endif
                     <a href="/concurrent/create/{{ $appel_id }}" class="btn btn-primary">Add New Concurrent</a>
                 </div>
+
             </div>
         </div>
 
-        <a href="{{ route('appelOffres.edit', $appelOffres->id) }}" class="btn btn-primary">Edit Appel Offre</a>
+
     </div>
 @endsection

@@ -48,6 +48,7 @@ class ProfilController extends Controller
                 ->first();
 
 
+            $latestUnseenMessage=null;
             if ($latestUnseenMessageObjct) {
                 $latestUnseenMessage = $latestUnseenMessageObjct->msg;
             }

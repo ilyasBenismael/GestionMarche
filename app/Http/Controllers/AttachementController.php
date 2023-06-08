@@ -111,7 +111,7 @@ class AttachementController extends Controller
     public function show(string $id)
     {
         $attachement = Attachement::findOrFail($id);
-        $quantite_execute=QuantiteExecute::where('attachement', $id)->get();
+        $quantite_execute = QuantiteExecute::where('attachement', $id)->get();
         return response()->view('attachements.show', ['attachement' => $attachement,'quantite_execute' => $quantite_execute ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
 
@@ -158,9 +158,15 @@ class AttachementController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         $attachement = Attachement::findOrFail($id);
+        $quantite_execute = QuantiteExecute::where('attachement', $id)->get();
+        foreach ($quantite_execute as $qe) {
+            $qe->delete();}
         $attachement->delete();
-        return redirect()->route('attachement')->with(['success'=>'attachement deleted successfully.'])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
+        return redirect()->back()->with('success', 'Attachement deleted successfully.');
     }
+
+
+
+
 }

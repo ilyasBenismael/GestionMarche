@@ -123,8 +123,9 @@
         </div>
 
         <div class="card mb-4">
-            <div class="card-header bg-dark text-light">
+            <div class="card-header justify-content-between align-items-center d-flex bg-dark text-light">
                 <h4 class="label-text-lighter">Attachements</h4>
+                <a href="/attachement/create/{{$marche->id}}" class="btn btn-primary float-right">Create Attachement</a>
             </div>
             <div class="card-body">
                 @if ($attachements->isEmpty())
@@ -149,14 +150,11 @@
                                     <a href="{{ route('attachement.show', ['id' => $attachement->id]) }}" class="btn btn-primary">
                                         <i class="fa fa-eye"></i> Voir l'attachement
                                     </a>
-{{--                                    <a href="{{ route('attachements.show', $attachement->id) }}" class="btn btn-sm btn-primary">Show Details</a>--}}
-{{--                                    <a href="{{ route('attachements.edit', $attachement->id) }}" class="btn btn-sm btn-primary">Edit</a>--}}
-{{--                                    <form action="{{ route('attachements.destroy', $attachement->id) }}" method="POST" class="d-inline">--}}
-{{--                                        @csrf--}}
-{{--                                        @method('DELETE')--}}
-{{--                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this attachement?')">Delete</button>--}}
-{{--                                    </form>--}}
-
+                                    <form action="{{ route('attachement.destroy', $attachement->id) }}" method="POST" class="d-inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this attachement?')">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
@@ -165,6 +163,7 @@
                 @endif
             </div>
         </div>
+
 
 
         <script>
@@ -181,8 +180,9 @@
 
 
         <div class="card mb-4">
-            <div class="card-header bg-dark text-light">
+            <div class="card-header justify-content-between align-items-center d-flex bg-dark text-light">
                 <h4 class="label-text-lighter">Prix</h4>
+                <a href="/prix/create/{{$marche->id}}" class="btn btn-primary float-right">Create Prix</a>
             </div>
             <div class="card-body">
                 @if ($prixList->isEmpty())

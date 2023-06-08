@@ -8,6 +8,7 @@ use App\Models\attributaire;
 use App\Models\Concurrent;
 use App\Models\marche;
 use App\Models\Prixe;
+use App\Models\QuantiteExecute;
 use App\Models\typemarche;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -19,10 +20,16 @@ use Illuminate\Validation\Rule;
 class MarcheController extends Controller
 {
 
+
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
+
+
 
 
     public function goMarcheList(Request $request)
@@ -41,6 +48,8 @@ class MarcheController extends Controller
             'selectedStatus' => $status
         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
+
+
 
 
 
@@ -82,6 +91,33 @@ class MarcheController extends Controller
             // Marche not found
             return redirect('/marchelist')->back()->withErrors('Marche not found.');
         }
+
+        AppelOffre::where('id', $marche->appel_doffre)->delete();
+
+        // Delete related Concurrents
+        Concurrent::where('appeloffres_id', $marche->appel_doffre)->delete();
+
+        // Delete related Attributaire
+        Attributaire::where('id', $marche->attributaire)->delete();
+
+
+        // Delete related Prix
+        Prixe::where('marche', $id)->delete();
+
+        $attachements = Attachement::where('marche', $id)->get();
+
+        foreach ($attachements as $attachement) {
+            $quantite_execute = QuantiteExecute::where('attachement', $attachement->id)->get();
+
+            foreach ($quantite_execute as $qe) {
+                $qe->delete();
+            }
+
+            $attachement->delete();
+        }
+
+
+
         $marche->delete();
         return redirect('/marchelist')->withSuccess('Marche deleted successfully.');
     }
@@ -117,7 +153,6 @@ class MarcheController extends Controller
         ]);
 
 
-
         if ($request['estimation_detaillee'] !== null) {
             $esti_det_file_name = time() . '_' . $request['estimation_detaillee']->getClientOriginalName();
             $request['estimation_detaillee']->move(public_path('files') . '/estimation_detaillees', $esti_det_file_name);
@@ -151,7 +186,6 @@ class MarcheController extends Controller
         } catch (\Exception $e) {
             DB::rollback(); // Something went wrong, rollback the transaction
         }
-
 
 
         if (isset($request->date_ordre_service)) {
@@ -194,7 +228,7 @@ class MarcheController extends Controller
             'date_ordre_service' => '',
             'delai_dexecution' => '',
             'responsable_de_suivi' => 'required',
-            'montant' => 'required',
+            'montant' => '',
             'prix_revisable' => 'required',
             'delai_garantie' => '',
             'date_reception_provisoire' => '',
@@ -232,7 +266,7 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateOrdreService = $request->input('date_ordre_service_input');
         $marche->date_ordre_service = $dateOrdreService;
-        $marche->statut="En Cours";
+        $marche->statut = "En Cours";
         $marche->save();
         return redirect()->route('marcheList')->withSuccess('Date Ordre Service Added Successfully.');
     }
@@ -242,7 +276,7 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateReceptionProvisoire = $request->input('date_reception_provisoire_input');
         $marche->date_reception_provisoire = $dateReceptionProvisoire;
-        $marche->statut="Réceptionné";
+        $marche->statut = "Réceptionné";
         $marche->save();
         return redirect()->route('marcheList')->withSuccess('Date Reception Provisoire Added Successfully.');
     }
@@ -252,16 +286,10 @@ class MarcheController extends Controller
         $marche = Marche::findOrFail($id);
         $dateReceptionDefinitive = $request->input('date_reception_definitive_input');
         $marche->date_reception_definitive = $dateReceptionDefinitive;
-        $marche->statut="Clôturé";
+        $marche->statut = "Clôturé";
         $marche->save();
         return redirect()->route('marcheList')->withSuccess('Date Reception Definitive Added Successfully.');
     }
-
-
-
-
-
-
 
 
 }

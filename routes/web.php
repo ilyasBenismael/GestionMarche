@@ -122,14 +122,10 @@ Route::delete('/categoriePrix/{id}', [CategoriePrixController::class, 'destroy']
 /*-- == Type Marche -Start- == --*/
 Route::get('/typeMarche', [TypeMarcheController::class, 'myListe'])->name('typeMarche');
 Route::post('/typeMarche', [TypeMarcheController::class, 'store'])->name('typeMarche.store');
-
 Route::get('/typeMarche/create', [TypeMarcheController::class, 'create'])->name('typeMarche.create');
-
 Route::get('/typeMarche/{id}', [TypeMarcheController::class, 'show'])->name('typeMarche.show');
-
 Route::get('/typeMarche/{id}/edit', [TypeMarcheController::class, 'edit'])->name('typeMarche.edit');
 Route::put('/typeMarche/{marche}', [TypeMarcheController::class, 'update'])->name('typeMarche.update');
-
 Route::delete('/typeMarche/{id}', [TypeMarcheController::class, 'destroy'])->name('typeMarche.destroy');
 /*-- == Type Marche -End- == --*/
 
@@ -142,11 +138,8 @@ Route::delete('/typeMarche/{id}', [TypeMarcheController::class, 'destroy'])->nam
 /*-- == Concurrent -Start- == --*/
 Route::get('/concurrents', [ConcurrentController::class, 'myListe'])->name('concurrent');
 Route::post('/concurrent', [ConcurrentController::class, 'store'])->name('concurrent.store');
-
 Route::get('/concurrent/create/{appeloffre}', [ConcurrentController::class, 'create'])->name('concurrent.create');
-
 Route::get('/concurrent/{id}', [ConcurrentController::class, 'show'])->name('concurrent.show');
-
 Route::get('/concurrent/{id}/edit', [ConcurrentController::class, 'edit'])->name('concurrent.edit');
 Route::put('/concurrent/{nom}', [ConcurrentController::class, 'update'])->name('concurrent.update');
 
@@ -160,21 +153,26 @@ Route::delete('/concurrent/{id}', [ConcurrentController::class, 'destroy'])->nam
 Route::get('/effects', [EffectController::class, 'effects'])->name('effects');
 /*-- == Effects -end- == --*/
 
+
+
+
+
 /*-- == Attachement -Start- == --*/
-
 Route::post('/attachement/{marche}', [AttachementController::class, 'store'])->name('attachement.store');
-
-
 Route::get('/attachement/create/{marche}', [AttachementController::class, 'create'])->name('attachement.create');
-
 Route::get('/attachement/{id}', [AttachementController::class, 'show'])->name('attachement.show');
-
 Route::get('/attachement/{id}/edit', [AttachementController::class, 'edit'])->name('attachement.edit');
 Route::put('/attachement/{numero}', [AttachementController::class, 'update'])->name('attachement.update');
+Route::delete('/attachement/{id}', 'App\Http\Controllers\AttachementController@destroy')->name('attachement.destroy');
 
-
-Route::delete('/attachement/{id}', [AttachementController::class, 'destroy'])->name('attachement.destroy');
 /*-- == Attachement -End- == --*/
+
+
+
+
+
+
+
 
 /*-- == Prixe -Start- == --*/
 

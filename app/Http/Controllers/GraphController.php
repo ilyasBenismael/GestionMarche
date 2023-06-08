@@ -42,8 +42,6 @@ class GraphController extends Controller
 
     public function addGraph(Request $request)
     {
-
-
         $request->validate([
             'file' => 'required|mimes:xlsx,xls'
         ]);
@@ -79,7 +77,6 @@ class GraphController extends Controller
             }
         }
         return view('graphs/graph', compact('labels', 'values'));
-
         }
     }
 
