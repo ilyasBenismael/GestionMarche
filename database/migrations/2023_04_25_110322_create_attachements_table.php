@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date("date");
             $table->integer("marche");
             $table->integer("numero");
-            $table->integer("montant_de_revision");
+            $table->integer("montant_de_revision")->nullable();
             $table->timestamps();
         });
     }

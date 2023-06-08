@@ -16,4 +16,6 @@ class Message extends Model
         'chat',
         'seen',
     ];
+
+
 }

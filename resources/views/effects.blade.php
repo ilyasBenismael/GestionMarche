@@ -146,10 +146,18 @@
 
 
 </div>
+
+
+
 @endsection
 
 @section('scripts')
+
+    <script>
+
+    </script>
     <script src="{{ asset('/js/effects.js') }}"></script>
+
 @endsection
 
 

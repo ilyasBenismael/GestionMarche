@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class EffectController extends Controller
@@ -10,4 +11,9 @@ class EffectController extends Controller
     {
         return response()->view('effects')->header('Cache-Control', 'no-cache, no-store, must-revalidate');
     }
+
+
+
+
+
 }

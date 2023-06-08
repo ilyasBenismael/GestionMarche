@@ -128,6 +128,3 @@ $(document).ready(function() {
 
 
 /*-- Mouse Effect 2 -end- */
-
-
-

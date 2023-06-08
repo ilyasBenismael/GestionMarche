@@ -66,6 +66,8 @@ class ChatController extends Controller
             $chat->save();
         }
 
+
+
         return response()->json(['success' => true, 'timestamp' => $message->created_at->format('Y-m-d H:i')]);
     }
 
