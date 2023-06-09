@@ -863,9 +863,8 @@ tbody tr td{
     color: var(--color-light);
     display: flex;
     align-items: center;
-    width: 500px;
+    width: 100%;
     justify-content: space-between;
-    border-radius: 25px;
     box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
 }
 
@@ -1144,14 +1143,27 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 
 /*------------ Pop Up -----------------*/
 /*------------ Charts -start- -----------------*/
-.chartss canvas{
-    padding: 0 0 25px;
+.chartss{
+    height: 100%;
+}
+
+.chart-container {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.chartss .chart-a{
     background: var(--color-light);
+    height: 45%;
     display: flex;
     align-items: center;
-    width: 500px;
+    width: 100%;
     justify-content: space-between;
-    border-radius: 10px;
     box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
 }
 /*------------ Charts -end- -----------------*/
+
+
+/*------------ Carousel -Start- -------------*/
+
+
+/*------------ Carousel -Start- -------------*/

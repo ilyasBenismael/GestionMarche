@@ -4,36 +4,54 @@
 
     <h1>Dashboard</h1>
 
+    {{--Carousel--}}
+
+    {{--Carousel--}}
+
+
+
+
 
     <div class="row justify-content-around">
-        <div class="concurrentAnalytics col-4">
-
-            <div class="concurrent row">
-                <div class="regionName col-5">
-                    <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;height: 76px"
-                       id="displayArea">Marrakech-Safi</p>
-                    <p><span id="count">0</span><span> Concurrents</span></p>
+        <div class="col-5">
+            <div class="concurrentAnalytics">
+                <div class="concurrent row">
+                    <div class="regionName col-5">
+                        <p style="color: var(--sunset-color);font-size: 25px;margin-top: 15px;height: 76px"
+                           id="displayArea">Marrakech-Safi</p>
+                        <p><span id="count">0</span><span> Concurrents</span></p>
+                    </div>
+                    <div class="progressChart col-5">
+                        <div id="cont" data-pct="100">
+                            <svg id="svg" width="100" height="100" viewBox="-15 -15 115 115" version="1.1"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <circle r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49"
+                                        stroke-dashoffset="0"></circle>
+                                <circle id="bar" r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49"
+                                        stroke-dashoffset="0"></circle>
+                            </svg>
+                        </div>
+                    </div>
                 </div>
-                <div class="progressChart col-5">
-                    <div id="cont" data-pct="100">
-                        <svg id="svg" width="100" height="100" viewBox="-15 -15 115 115" version="1.1"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <circle r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49"
-                                    stroke-dashoffset="0"></circle>
-                            <circle id="bar" r="45" cx="45" cy="45" fill="transparent" stroke-dasharray="283.49"
-                                    stroke-dashoffset="0"></circle>
-                        </svg>
+            </div>
+            <div class="myMap">
+                <div id="morocco"></div>
+            </div>
+        </div>
+        <div class=" col-5">
+            <div class=" chartss">
+                <div class="chartss-container">
+                    <div class="chart-container" style="">
+                        <canvas id="lineChart" class="chart-a" style="z-index: 1;width: 100%"></canvas>
+                    </div>
+                    <div class="chart-container"  style="">
+                        <canvas id="barChart" class="chart-a" style="z-index: 1;width: 100%"></canvas>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="myMap col-5">
-            <div id="morocco"></div>
-        </div>
     </div>
 
-
-    {{--    <h1>nombre de consultation : $element</h1>--}}
 
 
 
@@ -44,7 +62,7 @@
 
 
 
-    <div class="row chartss justify-content-around p-1 m-1">
+    <div class="row chartss justify-content-around">
         <div class="col-md-6 " style="width: 44%;">
             <canvas id="pieChart" style="z-index: 1;"></canvas>
         </div>
@@ -53,17 +71,10 @@
         </div>
     </div>
 
-    <div class="row chartss justify-content-around p-1 m-1">
-        <div class="col-md-6 " style="width: 44%;">
-            <canvas id="lineChart" style="z-index: 1;"></canvas>
-        </div>
-        <div class="col-md-6" style="width: 44%;">
-            <canvas id="barChart" style="z-index: 1;"></canvas>
-        </div>
-    </div>
 
 
-        <div class="mx-auto chartss p-1 m-1" style="width: 90%;">
+
+        <div class="mx-auto chartss " style="width: 90%;">
             <canvas id="barChart2" style="z-index: 1;"></canvas>
         </div>
 
@@ -72,6 +83,8 @@
 
     <script src=" {{ asset('js/MA_jvm.js') }}"></script>
     <script>
+
+
         document.addEventListener('DOMContentLoaded', function () {
             // Assuming you have the user array and post count data available
             var roles = {!! json_encode($roles) !!};
