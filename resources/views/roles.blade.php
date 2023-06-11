@@ -72,12 +72,11 @@
             <tr>
                 <th>name</th>
                 <th>action</th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
             @foreach($roles as $role)
-<tr>
+            <tr>
                 <td>{{$role->name}}</td>
                 <td>
                         <form action="/role/{{$role->id}}" method="POST">
@@ -87,9 +86,8 @@
                                 <i class="fas fa-trash"></i>
                             </button>
                         </form>
-                    </td>
-                <td></td>
-</tr>
+                </td>
+            </tr>
             @endforeach
             </tbody>
         </table>

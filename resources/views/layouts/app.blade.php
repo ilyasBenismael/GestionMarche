@@ -101,14 +101,32 @@
         <div class="user-info">
             @auth()
                 <div class="image">
-                    <img src={{ asset('files/profils/'.auth()->user()->image)}} alt="User" />
+                    <img src={{ asset('files/profils/'.auth()->user()->image)}} alt="User" style="width: 100px;height: 100px" />
                 </div>
                 <div class="info-container">
-                    <div style="display: flex;justify-content: center;align-items: center;" class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span>{{ auth()->user()->role }}</span>
-                        <i class="fa-solid fa-bell notification" id="notificationIcon"></i>
+                    <div id="dropdownNotif" style="display: flex;justify-content: center;align-items: center;" class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span style="cursor: pointer">{{ auth()->user()->role }}</span>
+                        <i class="fa-solid fa-bell notification" id="notificationIcon" style="position:relative;cursor: pointer">
+                            <span style="border: 1px solid red;background-color: red;color: white;border-radius: 50%;position: absolute;top: -4px;font-size: 8px;padding: 2px;right: -4px;">3</span>
+                        </i>
                     </div>
-
+                    <ul class="dropdown-content-notif" id="dropdownContentNotif">
+                        <li class="dropdown-elmt" style="border-bottom: 2px solid var(--color-light)">
+                            <h5 style="cursor: default">Marche Numero : 7</h5>
+                            <p style="margin: 0;padding: 0;line-height: 1.5;cursor: default">Le délai d'exécution est terminé, mais le marché n'est pas encore clôturé.</p>
+                            <p style="margin: 0;padding: 0 3px 0 0;text-align: end;"><a href="" style="color: var(--sunset-color);cursor:pointer;">Voir Marche</a></p>
+                        </li>
+                        <li class="dropdown-elmt" style="border-bottom: 2px solid var(--color-light)">
+                            <h5 style="cursor: default">Marche Numero : 3</h5>
+                            <p style="margin: 0;padding: 0;line-height: 1.5;cursor: default">Le délai de garantie est terminé, mais la date de réception définitive n'a pas encore été renseignée</p>
+                            <p style="margin: 0;padding: 0 3px 0 0;text-align: end;"><a href="" style="color: var(--sunset-color)">Voir Marche</a></p>
+                        </li>
+                        <li class="dropdown-elmt" style="border-bottom: 2px solid var(--color-light)">
+                            <h5 style="cursor: default">Marche Numero : 14</h5>
+                            <p style="margin: 0;padding: 0;line-height: 1.5;cursor: default">Le délai de garantie est terminé, mais la date de réception définitive n'a pas encore été renseignée.</p>
+                            <p style="margin: 0;padding: 0 3px 0 0;text-align: end;"><a href="" style="color: var(--sunset-color)">Voir Marche</a></p>
+                        </li>
+                    </ul>
                     <div class="email" >{{auth()->user()->email}}</div>
                     <!-- Custom Dropdown Menu -Start- -->
                     <div class="dropdown" onclick="toggleDropdown()" style="width: 100%">
@@ -118,18 +136,6 @@
                                 <a href="/profil">
                                     <i class="fa-solid fa-user" id=""></i>
                                     <span>Voir mon profil</span>
-                                </a>
-                            </li>
-                            <li class="dropdown-elmt">
-                                <a href="#">
-                                    <i class="fa-solid fa-shop-lock"></i>
-                                    <span>Mes Marchés</span>
-                                </a>
-                            </li>
-                            <li class="dropdown-elmt">
-                                <a href="#">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <span>Editer mon profil</span>
                                 </a>
                             </li>
                             <li class="dropdown-elmt">
@@ -155,13 +161,13 @@
         <li class="active">
             <a href="/home" class="myLi">
                 <i class="fa-solid fa-house"></i>
-                <span>Home</span>
+                <span>Accueil</span>
             </a>
         </li>
         <li>
             <a href="/marchelist" class="myLi">
                 <i class="fa-solid fa-shop"></i>
-                <span>Marchés</span>
+                <span>Marches</span>
             </a>
         </li>
 
@@ -171,7 +177,7 @@
             <li>
                 <a href="/users" class="myLi">
                     <i class="fa-solid fa-users"></i>
-                    <span>Users</span>
+                    <span>Utilisateurs</span>
                 </a>
             </li>
             <li>
@@ -225,6 +231,8 @@
         </div>
     </div>
 </nav>
+
+
 
 <main class="content" id="app">
     <div id="content-container">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Concurrent;
 use App\Models\marche;
+use App\Models\notification;
 use App\Models\role;
 use App\Models\TypeMarche;
 use App\Models\User;
@@ -106,9 +107,13 @@ class HomeController extends Controller
             $years[] = $year;
         }
 
+        $marchesResilie = Marche::where('statut', 'resilie')->get()->count();
+        $marchesCloture = Marche::where('statut', 'cloture')->get()->count();
 
-
-
+        $userTotalNumber = User::count();
+/*
+        $notifications = Notification::where('target', auth()->id())->get();
+        $nbr_notif = $notifications->count();*/
 
         return response()->view('home', [
             'roles' => $roles,
@@ -120,7 +125,12 @@ class HomeController extends Controller
             'MarcheArray15' => $MarcheArray15,
             'montantArray' => $montantArray,
             'marchesCountsEx' => $marchesCountsEx,
-            'years' => $years
+            'years' => $years,
+            'marchesResilie' => $marchesResilie,
+            'marchesCloture' => $marchesCloture,
+            'userTotalNumber' => $userTotalNumber,
+            /*'notifications' => $notifications,
+            'nbr_notif' => $nbr_notif*/
             /*'element' => $element*/
         ])->header('Cache-Control', 'no-cache, no-store, must-revalidate');
 
