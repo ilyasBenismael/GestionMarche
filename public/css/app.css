@@ -15,7 +15,7 @@
     --success-color: #4ACFAE;
     --warning-color: #FFCE52;
     --danger-color: #5F9CEC;
-    --sunset-color:#D88A5D;
+    --sunset-color: #d88a47;
     /*-- Side Bar Colors -end- --*/
 
     --bg-color: #34495e;
@@ -939,7 +939,7 @@ input {
 
 
 /* Make things perty */
-input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: center;}
+input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: start;}
 /*========================================================================================*/
 
 
