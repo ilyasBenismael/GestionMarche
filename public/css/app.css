@@ -15,7 +15,7 @@
     --success-color: #4ACFAE;
     --warning-color: #FFCE52;
     --danger-color: #5F9CEC;
-    --sunset-color:#D88A5D;
+    --sunset-color: #d88a47;
     /*-- Side Bar Colors -end- --*/
 
     --bg-color: #34495e;
@@ -28,6 +28,16 @@
     background: var(--sunset-color);
 }
 
+*::-webkit-scrollbar {
+    width: 5px; /* width of the scrollbar */
+    border-radius: 3px;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: var(--sunset-color); /* color of the scrollbar thumb */
+    border: 2px solid var(--sunset-color);
+    border-radius: 3px;
+}
 
 
 body {
@@ -194,6 +204,9 @@ body.night-mode {
 }
 .consultant{
     color: var(--success-color);
+}
+.resilie{
+    color: darkred;
 }
 main {
     position: relative;
@@ -651,6 +664,7 @@ main {
     cursor: pointer;
     transition: all 0.4s ease-in-out;
 }
+.dropdown-content-notif,
 .dropdown-content {
     border-radius: 10px;
     display: none;
@@ -676,16 +690,16 @@ main {
 .dropdown-content .dropdown-elmt{
     padding: 0;
 }
-.dropdown-elmt a{
+.dropdown-content .dropdown-elmt a{
     text-align: left;
 }
-.dropdown-elmt a i{
+.dropdown-content .dropdown-elmt a i{
     margin-right: 20px;
 }
-.dropdown-elmt .signout{
+.dropdown-content .dropdown-elmt .signout{
     text-align: center;
 }
-.dropdown-elmt span{
+.dropdown-content .dropdown-elmt span{
     font-weight: 500;
 }
 
@@ -693,6 +707,17 @@ main {
     transform: rotate(-180deg);
 }
 /*-- Side Dropdown Menu -end- --*/
+/*-- Notif Dropdown -start- --*/
+.dropdown-content-notif{
+    text-align: start;
+    left: 5px;
+    overflow: scroll;
+    max-height: 60vh;
+}
+.dropdown-content-notif .dropdown-elmt {
+    padding: 5px 0 5px 12px;
+}
+/*-- Notif Dropdown -end- --*/
 /*-- Notification Menu -start- --*/
 .notification{
     color:white;
@@ -861,12 +886,11 @@ tbody tr td{
     padding: 0 0 25px;
     background: var(--color-night);
     color: var(--color-light);
+    font-weight: 600;
     display: flex;
     align-items: center;
-    width: 500px;
+    width: 100%;
     justify-content: space-between;
-    border-radius: 25px;
-    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
 }
 
 .concurrentAnalytics .concurrent .regionName{
@@ -907,7 +931,6 @@ tbody tr td{
      border-radius: 100%;
      line-height: 40px; /* Adjust the value as needed */
      font-size: 20px;
-     text-shadow: 0 0 0.5em black;
  }
 
 input {
@@ -916,7 +939,7 @@ input {
 
 
 /* Make things perty */
-input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: center;}
+input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; box-shadow: none; outline: none !important; margin: 1em  auto; text-align: start;}
 /*========================================================================================*/
 
 
@@ -1144,14 +1167,43 @@ input { border: 1px solid #666; background: #333; color: #fff; padding: 0.5em; b
 
 /*------------ Pop Up -----------------*/
 /*------------ Charts -start- -----------------*/
+.chartss{
+    height: 100%;
+}
+
+.chart-container {
+    margin-bottom: 20px;
+}
 .chartss canvas{
-    padding: 0 0 25px;
-    background: var(--color-light);
+    background: var(--color-night);
     display: flex;
     align-items: center;
-    width: 500px;
     justify-content: space-between;
-    border-radius: 10px;
-    box-shadow: 0 0 12px 0 rgba(255,255,255,0.2);
 }
 /*------------ Charts -end- -----------------*/
+#time,
+#day {
+    font-family: 'Share Tech Mono', monospace;
+    font-weight: 600;
+    color: var(--color-night);
+    text-align: center;
+}
+#day{
+    font-size: 20px;
+}
+#time{
+    font-size: 25px;
+}
+.myBorder{
+
+    border-radius: 4px;
+    overflow: hidden;
+}
+/*------------ Carousel -Start- -------------*/
+
+
+/*------------ Carousel -Start- -------------*/
+.jvectormap-container{
+    border-radius: 0 0 3px 3px;
+    background-color: var(--color-night)!important;
+}

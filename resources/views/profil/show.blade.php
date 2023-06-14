@@ -249,6 +249,7 @@
         </div>
     </div>
 
+
     <div class="container">
         <div class="circle">
             <span class="circle-number">{{ $nbr_notif }}</span>

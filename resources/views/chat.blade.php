@@ -1,14 +1,7 @@
-
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+@extends('layouts.app')
 
 
+@section('content')
     <style>
         .profilPic {
             border-radius: 5px;
@@ -22,42 +15,42 @@
             font-weight: bold;
             color: #676767;
             margin-top: 2px;
-            margin-left: 28px;
+            margin-left: 50px;
         }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            height: 100%;
-            margin: 0;
-            padding: 0;
+        {
+            position: absolute;
+            top: 15px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 15px solid rgba(25, 147, 147, 0.2);
         }
-
+        {
+            border-right: 15px solid transparent;
+            right: -15px;
+        }
         .conversation {
-            background-color: #f2f2f2;
+            background-color: var(--color-night-body);
             display: flex;
             flex-direction: column;
-            /*padding: 20px;*/
-            margin-top: 70px;
-            margin-bottom: 80px;
-            overflow-y: auto;
+            margin: 10px;
+            border-radius: 10px;
+            border: 5px solid var(--color-night);
         }
 
         .conversation-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
+            padding-top: 5px;
+            color: var(--color-light);
             padding-left: 20px;
-            position: fixed;
-            top: 0;
             width: 100%;
-            background-color: #fff;
+            background-color: var(--color-night);
             z-index: 999;
+            text-align: center;
         }
 
         .user-image {
-            width: 40px;
-            height: 40px;
+            width: 55px;
+            height: 55px;
             border-radius: 50%;
             margin-right: 10px;
         }
@@ -65,29 +58,58 @@
         .message {
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
+            margin: 20px 0;
+            position: relative;
         }
 
         .message .bubble {
             display: inline-block;
             padding: 10px 20px;
-            border-radius: 20px;
             max-width: 70%;
-            margin-left: 20px;
+            margin: 0 50px;
         }
+/*
+        .message .sender:after{
 
+            border-left: 15px solid transparent;
+            left: -15px;
+            position: absolute;
+            top: 15px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 15px solid rgba(25, 147, 147, 0.2);
+        }
+        */
 
         .message .sender {
             background-color: #b4c0e8;
             align-self: flex-start;
             color: #111111;
+
+            border-radius: 0 20px 20px;
+        }
+/*
+        .message .receiver:after{
+            border-right: 15px solid transparent;
+            right: -15px;
+            position: absolute;
+            top: 15px;
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 15px solid rgba(25, 147, 147, 0.2);
         }
 
+        */
         .message .receiver {
             background-color: #a2d3a2;
             align-self: flex-end;
             color: #111111;
+
+            border-radius: 20px 0px 20px 20px;
         }
+
 
         .message .time {
             font-size: 12px;
@@ -97,22 +119,19 @@
         }
 
         .input-area {
-            display: flex;
-            align-items: center;
-            position: fixed;
-            bottom: 0;
             width: 100%;
             height: 80px;
-            background-color: #fff;
+            background-color: var(--color-night);
             padding: 20px;
             box-sizing: border-box;
         }
 
         .input-area input[type="text"] {
+            text-align: start;
             flex: 1;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            border: none;
+            border-bottom: 1px solid var(--sunset-color);
+            background-color: transparent;
         }
 
         .input-area button {
@@ -120,49 +139,51 @@
             padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            background-color: #4caf50;
+            background-color: var(--sunset-color);
             color: #fff;
             cursor: pointer;
         }
 
     </style>
-</head>
-<body>
 
-
-    <section class="content">
         <div class="conversation">
             <div class="conversation-header">
                 <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="user-image">
                 <h2 class="user-name">{{ $user->name }}</h2>
             </div>
-            @foreach ($messages as $message)
-                <div class="message">
-                    <div class="bubble {{ $message->sender == auth()->id() ? 'sender' : 'receiver' }}">
-                        {{ $message->msg }}
-                        <div class="time">
-                            {{ $message->created_at->format('Y-m-d H:i') }}
+            <div class="allMessages" style="overflow: scroll;max-height: 67vh">
+                @foreach ($messages as $message)
+                    <div class="message">
+                        @if ($message->sender == auth()->id())
+                            <img class="{{ $message->sender == auth()->id() ? 'sender' : 'receiver' }}" src="{{ asset('files/profils/' . auth()->user()->image) }}" alt="Sender Profile Image" style="width: 40px;height: 40px;object-fit: cover;position: absolute;border-radius: 50%;left:5px;bottom: 80%;">
+                        @else
+                            <img class="{{ $message->sender == auth()->id() ? 'sender' : 'receiver' }}" src="{{ asset('files/profils/' . $user->image) }}" alt="Receiver Profile Image" style="width: 40px;height: 40px;object-fit: cover;position: absolute;border-radius: 50%;right: 5px;bottom: 80%;">
+                        @endif
+                        <div class="bubble {{ $message->sender == auth()->id() ? 'sender' : 'receiver' }}">
+                            {{ $message->msg }}
+                            <div class="time">
+                                {{ $message->created_at->format('Y-m-d H:i') }}
+                            </div>
                         </div>
+                        @if ($message->seen == 'true' && $message->sender == auth()->id())
+                            <div class="seen-indicator">Seen</div>
+                        @endif
                     </div>
-                    @if ($message->seen == 'true' && $message->sender == auth()->id())
-                        <div class="seen-indicator">Seen</div>
-                    @endif
+                @endforeach
+            </div>
+            <form id="messageForm" method="POST"
+                  action="{{ route('sendMessage', ['chatid' => $chatid, 'hisid' => $user->id]) }}">
+                @csrf
+                <div class="input-area row  d-flex justify-content-between" style="margin: 0">
+                    <input class="col-9" type="text" name="context" placeholder="Type a message..." required autocomplete="off" style="margin: 0">
+                    <button class="col-3" type="submit">Send Message</button>
                 </div>
-            @endforeach
-
+            </form>
         </div>
 
-        <form id="messageForm" method="POST"
-              action="{{ route('sendMessage', ['chatid' => $chatid, 'hisid' => $user->id]) }}">
-            @csrf
-            <div class="input-area">
-                <input type="text" name="context" placeholder="Type a message..." required autocomplete="off">
-                <button type="submit">Send Message</button>
-            </div>
-        </form>
-    </section>
 
-
+    @endsection
+    @section('scripts')
 
 
 
@@ -204,13 +225,14 @@
 
                             // Update the chat interface with the new message and timestamp
                             var newMessage = '<div class="message">' +
+                                '<img class="sender">'+
                                 '<div class="bubble sender">' +
                                 message +
                                 '<div class="time">' + response.timestamp + '</div>' +
                                 '</div>' +
                                 '</div>';
 
-                            $('.conversation').append(newMessage);
+                            $('.allMessages').append(newMessage);
                             scrollToBottom(); // Scroll to the bottom of the conversation
                         }
                     },
@@ -229,6 +251,6 @@
             scrollToBottom();
         });
     </script>
-</body>
-</html>
+
+@endsection
 

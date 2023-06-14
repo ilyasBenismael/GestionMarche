@@ -204,8 +204,6 @@ Route::put('/marche/{id}/add-date-resiliation', [MarcheController::class ,'addDa
 
 
 
-
-
 /*-------------------------------------------------------------------------------------------------*/
 
 Auth::routes();

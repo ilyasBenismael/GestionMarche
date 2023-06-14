@@ -97,8 +97,9 @@ else {
 }
 
 /*-------- Night Mode -End- --------*/
-
 function toggleDropdown() {
+
+
         var dropdownContent = document.getElementById("dropdownContent");
         var dropdownArrow = document.getElementById("dropdownArrow");
         if (dropdownContent.style.display === "none") {
@@ -174,3 +175,19 @@ $(document).ready(function() {
 });
 
 
+$(document).ready(function() {
+    var rotated = false;
+
+
+    $('#dropdownNotif').click(function() {
+        $('#dropdownContentNotif').toggle();
+
+        if (rotated) {
+            $('#notificationIcon').css('transform', 'rotate(0deg)');
+            rotated = false;
+        } else {
+            $('#notificationIcon').css('transform', 'rotate(-20deg)');
+            rotated = true;
+        }
+    });
+});

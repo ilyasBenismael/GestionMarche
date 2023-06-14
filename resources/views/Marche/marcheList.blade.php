@@ -70,17 +70,17 @@
         <table class="table night-mode" id="dataTable">
             <thead>
             <tr>
-                <th>statut</th>
+                <th>Statut</th>
                 <th>Numero Marche</th>
                 <th>Exercice</th>
                 <th>Montant</th>
                 <th>Date</th>
                 <th>Attachement</th>
                 <th>Prix</th>
-                <th>Show Marche</th>
-                <th>Update marche</th>
+                <th>Afficher Marche</th>
+                <th>Modifier marche</th>
                 <th>Resillier</th>
-                <th>Delete</th>
+                <th>Supprimer</th>
             </tr>
             </thead>
             <tbody>
@@ -131,8 +131,13 @@
                             Error
                         @endif
                     </td>
-                    <td><a href="/attachement/create/{{$marche->id}}">Create attachement</a></td>
-                    <td><a href="/prix/create/{{$marche->id}}">Create prix</a></td>
+
+
+                    <td><a href="/attachement/create/{{$marche->id}}" class="btn btn-success">Cree attachement</a></td>
+                    <td><a href="/prix/create/{{$marche->id}}" class="btn btn-info">Cree prix</a></td>
+
+
+
                     <td style="text-align: center">
                         <a href="/marche/{{$marche->id}}" class="btn btn-sm btn-primary"><i
                                 class="fas fa-eye"></i> </a></td>
