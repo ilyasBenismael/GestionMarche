@@ -238,4 +238,9 @@
             </div>
         </div>
     </div>
+
+
+
+    <a href="{{ route('reception_provisoire', ['id' => $marche->id])}}" class="btn btn-primary">Générer une Reception Provisoire</a>
+
 @endsection

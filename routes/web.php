@@ -96,6 +96,12 @@ Route::post('/addGraph', 'App\Http\Controllers\GraphController@addGraph');
 
 
 
+//Generations
+Route::get('/receptionProvisoire/{id}', 'App\Http\Controllers\GenerateController@goReceptionProvisoire')->name('reception_provisoire');
+Route::get('/download_pdf/{id}', 'App\Http\Controllers\GenerateController@downloadPdf')->name('download_pdf');
+
+
+
 
 
 

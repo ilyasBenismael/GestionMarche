@@ -63,9 +63,9 @@
     </div>
 
 
-        <div class="mx-auto chartss p-1 m-1" style="width: 90%;">
-            <canvas id="barChart2" style="z-index: 1;"></canvas>
-        </div>
+    <div class="mx-auto chartss p-1 m-1" style="width: 90%;">
+        <canvas id="barChart2" style="z-index: 1;"></canvas>
+    </div>
 
 
     <a href="/addGraph" style="margin-top: 100px;">make a graph</a>
@@ -88,7 +88,6 @@
 
             var marchesCountsEx = {!! json_encode($marchesCountsEx) !!};
             var years = {!! json_encode($years) !!};
-
 
 
             // one
@@ -117,7 +116,6 @@
                     }
                 }
             });
-
 
 
             var ctx = document.getElementById('lineChart').getContext('2d');
@@ -168,7 +166,6 @@
                     }
                 }
             });
-
 
 
             //five
