@@ -72,15 +72,15 @@
                 <th>Profil</th>
                 <th>name</th>
                 <th>email</th>
-                <th>city</th>
+                <th>ville</th>
                 <th>role</th>
-                <th>cv</th>
-                <th>Actions</th>
-                <th>Send Message</th>
-                <th></th>
+                <th>Download</th>
+                <th>Chat</th>
+                <th>Update</th>
                 <th>Delete</th>
             </tr>
             </thead>
+
             <tbody>
             @foreach($users as $user)
                 <tr>
@@ -96,9 +96,6 @@
                     <td>{{$user->city}}</td>
                     <td>{{$user->role}}</td>
                     <td>
-                        <a href="{{ asset('files/cvs/'.$user->cv) }}">{{$user->cv}}</a>
-                    </td>
-                    <td>
                         <form action="/dowload/{{ $user->cv }}" method="POST">
                             @csrf
                             <button class="btn btn-s btn-primary">
@@ -108,15 +105,15 @@
                         </form>
                     </td>
                     <td>
-                        <a href="/chat/{{$user->id}}" class="btn btn-info" style="color: white">send message <i class="fa-regular fa-comments"></i></a>
+                        <a href="/chat/{{$user->id}}" class="btn btn-info" style="color: white">Envoyer un message <i class="fa-regular fa-comments"></i></a>
                     </td>
                     <td>
                         <a href="/user/{{ $user->id }}" class="btn btn-sm btn-warning middle" style="color: white">
                             Update
                             <i class="fas fa-edit"></i>
                         </a>
-                        <a href="/ChangePassword/{{ $user->id }}" class="btn btn-sm btn-warning middle" style="color: white">
-                            Change password
+                        <a href="/ChangePassword/{{ $user->id }}" class="btn btn-sm btn-warning mt-1 middle" style="color: white">
+                             Password
                             <i class="fas fa-edit"></i>
                         </a>
 
