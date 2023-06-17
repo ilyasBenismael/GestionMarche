@@ -101,7 +101,7 @@
         <div class="user-info">
             @auth()
                 <div class="image">
-                    <img src={{ asset('files/profils/'.auth()->user()->image)}} alt="User" style="width: 100px;height: 100px" />
+                    <img src="{{ asset('files/profils/' . auth()->user()->image) }}" alt="PROFIL IMAGE" style="width: 100px;height: 100px">
                 </div>
                 <div class="info-container">
                     <div id="dropdownNotif" style="display: flex;justify-content: center;align-items: center;" class="name {{ strtolower(auth()->user()->role) === 'admin' ? 'admin' : '' }}{{ strtolower(auth()->user()->role) === 'cadre' ? 'cadre' : '' }}{{ strtolower(auth()->user()->role) === 'consultant' ? 'consultant' : '' }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

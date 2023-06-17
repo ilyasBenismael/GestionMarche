@@ -85,7 +85,11 @@
             @foreach($users as $user)
                 <tr>
                     <td>
+                        @if($user->image !== 'unknown')
                         <img src="{{ asset('files/profils/' . $user->image) }}" alt="PROFIL IMAGE" class="profilPic">
+                        @else
+                            <img src="{{ asset('files/profils/profilx.jpg') }}" alt="PROFIL IMAGE" class="profilPic">
+                        @endif
                     </td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->email}}</td>

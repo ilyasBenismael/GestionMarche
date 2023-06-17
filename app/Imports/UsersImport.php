@@ -15,14 +15,20 @@ class UsersImport implements ToModel
     */
     public function model(array $row)
     {
-        return new User([
-            "name"=>$row[0],
-            "email"=>$row[1],
-            "password"=>Hash::make($row[2]),
-            "city"=>$row[3],
-            "role"=>$row[4],
-            "image"=>$row[5],
-            "cv"=>$row[6],
-        ]);
+        if (!empty($row[0])) {
+            return new User([
+                "name" => $row[0],
+                "email" => $row[1],
+                "password" => Hash::make($row[2]),
+                "city" => $row[3],
+                "role" => $row[4],
+                "image" => $row[5],
+                "cv" => $row[6],
+            ]);
+        }
+
+        // Return null if the 'name' value is empty
+        return null;
     }
+
 }

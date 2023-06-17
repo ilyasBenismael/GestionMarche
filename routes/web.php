@@ -125,6 +125,8 @@ Route::delete('/categoriePrix/{id}', [CategoriePrixController::class, 'destroy']
 /*-- == Categorie Prix -End- == --*/
 
 
+
+
 /*-- == Type Marche -Start- == --*/
 Route::get('/typeMarche', [TypeMarcheController::class, 'myListe'])->name('typeMarche');
 Route::post('/typeMarche', [TypeMarcheController::class, 'store'])->name('typeMarche.store');

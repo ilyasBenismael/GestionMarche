@@ -15,6 +15,14 @@
             text-align: center;
         }
 
+
+              .unclickable-button {
+             background-color: #999;
+             color: #fff;
+             cursor: not-allowed;
+                  width:30px
+         }
+
         .shapee {
             fill: transparent;
             stroke-dasharray: 140 540;
@@ -74,10 +82,10 @@
                 <th>Numero Marche</th>
                 <th>Exercice</th>
                 <th>Montant</th>
-                <th>Date</th>
+                <th>Afficher Marche</th>
+                <th>Renseigner des dates</th>
                 <th>Attachement</th>
                 <th>Prix</th>
-                <th>Afficher Marche</th>
                 <th>Modifier marche</th>
                 <th>Resillier</th>
                 <th>Supprimer</th>
@@ -87,26 +95,21 @@
             @foreach($marches as $marche)
                 <tr>
                     <td>
-                        @if(isset($marche->date_resiliation))
-                            Resilié
-                        @else
-                            @if(!isset($marche->date_ordre_service))
-                                En Instance
-                            @elseif(isset($marche->date_ordre_service) and !isset($marche->date_reception_provisoire))
-                                En Cours
-                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and !isset($marche->date_reception_definitive))
-                                Réceptionné
-                            @elseif(isset($marche->date_ordre_service) and isset($marche->date_reception_provisoire) and isset($marche->date_reception_definitive))
-                                Clôturé
-                            @else
-                                Error
-                            @endif
-                        @endif
+                        {{$marche->statut}}
                     </td>
+
                     <td>{{$marche->numero_marche}}</td>
+
                     <td>{{$marche->exercice}}</td>
+
                     <td>{{$marche->montant}}</td>
+
+                    <td style="text-align: center">
+                        <a href="/marche/{{$marche->id}}" class="btn btn-sm btn-primary"><i
+                                class="fas fa-eye"></i> </a></td>
+
                     <td>
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
                         @if(!isset($marche->date_ordre_service))
                             <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
                             <i class="fa-solid fa-circle-xmark" style="color: #c9371d"></i>
@@ -127,30 +130,48 @@
                             <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
                             <i class="fa-solid fa-circle-check" style="color: #2bb659"></i>
                             <i class="fa-solid fa-circle-info marche-details" data-marche-id="{{ $marche->id }}" style="color: #FFC107; cursor: pointer"></i>
+                        @endif
                         @else
-                            Error
+                            <button class="unclickable-button" disabled></button>
                         @endif
                     </td>
 
 
-                    <td><a href="/attachement/create/{{$marche->id}}" class="btn btn-success">Cree attachement</a></td>
-                    <td><a href="/prix/create/{{$marche->id}}" class="btn btn-info">Cree prix</a></td>
+                    <td>
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
+                        <a href="/attachement/create/{{$marche->id}}" class="btn btn-success">Cree attachement</a>
+                        @else        <button class="unclickable-button" disabled></button>
+                        @endif
+                    </td>
+
+                    <td>
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
+                            <a href="/prix/create/{{$marche->id}}" class="btn btn-info">Cree prix</a>
+                        @else        <button class="unclickable-button" disabled></button>
+                        @endif
+                    </td>
 
 
 
-                    <td style="text-align: center">
-                        <a href="/marche/{{$marche->id}}" class="btn btn-sm btn-primary"><i
-                                class="fas fa-eye"></i> </a></td>
-                    <td style="text-align: center">
+                    <td>
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
                         <a href="{{ route('marche.edit', ['id' => $marche->id]) }}"
                            class="btn btn-sm btn-warning middle" >
                             <i class="fas fa-edit" style="color: white"></i>
                         </a>
+                        @else        <button class="unclickable-button" disabled></button>
+                        @endif
                     </td>
+
                     <td>
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
                         <button class="marche-details1 btn btn-danger" data-marche-id="{{ $marche->id }}">Resilier</button>
+                        @else  <button class="unclickable-button" disabled></button>
+                        @endif
                     </td>
+
                     <td style="text-align: center">
+                        @if(auth()->user()->role=='admin' || auth()->id()==$marche->responsable_de_suivi)
                         <form action="{{ route('marche.destroy', ['id' => $marche->id]) }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -158,7 +179,10 @@
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
+                        @else        <button class="unclickable-button" disabled></button>
+                        @endif
                     </td>
+
                 </tr>
 
 

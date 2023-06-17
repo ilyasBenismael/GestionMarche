@@ -7,10 +7,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Upload Excel File</div>
+                <div class="card mt-5">
+                    <div class="card-header bg-dark text-white">Upload Excel File</div>
 
-                    <div class="card-body">
+                    <div class="card-body custom-bg-color ">
                         <form action="/addGraph" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

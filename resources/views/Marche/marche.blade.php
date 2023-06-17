@@ -1,6 +1,32 @@
 @extends('layouts.app')
 
 @section('content')
+
+    <style>
+        .bg-crdbdy{
+            background-color: #dadada;
+        }
+
+        .bg-gold{
+            background-color: #637e63;
+            color: white;
+        }
+
+        .bg-gold:hover{
+            background-color: #364436;
+            color: white;
+        }
+
+        .btn-impri{
+            background-color: #5e4d1b;
+            margin-bottom: 20px;
+            margin-top: 5px;
+            margin-left: 50px;
+            color: white;
+        }
+
+
+    </style>
     <div class="container">
         <div class="card mb-4">
             <div class="card-header bg-dark text-light">
@@ -9,7 +35,7 @@
 
 
 
-            <div class="card-body">
+            <div class="card-body bg-crdbdy">
                 <div class="row mb-3 border-bottom border-grey">
                     <div class="col-4 font-weight-bold label-text-dark">Numero Marche:</div>
                     <div class="col-8 value-text-light">{{$marche->numero_marche}}</div>
@@ -42,7 +68,7 @@
                     @if ($appel == null)
                         <h6 class="text-light">No appel d'offre</h6>
                     @else
-                        <a href="/appeloffre/{{$appel->id}}" class="btn btn-sm text-white btn-primary w-25">Appel
+                        <a href="/appeloffre/{{$appel->id}}" class="btn btn-sm text-white w-25 bg-gold">Appel
                             d'offre et concurrents</a>
                     @endif
                 </div>
@@ -53,7 +79,7 @@
             <div class="card-header bg-dark text-light">
                 <h4 class="label-text-lighter">Attributaire</h4>
             </div>
-            <div class="card-body">
+            <div class="card-body bg-crdbdy">
                 @if ($attributaire)
                     <div class="row mb-3 border-bottom border-grey">
                         <div class="col-4 font-weight-bold label-text-dark">Raison Sociale:</div>
@@ -119,7 +145,7 @@
                     <div class="text-center">
                         <h6 class="text-dark">Aucun attributaire pour le moment</h6>
                         <a href="{{ route('attributaires.create', ['marche_id' => $marche->id]) }}"
-                           class="btn btn-sm btn-primary ml-2 w-50">Créer un attributaire</a>
+                           class="btn btn-sm bg-gold ml-2 w-50">Créer un attributaire</a>
                     </div>
                 @endif
             </div>
@@ -128,9 +154,9 @@
         <div class="card mb-4">
             <div class="card-header justify-content-between align-items-center d-flex bg-dark text-light">
                 <h4 class="label-text-lighter">Attachements</h4>
-                <a href="/attachement/create/{{$marche->id}}" class="btn btn-primary float-right">Create Attachement</a>
+                <a href="/attachement/create/{{$marche->id}}" class="btn bg-gold float-right">Create Attachement</a>
             </div>
-            <div class="card-body">
+            <div class="card-body bg-crdbdy">
                 @if ($attachements->isEmpty())
                     <p>No attachements found.</p>
                 @else
@@ -175,19 +201,18 @@
                 if (quantiteExecutes.style.display === 'none') {
                     quantiteExecutes.style.display = 'block';
                 } else {
-                    quantiteExecutes.style.display = 'none';
-                }
+                    quantiteExecutes.style.display = 'none'; }
             }
         </script>
 
 
 
-        <div class="card mb-4">
+        <div class="card mb-4 ">
             <div class="card-header justify-content-between align-items-center d-flex bg-dark text-light">
                 <h4 class="label-text-lighter">Prix</h4>
-                <a href="/prix/create/{{$marche->id}}" class="btn btn-primary float-right">Create Prix</a>
+                <a href="/prix/create/{{$marche->id}}" class="btn bg-gold float-right">Create Prix</a>
             </div>
-            <div class="card-body">
+            <div class="card-body bg-crdbdy">
                 @if ($prixList->isEmpty())
                     <h6 class="text-dark">Aucun prix n'est ajouté</h6>
                 @else
@@ -239,8 +264,9 @@
         </div>
     </div>
 
+{{--    <a href="{{ route('reception_provisoire', ['id' => $marche->id])}}" class="btn btn-impri">Générer une Reception Provisoire</a>--}}
 
-
-    <a href="{{ route('reception_provisoire', ['id' => $marche->id])}}" class="btn btn-primary">Générer une Reception Provisoire</a>
-
+    @if($marche->date_reception_definitive != null)
+    <a href="{{ route('reception_provisoire', ['id' => $marche->id])}}" class="btn btn-impri">Générer une Reception Definitive</a>
+    @endif
 @endsection
